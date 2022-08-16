@@ -9,7 +9,7 @@
         <hr />
     </div>
     <div class="row">
-        <div class="btn-group col-md-4" role="group" aria-label="Basic mixed styles example">
+        <div class="btn-group col-md-5" role="group" aria-label="Basic mixed styles example">
             <a type="button" asp-action="listofproduct" class="btn btn-secondary">Product</a>
             <a type="button" asp-action="listofproductatpersonel" class="btn btn-secondary">Personel</a>
             <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Commons</a>
@@ -24,17 +24,19 @@
             </div>
         </div>
     </div>
-
-    <div class="row mt-5">
-        <div class="list-group list-group-flush col-md-1">
-            <li class="list-group-item">CATEGORIES</li>
+    <div class="row">
+        <div class="list-group list-group-horizontal list-group-flush col-md-8">
+            @*<li class="list-group-item">CATEGORIES</li>*@
             @foreach (var item in Model.category)
             {
                 <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproduct/@item.id">@item.name</a>
             }
-            <a type="button" class="list-group-item list-group-item-action"href="/editor/listofproduct/0" >All</a>
+            <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproduct/0">All</a>
 
         </div>
+    </div>
+    <div class="row mt-2">
+
         <div class="col-md-11">
             <table class="table">
                 <thead>
@@ -87,14 +89,14 @@
 </div>
 <script src="~/lib/jquery/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         function Contains(text_one, text_two) {
             if (text_one.indexOf(text_two) != -1)
                 return true;
         }
-        $("#search").keyup(function () {
+        $("#search").keyup(function() {
             var searchText = $("#search").val().toLowerCase();
-            $(".arama").each(function () {
+            $(".arama").each(function() {
                 if (!Contains($(this).text().toLowerCase(), searchText)) {
                     $(this).hide();
                 }
