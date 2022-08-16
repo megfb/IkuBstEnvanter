@@ -1,0 +1,73 @@
+﻿@model BstEnvanter.WebUI.Models.DetailPersonelViewModel
+@{
+    ViewData["Title"] = "DetailPersonel";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Personel Detail</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="border border-rounded rounded">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Personel Details</h3>
+            </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Name:</td>
+                        <td>@Model.personel.name</td>
+                    </tr>
+                    <tr>
+                        <td>Surname:</td>
+                        <td>@Model.personel.surname</td>
+                    </tr>
+                    <tr>
+                        <td>Age:</td>
+                        <td>@Model.personel.age</td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td>@Model.personel.Sex.name</td>
+                    </tr>
+                    <tr>
+                        <td>Department:</td>
+                        <td>@Model.personel.Department.name</td>
+                    </tr>
+                    <tr>
+                        <td>E-Mail:</td>
+                        <td>@Model.personel.eMail</td>
+                    </tr>
+                    <tr>
+                        <td>Location:</td>
+                        <td>@Model.personel.roomNo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row pt-3 col-md-12">
+        @foreach (var item in Model.status)
+        {
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3 col-md-12">
+                    <div class="card-header">@item.Product.Category.name</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Product.Brand.name</h5>
+                        <h5 class="card-title">@item.Product.Model.name</h5>
+                        <p class="card-text">@item.Product.serialNo</p>
+                        <p class="card-text">@item.Product.inventoryNo</p>
+                        <div class="text-end">
+                            <a class="btn btn-secondary" asp-action="detailproduct" asp-route-id="@item.id">Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <hr />
+        <div class="text-end">
+            <a class="btn btn-primary col-md-2" onClick="history.go(-1); return false;">Back</a>
+        </div>
+    </div>
+</div>

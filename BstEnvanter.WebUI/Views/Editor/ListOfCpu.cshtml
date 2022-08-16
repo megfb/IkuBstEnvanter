@@ -1,0 +1,43 @@
+﻿@model BstEnvanter.WebUI.Models.ListOfCpuModel
+@{
+    ViewData["Title"] = "ListOfCpu";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Cpu List</h1>
+        <hr />
+    </div>
+    <a asp-action="addcpu" class="btn btn-secondary">Add A Cpu</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model.cpu)
+                {
+                    <tr>
+                        <td scope="col">@item.id</td>
+                        <td scope="col">@item.name</td>
+                        <td scope="col">
+                            <a class="btn btn-warning" asp-controller="editor" asp-action="updatecpu" asp-route-id="@item.id">Update </a>
+                        </td>
+                        <td scope="col">
+                            <a class="btn btn-danger" asp-controller="editor" asp-action="deletecpu" asp-route-id="@item.id">Delete</a>
+                        </td>
+                        <td scope="col">
+                            <a class="btn btn-primary" asp-controller="editor" asp-action="detailcpu" asp-route-id="@item.id">Detail</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>

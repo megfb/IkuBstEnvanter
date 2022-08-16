@@ -1,0 +1,176 @@
+﻿@model BstEnvanter.WebUI.Models.MoveToPersonelViewModel
+@{
+    ViewData["Title"] = "MoveToPersonel";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Move to Personel</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class=" border col-md-4 rounded">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Product Details</h3>
+            </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Name:</td>
+                        <td>@Model.status.Product.name</td>
+                    </tr>
+                    <tr>
+                        <td>Category:</td>
+                        <td>@Model.status.Product.Category.name</td>
+                    </tr>
+                    <tr>
+                        <td>Brand:</td>
+                        <td>@Model.status.Product.Brand.name</td>
+                    </tr>
+                    <tr>
+                        <td>Model:</td>
+                        <td>@Model.status.Product.Model.name</td>
+                    </tr>
+                    <tr>
+                        <td>Serial No:</td>
+                        <td>@Model.status.Product.serialNo</td>
+                    </tr>
+                    <tr>
+                        <td>Inventory No:</td>
+                        <td>@Model.status.Product.inventoryNo</td>
+                    </tr>
+                    <tr>
+                        <td>Cpu:</td>
+                        <td>@Model.status.Product.Cpu.name</td>
+                    </tr>
+                    <tr>
+                        <td>Gpu:</td>
+                        <td>@Model.status.Product.Gpu.name</td>
+                    </tr>
+                    <tr>
+                        <td>Ram:</td>
+                        <td>@Model.status.Product.Ram.name</td>
+                    </tr>
+                    <tr>
+                        <td>Hard Drive:</td>
+                        <td>@Model.status.Product.HardDrive.name</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="border border-rounded col-md-4 rounded">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Common Details</h3>
+            </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Department:</td>
+                        <td>@Model.status.Common.department.name</td>
+                    </tr>
+                    <tr>
+                        <td>Location:</td>
+                        <td>@Model.status.Common.CLocation.name</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="border border-rounded col-md-4 rounded">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Specialist Details</h3>
+            </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Name:</td>
+                        @*<td>@Model.status.Personel.name</td>*@
+                    </tr>
+                    <tr>
+                        <td>Surname:</td>
+                        @*<td>@Model.status.Personel.surname</td>*@
+                    </tr>
+                    <tr>
+                        <td>Age:</td>
+                        @*<td>@Model.status.Personel.age</td>*@
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        @*<td>@Model.status.Personel.Sex.name</td>*@
+                    </tr>
+                    <tr>
+                        <td>Department:</td>
+                        @*<td>@Model.status.Personel.Department.name</td>*@
+                    </tr>
+                    <tr>
+                        <td>Location:</td>
+                        @*<td>@Model.status.Personel.roomNo</td>*@
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6 border border-rounded rounded">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Status Details</h3>
+            </div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Definition:</td>
+                        <td>@Model.status.definition</td>
+                    </tr>
+                    <tr>
+                        <td>Campus:</td>
+                        <td>@Model.status.Campus.name</td>
+                    </tr>
+                    <tr>
+                        <td>Date of Update:</td>
+                        <td>@Model.status.dateOfUpdate</td>
+                    </tr>
+                    <tr>
+                        <td>Bst Id:</td>
+                        <td>@Model.status.bstId</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form method="post" class="col-md-6 border border-rounded rounded" asp-action="movetopersonel">
+            <div class="row bg-primary">
+                <h3 class="pt-3 text-light">Insert Personel Informations</h3>
+            </div>
+            <div class="form-group row pt-3">
+                <label for="inputPersonel" class="col-form-label col-md-2">Personel</label>
+                <div class="col-md-10">
+                    <select asp-for="status.personelId" id="inputPersonel" class="form-select" asp-items='new SelectList(from x in Model.personel select new { Value = x.id ,Text = x.name + " " + x.surname + " " + x.age}, "Value","Text")'></select>
+                </div>
+            </div>
+
+            <div class="form-group row pt-3">
+                <label for="inputCampus" class="col-form-label col-md-2">Campus</label>
+                <div class="col-md-10">
+                    <select asp-for="status.campusId" id="inputCampus" class="form-select" asp-items="@(new SelectList(Model.campus,"id","name"))"></select>
+                </div>
+            </div>
+            <div class="form-group pt-3 row">
+                <label for="inputDefinition" class="col-form-label col-md-2">Definition</label>
+                <div class="col-md-10">
+                    <textarea class="form-control" id="inputDefinition" asp-for="status.definition" placeholder="@Model.status.definition" rows="3"></textarea>
+                    <span asp-validation-for="status.definition"></span>
+                </div>
+            </div>
+            <div class="mt-1 text-end">
+                <input type="hidden" asp-for="status.id" />
+                <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
+                <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+                <input type="hidden" asp-for="status.bstId" value="ID" />
+                <button class="btn btn-primary col-md-2" asp-route-id="@Model.status.commonId">Update</button>
+                <a class="btn btn-secondary col-md-2" asp-controller="editor" onClick="history.go(-1); return false;">Back</a>
+
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,107 @@
+﻿@model BstEnvanter.WebUI.Models.ListOfProductViewModel
+@{
+    ViewData["Title"] = "ListOfProduct";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Product List</h1>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="btn-group col-md-4" role="group" aria-label="Basic mixed styles example">
+            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Product</a>
+            <a type="button" asp-action="listofproductatpersonel" class="btn btn-secondary">Personel</a>
+            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Commons</a>
+            <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group rounded">
+                <input type="text" class="form-control" id="search" placeholder="search" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="list-group list-group-flush col-md-1">
+            <li class="list-group-item">CATEGORIES</li>
+            @foreach (var item in Model.category)
+            {
+                <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproduct/@item.id">@item.name</a>
+            }
+            <a type="button" class="list-group-item list-group-item-action"href="/editor/listofproduct/0" >All</a>
+
+        </div>
+        <div class="col-md-11">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Category</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Serial No</th>
+                        <th scope="col">Inventory No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model.product)
+                        {
+                            @if (item.personelId == null && item.commonId == null)
+                            {
+                                <tr class="arama">
+
+                                    <td scope="col">@item.Product.Category.name</td>
+                                    <td scope="col">@item.Product.Brand.name</td>
+                                    <td scope="col">@item.Product.Model.name</td>
+                                    <td scope="col">@item.Product.serialNo</td>
+                                    <td scope="col">@item.Product.inventoryNo</td>
+                                    <td scope="col">
+                                        <a class="btn btn-warning" asp-controller="editor" asp-action="UpdateProduct" asp-route-id="@item.productId">Update </a>
+                                    </td>
+                                    <td scope="col">
+                                        <a class="btn btn-danger" asp-controller="editor" asp-action="DeleteProduct" asp-route-id="@item.id" asp-route-productId="@item.productId">Delete</a>
+                                    </td>
+                                    <td scope="col">
+                                        <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detail</a>
+                                    </td>
+                                    <td scope="col">
+                                        <a class="btn btn-info" asp-controller="editor" asp-action="addproductatpersonel" asp-route-id="@item.id">Add to Personel</a>
+                                    </td>
+                                    <td scope="col">
+                                        <a class="btn btn-info" asp-controller="editor" asp-action="addcommon" asp-route-id="@item.id">Add to Common</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#search").keyup(function () {
+            var searchText = $("#search").val().toLowerCase();
+            $(".arama").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+    });
+</script>
