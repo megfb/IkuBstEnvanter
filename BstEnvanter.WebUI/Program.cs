@@ -2,12 +2,19 @@ using BstEnvanter.Business.Abstract;
 using BstEnvanter.Business.Concrete;
 using BstEnvanter.Dal.Abstract;
 using BstEnvanter.Dal.Concrete;
+using BstEnvanter.Entity.Concrete;
+using BstEnvanter.WebUI.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddDbContext<ApplicationIdentityDbContext>(options => {
+    options.UseSqlServer("Server=DESKTOP-U3KQDUS;Database=BstEnvanter;Trusted_Connection=true");
+}); builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IBrandService, BrandManager>(); builder.Services.AddScoped<IBrandDal, BrandDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>(); builder.Services.AddScoped<ICategoryDal, CategoryDal>();
 builder.Services.AddScoped<IModelService, ModelManager>(); builder.Services.AddScoped<IModelDal, ModelDal>();
@@ -25,7 +32,29 @@ builder.Services.AddScoped<IRamService, RamManager>(); builder.Services.AddScope
 builder.Services.AddScoped<IHardDriveService, HardDriveManager>(); builder.Services.AddScoped<IHardDriveDal, HardDriveDal>();
 builder.Services.AddScoped<IServiceService, ServiceManager>(); builder.Services.AddScoped<IServiceDal, ServiceDal>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
 
+});
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/account/login";
+    options.LogoutPath = "/account/logout";
+    options.AccessDeniedPath = "/account/accessdenied";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    options.SlidingExpiration = true;
+    options.Cookie = new CookieBuilder
+    {
+        HttpOnly = true,
+        Name ="BstEnvanterSecurityCookie",
+        SameSite = SameSiteMode.Strict,
+    };
+});
 
 
 
@@ -42,9 +71,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseAuthentication();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",

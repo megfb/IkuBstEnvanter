@@ -1,0 +1,104 @@
+﻿@model BstEnvanter.WebUI.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Add a New User</h1>
+        <hr />
+    </div>
+    <form asp-action="register" asp-controller="account" class="col-md-8 p-3 mb-3 border rounded" method="post">
+
+
+        <div class="form-group row">
+            <label class="col-md-2 col-form-label" for="inputRegisterName">Name</label>
+            <div class="col-md-10">
+                <input id="inputRegisterName" asp-for="name" class="form-control" type="text" placeholder="Name" />
+                <span class="text-danger fw-bold" asp-validation-for="name"></span>
+            </div>
+        </div>
+
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterSurname">Surname</label>
+            <div class="col-md-10">
+                <input asp-for="surname" class="form-control" type="text" placeholder="surname" />
+                <span asp-validation-for="surname"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterAge">Age</label>
+            <div class="col-md-10">
+                <input id="inputRegisterAge" asp-for="age" class="form-control" type="number" placeholder="Age" />
+                <span asp-validation-for="age"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterGender">Gender</label>
+            <div class="col-md-10">
+                <input id="inputRegisterGender" asp-for="gender" class="form-control" type="text" placeholder="Gender" />
+                <span asp-validation-for="gender"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterDepartment">Department</label>
+            <div class="col-md-10">
+                <input id="inputRegisterDepartment" asp-for="department" class="form-control" type="text" placeholder="Department" />
+                <span asp-validation-for="department"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterTitle">Title</label>
+            <div class="col-md-10">
+                <input id="inputRegisterTitle" asp-for="title" class="form-control" type="text" placeholder="Title" />
+                <span asp-validation-for="title"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterRoomNo">Room No</label>
+            <div class="col-md-10">
+                <input id="inputRegisterRoomNo" asp-for="roomNo" class="form-control" type="text" placeholder="Room No" />
+                <span asp-validation-for="roomNo"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterEmail">Email</label>
+            <div class="col-md-10">
+                <input id="inputRegisterEmail" asp-for="Email" class="form-control" type="text" placeholder="Email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterPassword">Password</label>
+            <div class="col-md-10">
+                <input id="inputRegisterPassword" asp-for="password" class="form-control" type="password" placeholder="Password" />
+                <span asp-validation-for="password"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputRegisterRePassword">RePassword</label>
+            <div class="col-md-10">
+                <input id="inputRegisterRePassword" asp-for="rePassword" class="form-control" type="password" placeholder="RePassword" />
+                <span asp-validation-for="rePassword"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label asp-for="role" class="col-md-2 col-form-label" for="inputRegisterRole">Role</label>
+            <div class="col-md-10">
+                <select asp-for="role" class="form-select" aria-label="Default select example">
+                    <option value="admin">Admin</option>
+                    <option value="editor">Editor</option>
+                    <option value="user">User</option>
+                </select>
+                <span asp-validation-for="rePassword"></span>
+            </div>
+        </div>
+        <div class="mt-1 text-end">
+
+            <button type="submit" class="btn btn-primary col-md-2">Create user</button>
+            @*            <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
+            *@
+        </div>
+    </form>
+</div>

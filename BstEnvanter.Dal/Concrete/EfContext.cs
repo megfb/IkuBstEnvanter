@@ -12,7 +12,7 @@ namespace BstEnvanter.Dal.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-0ALOVMI\SQLEXPRESS;Database=BstEnvanter;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-U3KQDUS;Database=BstEnvanter;Trusted_Connection=true");
         }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Campus> Campus { get; set; }

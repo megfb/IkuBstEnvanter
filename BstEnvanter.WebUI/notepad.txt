@@ -2,6 +2,7 @@
 - delete butonlarına onay eklenecek
 - Alertler kontrol edilecek
 - validationlar kontrol edilecek
+-product detail sayfalarında ki nullsa 
 -add to personel, add to common,
 	add cpu-gpu-hdd-ram, update cpu-gpu-hdd-ram,
 	hdd category, update category,
@@ -11,3 +12,10 @@
 	add a campus, update a campus,
 	add a department, update a department,
 	add a location, update a location,
+-validation işlemleri,
+-searchable dropdown
+-notification
+-user detail, user update, user list
+-product detail sayfalarında ki specialist detail
+-authorize işlemleri
+-access denied sayfası
