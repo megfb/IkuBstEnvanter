@@ -7,5 +7,6 @@ namespace BstEnvanter.Entity.Concrete
         public int id { get; set; }
         public string name { get; set; }
         public ICollection<Common> common { get; set; }
+        public ICollection<Personel> personel { get; set; }
     }
 }

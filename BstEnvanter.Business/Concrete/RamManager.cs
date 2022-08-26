@@ -24,7 +24,7 @@ namespace BstEnvanter.Business.Concrete
 
         public Ram get(int id)
         {
-            throw new NotImplementedException();
+            return _ramDal.getRam(id);
         }
 
         public List<Ram> getAll()

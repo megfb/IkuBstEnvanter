@@ -15,7 +15,7 @@ namespace BstEnvanter.Dal.Concrete
         {
             using (EfContext context = new EfContext())
             {
-                var personel = context.Personel.Include(x => x.Department).Include(x => x.Sex).FirstOrDefault(x => x.id == id);
+                var personel = context.Personel.Include(x => x.Department).Include(x => x.Sex).Include(x => x.CLocation).FirstOrDefault(x => x.id == id);
                 return personel;
             }
         }

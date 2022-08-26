@@ -200,6 +200,9 @@ namespace BstEnvanter.Dal.Migrations
                     b.Property<int>("age")
                         .HasColumnType("int");
 
+                    b.Property<int>("cLocationId")
+                        .HasColumnType("int");
+
                     b.Property<int>("departmentId")
                         .HasColumnType("int");
 
@@ -209,9 +212,6 @@ namespace BstEnvanter.Dal.Migrations
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("roomNo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("sexId")
                         .HasColumnType("int");
 
@@ -219,6 +219,8 @@ namespace BstEnvanter.Dal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("cLocationId");
 
                     b.HasIndex("departmentId");
 
@@ -257,18 +259,6 @@ namespace BstEnvanter.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prop1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prop2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prop3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prop4")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ramId")
@@ -310,6 +300,43 @@ namespace BstEnvanter.Dal.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Ram");
+                });
+
+            modelBuilder.Entity("BstEnvanter.Entity.Concrete.Service", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("adress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("company")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("dateOfEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("dateOfStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("issue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("processNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("specialist")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Service");
                 });
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Sex", b =>
@@ -357,6 +384,9 @@ namespace BstEnvanter.Dal.Migrations
                     b.Property<int>("productId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("serviceId")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
 
                     b.HasIndex("campusId");
@@ -366,6 +396,8 @@ namespace BstEnvanter.Dal.Migrations
                     b.HasIndex("personelId");
 
                     b.HasIndex("productId");
+
+                    b.HasIndex("serviceId");
 
                     b.ToTable("Status");
                 });
@@ -391,6 +423,12 @@ namespace BstEnvanter.Dal.Migrations
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Personel", b =>
                 {
+                    b.HasOne("BstEnvanter.Entity.Concrete.CLocation", "CLocation")
+                        .WithMany("personel")
+                        .HasForeignKey("cLocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BstEnvanter.Entity.Concrete.Department", "Department")
                         .WithMany("personel")
                         .HasForeignKey("departmentId")
@@ -402,6 +440,8 @@ namespace BstEnvanter.Dal.Migrations
                         .HasForeignKey("sexId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CLocation");
 
                     b.Navigation("Department");
 
@@ -481,6 +521,10 @@ namespace BstEnvanter.Dal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BstEnvanter.Entity.Concrete.Service", "Service")
+                        .WithMany("status")
+                        .HasForeignKey("serviceId");
+
                     b.Navigation("Campus");
 
                     b.Navigation("Common");
@@ -488,6 +532,8 @@ namespace BstEnvanter.Dal.Migrations
                     b.Navigation("Personel");
 
                     b.Navigation("Product");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Brand", b =>
@@ -508,6 +554,8 @@ namespace BstEnvanter.Dal.Migrations
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.CLocation", b =>
                 {
                     b.Navigation("common");
+
+                    b.Navigation("personel");
                 });
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Common", b =>
@@ -555,6 +603,11 @@ namespace BstEnvanter.Dal.Migrations
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Ram", b =>
                 {
                     b.Navigation("product");
+                });
+
+            modelBuilder.Entity("BstEnvanter.Entity.Concrete.Service", b =>
+                {
+                    b.Navigation("status");
                 });
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Sex", b =>

@@ -121,8 +121,43 @@
                         </tbody>
                     </table>
                     <div class="text-end mt-2 pb-3">
-                        <a class="btn btn-danger" asp-controller="editor" asp-action="deleteproduct" asp-route-id="@Model.status.id">Delete</a>
-                        <a class="btn text-end text-light" style="background-color:#455A64" asp-controller="editor" asp-action="updateproduct" asp-route-id="@Model.status.id">Update </a>
+                        @if (Model.status.serviceId == null)
+                        {
+                            <a class="btn btn-success" asp-controller="editor" asp-action="addservice" asp-route-id="@Model.status.id">Add to Service</a>
+                        }
+                        @if (Model.status.serviceId != null)
+                        {
+                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Close Service Case</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Update Service Case</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="Detailservice" asp-route-id="@Model.status.id">Detail Service Case</a>
+
+                        }
+                        <a class="btn btn-primary" asp-controller="editor" asp-action="addproductatpersonel" asp-route-id="@Model.status.id">Add to Personel</a>
+                        <a class="btn btn-primary" asp-controller="editor" asp-action="addcommon" asp-route-id="@Model.status.id">Add to Common</a>
+                        <a class="btn text-end text-light" style="background-color:#455A64" asp-controller="editor" asp-action="updateproduct" asp-route-id="@Model.status.productId">Update </a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-start">
+                                        Are you sure to delete? This action cannot be undone!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" asp-controller="editor" asp-action="deleteproduct" asp-route-id="@Model.status.id" asp-route-productId="@Model.status.productId">Delete</a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <a class="btn text-end btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Back</a>
                     </div>
                 </div>
@@ -211,7 +246,7 @@
                             </tr>
                             <tr>
                                 <td>Location:</td>
-                                <td>@Model.status.Personel.roomNo</td>
+                                <td>@Model.status.Personel.CLocation.name</td>
                             </tr>
                         </tbody>
                     </table>
@@ -274,8 +309,43 @@
                         </tbody>
                     </table>
                     <div class="text-end mt-2 pb-3">
-                        <a class="btn btn-danger" asp-controller="editor" asp-action="DeleteProductAtPersonel" asp-route-id="@Model.status.id">Delete</a>
+                        @if (Model.status.serviceId == null)
+                        {
+                            <a class="btn btn-success" asp-controller="editor" asp-action="addservice" asp-route-id="@Model.status.id">Add to Service</a>
+
+                        }
+                        @if (Model.status.serviceId != null)
+                        {
+                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Close Service Case</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Update Service Case</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="Detailservice" asp-route-id="@Model.status.id">Detail Service Case</a>
+
+                        }
+                        <a class="btn btn-primary" asp-controller="editor" asp-action="movetocommon" asp-route-id="@Model.status.id">Move to Common</a>
                         <a class="btn text-light" style="background-color:#455A64" asp-controller="editor" asp-action="UpdateProductatpersonel" asp-route-id="@Model.status.id">Update </a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-start">
+                                        Are you sure to delete? This action cannot be undone!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" asp-controller="editor" asp-action="deleteproductatpersonel" asp-route-id="@Model.status.id" asp-route-productId="@Model.status.productId">Delete</a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <a class="btn text-end btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Back</a>
                     </div>
                 </div>
@@ -409,8 +479,41 @@
                         </tbody>
                     </table>
                     <div class="text-end mt-2 pb-3">
-                        <a class="btn btn-danger" asp-controller="editor" asp-action="deleteproductatcommon" asp-route-id="@Model.status.id" asp-route-commonId="@Model.status.commonId">Delete</a>
+                        @if (Model.status.serviceId == null)
+                        {
+                            <a class="btn btn-success" asp-controller="editor" asp-action="addservice" asp-route-id="@Model.status.id">Add to Service</a>
+                        }
+                        @if (Model.status.serviceId != null)
+                        {
+                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Close Service Case</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Update Service Case</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="Detailservice" asp-route-id="@Model.status.id">Detail Service Case</a>
+                        }
+                        <a class="btn btn-primary" asp-controller="editor" asp-action="movetopersonel" asp-route-id="@Model.status.id">Move To Personel</a>
                         <a class="btn text-light" style="background-color:#455A64" asp-controller="editor" asp-action="updatecommon" asp-route-id="@Model.status.id">Update </a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-start">
+                                        Are you sure to delete? This action cannot be undone!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" asp-controller="editor" asp-action="DeleteProductAtCommon" asp-route-id="@Model.status.id" asp-route-commonId="@Model.status.commonId">Delete</a>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <a class="btn text-end btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Back</a>
                     </div>
                 </div>

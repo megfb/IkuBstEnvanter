@@ -29,6 +29,6 @@ namespace BstEnvanter.Dal.Concrete
         public DbSet<Gpu> Gpu { get; set; }
         public DbSet<HardDrive> HardDrive { get; set; }
         public DbSet<Ram> Ram { get; set; }
-        //public DbSet<MainBoard> MainBoard { get; set; }
+        public DbSet<Service> Service { get; set; }
     }
 }

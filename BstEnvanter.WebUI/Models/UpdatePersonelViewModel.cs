@@ -7,5 +7,6 @@ namespace BstEnvanter.WebUI.Models
         public Personel personel { get; set; }
         public List<Sex> sex { get; set; }
         public List<Department> department { get; set; }
+        public List<CLocation> cLocation { get; internal set; }
     }
 }

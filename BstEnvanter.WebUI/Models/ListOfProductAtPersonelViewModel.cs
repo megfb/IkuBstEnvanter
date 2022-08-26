@@ -10,5 +10,6 @@ namespace BstEnvanter.WebUI.Models
 
         public List<Status> product { get; set; }
         public List<Category> category { get; internal set; }
+        public int categoryId { get; internal set; }
     }
 }

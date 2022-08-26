@@ -24,7 +24,7 @@ namespace BstEnvanter.Business.Concrete
 
         public HardDrive get(int id)
         {
-            throw new NotImplementedException();
+            return _hardDriveDal.getHardDrive(id);
         }
 
         public List<HardDrive> getAll()

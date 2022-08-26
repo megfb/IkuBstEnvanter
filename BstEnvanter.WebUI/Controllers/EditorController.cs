@@ -23,10 +23,12 @@ namespace BstEnvanter.WebUI.Controllers
         private IGpuService _gpuService;
         private IRamService _ramService;
         private IHardDriveService _hardDriveService;
+        private IServiceService _serviceService;
 
         public EditorController(IBrandService brandService, ICategoryService categoryService, IModelService modelService, IProductService productService,
             IDepartmentService departmentService, ICLocationService cLocationService, ICampusService campusService, ISexService sexService, IPersonelService personelService,
-            IStatusService statusService, ICommonService commonService, ICpuService cpuService, IGpuService gpuService, IRamService ramService, IHardDriveService hardDriveService)
+            IStatusService statusService, ICommonService commonService, ICpuService cpuService, IGpuService gpuService, IRamService ramService, IHardDriveService hardDriveService,
+            IServiceService serviceService)
         {
             _brandService = brandService;
             _categoryService = categoryService;
@@ -43,6 +45,7 @@ namespace BstEnvanter.WebUI.Controllers
             _gpuService = gpuService;
             _ramService = ramService;
             _hardDriveService = hardDriveService;
+            _serviceService = serviceService;
         }
         public IActionResult Index()
         {
@@ -367,7 +370,8 @@ namespace BstEnvanter.WebUI.Controllers
             var model = new ListOfProductViewModel()
             {
                 product = _statusService.getAllWithDetailsByCategory(id),
-                category = _categoryService.getAll()
+                category = _categoryService.getAll(),
+                categoryId = id
             };
             return View(model);
         }
@@ -441,7 +445,8 @@ namespace BstEnvanter.WebUI.Controllers
             var model = new ListOfProductAtPersonelViewModel()
             {
                 product = _statusService.getAllWithDetailsByCategory(id),
-                category = _categoryService.getAll()
+                category = _categoryService.getAll(),
+                categoryId = id
 
             };
             return View(model);
@@ -527,7 +532,8 @@ namespace BstEnvanter.WebUI.Controllers
             var model = new ListOfProductAtCommon
             {
                 status = _statusService.getAllWithDetailsByCategory(id),
-                category = _categoryService.getAll()
+                category = _categoryService.getAll(),
+                categoryId = id
             };
             return View(model);
         }
@@ -626,6 +632,16 @@ namespace BstEnvanter.WebUI.Controllers
                 _statusService.update(status);
             }
             return RedirectToAction("listofproductatcommon");
+        }
+        public IActionResult ListOfProductAtService(int id)
+        {
+            var model = new ListOfProductAtServiceViewModel()
+            {
+                status = _statusService.getAllWithDetailsByCategory(id),
+                category = _categoryService.getAll(),
+                categoryId = id
+            };
+            return View(model);
         }
 
         // #################################################################
@@ -780,6 +796,15 @@ namespace BstEnvanter.WebUI.Controllers
             };
             return View(model);
         }
+        public IActionResult DetailClocationAtPersonel(int id)
+        {
+            var model = new DetailCLocationAtPersonel()
+            {
+                status = _statusService.getAllWithDetailsByCLocationAtPersonel(id),
+                cLocation = _clocationService.get(id),
+            };
+            return View(model);
+        }
 
         // #################################################################
 
@@ -836,7 +861,6 @@ namespace BstEnvanter.WebUI.Controllers
             TempData.Add("Alert", $"{campus.name} could not be updated");
             return RedirectToAction("updateclocation", campus.id);
         }
-
         public IActionResult DeleteCampus(int id)
         {
             _campusService.remove(id);
@@ -870,6 +894,7 @@ namespace BstEnvanter.WebUI.Controllers
             };
             return View(model);
         }
+
         // #################################################################
 
         //------------------------------------------------------------------
@@ -883,6 +908,7 @@ namespace BstEnvanter.WebUI.Controllers
                 personel = new Personel(),
                 sex = _sexService.getAll(),
                 deparment = _departmentService.getAll(),
+                cLocation = _clocationService.getAll()
             };
             return View(model);
         }
@@ -920,6 +946,8 @@ namespace BstEnvanter.WebUI.Controllers
                 personel = _personelService.get(id),
                 sex = _sexService.getAll(),
                 department = _departmentService.getAll(),
+                cLocation = _clocationService.getAll()
+
             };
             return View(model);
         }
@@ -1030,6 +1058,341 @@ namespace BstEnvanter.WebUI.Controllers
         {
             _cpuService.remove(id);
             return RedirectToAction("listofcpu");
+        }
+        public IActionResult DetailCpu(int id)
+        {
+            var model = new DetailCpuViewModel()
+            {
+                status = _statusService.getAllWithDetailsByCpu(id),
+                cpu = _cpuService.get(id)
+            };
+            return View(model);
+        }
+        public IActionResult DetailCpuAtPersonel(int id)
+        {
+            var model = new DetailCpuViewModel()
+            {
+                status = _statusService.getAllWithDetailsByCpu(id),
+                cpu = _cpuService.get(id)
+            };
+            return View(model);
+        }
+        public IActionResult DetailCpuAtCommon(int id)
+        {
+            var model = new DetailCpuViewModel()
+            {
+                status = _statusService.getAllWithDetailsByCpu(id),
+                cpu = _cpuService.get(id)
+            };
+            return View(model);
+        }
+
+        // #################################################################
+
+        //------------------------------------------------------------------
+
+        // ###################   Gpu   #####################################
+
+        public IActionResult ListOfGpu()
+        {
+            var model = new ListOfGpuViewModel()
+            {
+                gpu = _gpuService.getAll(),
+            };
+            return View(model);
+        }
+        public IActionResult AddGpu()
+        {
+            var model = new AddGpuViewModel()
+            {
+                gpu = new Gpu(),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult AddGpu(Gpu gpu)
+        {
+            if (ModelState.IsValid)
+            {
+                _gpuService.add(gpu);
+                return RedirectToAction("listofgpu");
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult UpdateGpu(int id)
+        {
+            var model = new UpdateGpuViewModel()
+            {
+                gpu = _gpuService.get(id),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateGpu(Gpu gpu)
+        {
+            if (ModelState.IsValid)
+            {
+                _gpuService.update(gpu);
+                return RedirectToAction("listofgpu");
+            }
+            return View();
+        }
+        public IActionResult DeleteGpu(int id)
+        {
+            _gpuService.remove(id);
+            return RedirectToAction("listofgpu");
+        }
+        public IActionResult DetailGpu(int id)
+        {
+            var model = new DetailGpuViewModel()
+            {
+                status = _statusService.getAllWithDetailsByGpu(id),
+                gpu = _gpuService.get(id)
+            };
+            return View(model);
+        }
+        public IActionResult DetailGpuAtPersonel(int id)
+        {
+            var model = new DetailGpuViewModel()
+            {
+                status = _statusService.getAllWithDetailsByGpu(id),
+                gpu = _gpuService.get(id)
+            };
+            return View(model);
+        }
+        public IActionResult DetailGpuAtCommon(int id)
+        {
+            var model = new DetailGpuViewModel()
+            {
+                status = _statusService.getAllWithDetailsByGpu(id),
+                gpu = _gpuService.get(id)
+            };
+            return View(model);
+        }
+
+        // #################################################################
+
+        //------------------------------------------------------------------
+
+        // ###################   Ram   #####################################
+
+        public IActionResult ListOfRam()
+        {
+            var model = new ListOfRamViewModel()
+            {
+                ram = _ramService.getAll(),
+            };
+            return View(model);
+        }
+        public IActionResult AddRam()
+        {
+            var model = new AddRamViewModel()
+            {
+                ram = new Ram(),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult AddRam(Ram ram)
+        {
+            if (ModelState.IsValid)
+            {
+                _ramService.add(ram);
+                return RedirectToAction("listofram");
+            }
+            return View();
+        }
+        public IActionResult UpdateRam(int id)
+        {
+            var model = new UpdateRamViewModel()
+            {
+                ram = _ramService.get(id)
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateRam(Ram ram)
+        {
+            if (ModelState.IsValid)
+            {
+                _ramService.update(ram);
+                return RedirectToAction("ListOfRam");
+            }
+            return View();
+        }
+        public IActionResult DeleteRam(int id)
+        {
+            _ramService.remove(id);
+            return RedirectToAction("listofram");
+        }
+        public IActionResult DetailRam(int id)
+        {
+            var model = new DetailRamViewModel()
+            {
+                status = _statusService.getAllWithDetailsByRam(id),
+                ram = _ramService.get(id),
+            };
+            return View(model);
+        }
+        public IActionResult DetailRamAtPersonel(int id)
+        {
+            var model = new DetailRamViewModel()
+            {
+                status = _statusService.getAllWithDetailsByRam(id),
+                ram = _ramService.get(id),
+            };
+            return View(model);
+        }
+        public IActionResult DetailRamAtCommon(int id)
+        {
+            var model = new DetailRamViewModel()
+            {
+                status = _statusService.getAllWithDetailsByRam(id),
+                ram = _ramService.get(id),
+            };
+            return View(model);
+        }
+
+        // #################################################################
+
+        //------------------------------------------------------------------
+
+        // ###################   Hard Drive   ##############################
+
+        public IActionResult ListOfHardDrive()
+        {
+            var model = new ListOfHardDriveViewModel()
+            {
+                hardDrive = _hardDriveService.getAll(),
+            };
+            return View(model);
+        }
+        public IActionResult AddHardDrive()
+        {
+            var model = new AddHardDriveViewModel()
+            {
+                hardDrive = new HardDrive(),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult AddHardDrive(HardDrive hardDrive)
+        {
+            if (ModelState.IsValid)
+            {
+                _hardDriveService.add(hardDrive);
+                return RedirectToAction("listofharddrive");
+            }
+            return View();
+        }
+        public IActionResult UpdateHardDrive(int id)
+        {
+            var model = new UpdateHardDriveViewModel()
+            {
+                hardDrive = _hardDriveService.get(id),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateHardDrive(HardDrive hardDrive)
+        {
+            if (ModelState.IsValid)
+            {
+                _hardDriveService.update(hardDrive);
+                return RedirectToAction("listofharddrive");
+            }
+            return View();
+        }
+        public IActionResult DeleteHardDrive(int id)
+        {
+            _hardDriveService.remove(id);
+            return RedirectToAction("listofharddrive");
+        }
+        public IActionResult DetailHardDrive(int id)
+        {
+            var model = new DetailHardDriveViewModel()
+            {
+                status = _statusService.getAllWithDetailsByHardDrive(id),
+                hardDrive = _hardDriveService.get(id),
+            };
+            return View(model);
+        }
+        public IActionResult DetailHardDriveAtPersonel(int id)
+        {
+            var model = new DetailHardDriveViewModel()
+            {
+                status = _statusService.getAllWithDetailsByHardDrive(id),
+                hardDrive = _hardDriveService.get(id),
+            };
+            return View(model);
+        }
+        public IActionResult DetailHardDriveAtCommon(int id)
+        {
+            var model = new DetailHardDriveViewModel()
+            {
+                status = _statusService.getAllWithDetailsByHardDrive(id),
+                hardDrive = _hardDriveService.get(id),
+            };
+            return View(model);
+        }
+
+        // #################################################################
+
+        //------------------------------------------------------------------
+
+        // ###################   Service   #################################
+
+        public IActionResult AddService(int id)
+        {
+            var model = new AddServiceViewModel()
+            {
+                status = _statusService.get(id),
+                service = new Service(),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult AddService(Status status)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _statusService.update(status);
+                return RedirectToAction("listofproduct");
+            }
+            return View();
+        }
+        public IActionResult DeleteService(int id)
+        {
+            _serviceService.remove(id);
+            return RedirectToAction("listofproduct");
+        }
+        public IActionResult UpdateService(int id)
+        {
+            var model = new UpdateServiceViewModel()
+            {
+                status = _statusService.get(id),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateService(Status status)
+        {
+            if (ModelState.IsValid)
+            {
+                _statusService.update(status);
+                return RedirectToAction("listofproduct");
+            }
+            return View();
+        }
+        public IActionResult DetailService(int id)
+        {
+            var model = new DetailServiceViewModel()
+            {
+                status = _statusService.get(id),
+            };
+            return View(model);
         }
     }
 }

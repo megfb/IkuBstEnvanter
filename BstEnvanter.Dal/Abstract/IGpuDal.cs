@@ -9,5 +9,6 @@ namespace BstEnvanter.Dal.Abstract
 {
     public interface IGpuDal:IRepositoryBase<Gpu>
     {
+        Gpu getGpu(int id);
     }
 }

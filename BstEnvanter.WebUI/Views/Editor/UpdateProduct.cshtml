@@ -67,7 +67,7 @@
         <div class="form-group row pt-4">
             <label for="inputCpu" class="col-md-2 col-form-label">Cpu</label>
             <div class="col-md-10">
-                <select id="inputCpu" asp-for="status.Product.cpuId" class="form-select" asp-items="@(new SelectList(Model.cpu,"id","name"))"></select>
+                <select id="inputCpu" asp-for="product.cpuId" class="form-select" asp-items="@(new SelectList(Model.cpu,"id","name"))"></select>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addmodel">add a new model</a>
                 </div>
@@ -76,7 +76,7 @@
         <div class="form-group row">
             <label for="inputGpu" class="col-md-2 col-form-label">Cpu</label>
             <div class="col-md-10">
-                <select id="inputGpu" asp-for="status.Product.gpuId" class="form-select" asp-items="@(new SelectList(Model.gpu,"id","name"))"></select>
+                <select id="inputGpu" asp-for="product.gpuId" class="form-select" asp-items="@(new SelectList(Model.gpu,"id","name"))"></select>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addmodel">add a new model</a>
                 </div>
@@ -85,7 +85,7 @@
         <div class="form-group row">
                 <label for="inputRam" class="col-md-2 col-form-label">Ram</label>
                 <div class="col-md-10">
-                <select id="inputRam" asp-for="status.Product.ramId" class="form-select" asp-items="@(new SelectList(Model.ram,"id","name"))"></select>
+                <select id="inputRam" asp-for="product.ramId" class="form-select" asp-items="@(new SelectList(Model.ram,"id","name"))"></select>
                     <div class="text-end">
                         <a class="ml-3" asp-action="addmodel">add a new model</a>
                     </div>
@@ -94,7 +94,7 @@
         <div class="form-group row">
                 <label for="inputHdd" class="col-md-2 col-form-label">Hard Drive</label>
                 <div class="col-md-10">
-                <select id="inputHdd" asp-for="status.Product.hardDriveId" class="form-select" asp-items="@(new SelectList(Model.hardDrive,"id","name"))"></select>
+                <select id="inputHdd" asp-for="product.hardDriveId" class="form-select" asp-items="@(new SelectList(Model.hardDrive,"id","name"))"></select>
                     <div class="text-end">
                         <a class="ml-3" asp-action="addmodel">add a new model</a>
                     </div>

@@ -43,7 +43,7 @@ namespace BstEnvanter.Dal.Concrete
         {
             using (EfContext context = new EfContext())
             {
-                var status = context.Status.Include(x => x.Product).ThenInclude(x => x.Brand).Include(x => x.Product.Category).Include(x => x.Product.Model).Include(x => x.Personel).ThenInclude(x => x.Department).Include(x => x.Personel.Sex).Include(x => x.Common).ThenInclude(x => x.department).Include(x => x.Common.CLocation).Include(x => x.Campus).Include(x => x.Product.Cpu).Include(x => x.Product.Gpu).Include(x => x.Product.Ram).Include(x => x.Product.HardDrive).FirstOrDefault(x => x.id == id);
+                var status = context.Status.Include(x => x.Product).ThenInclude(x => x.Brand).Include(x => x.Product.Category).Include(x => x.Product.Model).Include(x => x.Personel).ThenInclude(x => x.Department).Include(x => x.Personel.Sex).Include(x => x.Common).ThenInclude(x => x.department).Include(x => x.Common.CLocation).Include(x => x.Campus).Include(x => x.Product.Cpu).Include(x => x.Product.Gpu).Include(x => x.Product.Ram).Include(x => x.Product.HardDrive).Include(x => x.Personel.CLocation).Include(x => x.Service).FirstOrDefault(x => x.id == id);
                 return status;
             }
         }

@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "ListOfProductAtCommon";
     Layout = "~/Views/_Layout.cshtml";
+
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
@@ -9,94 +10,96 @@
         <hr />
     </div>
     <div class="row">
-        <div class="btn-group col-md-4" role="group" aria-label="Basic mixed styles example">
+        <div class="btn-group col-md-6 flex-column flex-sm-row" role="group" aria-label="Basic mixed styles example">
             <a type="button" asp-action="listofproduct" class="btn btn-secondary">Product</a>
             <a type="button" asp-action="listofproductatpersonel" class="btn btn-secondary">Personel</a>
             <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Commons</a>
+            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Service</a>
             <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
         </div>
-        <div class="col-md-3">
-            <div class="input-group rounded">
-                <input type="text" class="form-control" id="search" placeholder="search" />
-                <span class="input-group-text border-0" id="search-addon">
-                    <i class="bi bi-search"></i>
-                </span>
-            </div>
-        </div>
     </div>
-
-    <div class="row mt-5">
-        <div class="list-group list-group-flush col-md-1">
-            <li class="list-group-item">CATEGORIES</li>
+    <div class="row">
+        <div class="list-group list-group-horizontal  flex-column flex-sm-row list-group-flush col-md-8">
+            @*<li class="list-group-item">CATEGORIES</li>*@
             @foreach (var item in Model.category)
             {
-                <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproductatcommon/@item.id">@item.name</a>
+                string css = "list-group-item list-group-item-action";
+                if (Model.categoryId == item.id)
+                {
+                    css += " active";
+                }
+                <a type="button" class="@css" href="/editor/listofproductatcommon/@item.id">@item.name</a>
             }
             <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproductatcommon/0">All</a>
         </div>
-        <div class="col-md-11">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Category</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Serial No</th>
-                        <th scope="col">Inventory No</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Location</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        foreach (var item in Model.status)
-                        {
-                            @if (item.personelId == null && item.commonId != null)
-                            {
-                                <tr class="arama">
+    </div>
+    <div class="row mt-2">
 
-                                    <td scope="col">@item.Product.Category.name</td>
-                                    <td scope="col">@item.Product.Brand.name</td>
-                                    <td scope="col">@item.Product.Model.name</td>
-                                    <td scope="col">@item.Product.serialNo</td>
-                                    <td scope="col">@item.Product.inventoryNo</td>
-                                    <td scope="col">@item.Common.department.name</td>
-                                    <td scope="col">@item.Common.CLocation.name</td>
-                                    <td scope="col">
-                                        <a class="btn btn-warning" asp-controller="editor" asp-action="updatecommon" asp-route-id="@item.id">Update </a>
-                                    </td>
-                                    <td scope="col">
-                                        <a class="btn btn-danger" asp-controller="editor" asp-action="deleteproductatcommon" asp-route-id="@item.id" asp-route-commonId="@item.commonId">Delete</a>
-                                    </td>
-                                    <td scope="col">
-                                        <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detail</a>
-                                    </td>
-                                    <td scope="col">
-                                        <a class="btn btn-primary" asp-controller="editor" asp-action="movetopersonel" asp-route-id="@item.id">Move To Personel</a>
-                                    </td>
-                                </tr>
+        <div class="col-md-12">
+            <div class="table-responsive-sm">
+                <table id="productTableAtCommon" class="table align-middle table-hover table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Category</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Serial No</th>
+                            <th scope="col">Inventory No</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Settings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in Model.status)
+                            {
+                                string cls = "arama";
+
+                                if (item.serviceId != null)
+                                {
+                                    cls += " table-danger";
+                                }
+                                @if (item.personelId == null && item.commonId != null)
+                                {
+                                    <tr class="@cls">
+
+                                        <td scope="col">@item.Product.Category.name</td>
+                                        <td scope="col">@item.Product.Brand.name</td>
+                                        <td scope="col">@item.Product.Model.name</td>
+                                        <td scope="col">@item.Product.serialNo</td>
+                                        <td scope="col">@item.Product.inventoryNo</td>
+                                        <td scope="col">@item.Common.department.name</td>
+                                        <td scope="col">@item.Common.CLocation.name</td>
+                                        <td scope="col">
+                                            <a class="btn btn-secondary" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detail</a>
+                                        </td>
+
+                                    </tr>
+                                }
                             }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
 
         </div>
     </div>
 
 
 </div>
-
-<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/js/listofproductatcommon.js" type="text/javascript"></script>
+@*<script src="~/lib/jquery/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         function Contains(text_one, text_two) {
             if (text_one.indexOf(text_two) != -1)
                 return true;
         }
-        $("#search").keyup(function () {
+        $("#search").keyup(function() {
             var searchText = $("#search").val().toLowerCase();
-            $(".arama").each(function () {
+            $(".arama").each(function() {
                 if (!Contains($(this).text().toLowerCase(), searchText)) {
                     $(this).hide();
                 }
@@ -106,4 +109,4 @@
             });
         });
     });
-</script>
+</script>*@

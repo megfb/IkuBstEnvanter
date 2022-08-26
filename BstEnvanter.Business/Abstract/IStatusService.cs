@@ -24,5 +24,11 @@ namespace BstEnvanter.Business.Abstract
         List<Status> getAllWithDetailsByDepartmentAtPersonel(int id);
         List<Status> getAllWithDetailsByCLocationAtCommon(int id);
         List<Status> getAllWithDetailsByPersonel(int id);
+        List<Status> getAllWithDetailsByCpu(int id);
+        List<Status> getAllWithDetailsByGpu(int id);
+        List<Status> getAllWithDetailsByRam(int id);
+        List<Status> getAllWithDetailsByHardDrive(int id);
+        List<Status> getAllWithDetailsByService(int id);
+        List<Status> getAllWithDetailsByCLocationAtPersonel(int id);
     }
 }

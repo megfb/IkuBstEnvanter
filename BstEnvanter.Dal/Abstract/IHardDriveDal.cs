@@ -9,5 +9,6 @@ namespace BstEnvanter.Dal.Abstract
 {
     public interface IHardDriveDal:IRepositoryBase<HardDrive>
     {
+        HardDrive getHardDrive(int id);
     }
 }

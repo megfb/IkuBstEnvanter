@@ -23,6 +23,7 @@ builder.Services.AddScoped<ICpuService, CpuManager>(); builder.Services.AddScope
 builder.Services.AddScoped<IGpuService, GpuManager>(); builder.Services.AddScoped<IGpuDal, GpuDal>();
 builder.Services.AddScoped<IRamService, RamManager>(); builder.Services.AddScoped<IRamDal, RamDal>();
 builder.Services.AddScoped<IHardDriveService, HardDriveManager>(); builder.Services.AddScoped<IHardDriveDal, HardDriveDal>();
+builder.Services.AddScoped<IServiceService, ServiceManager>(); builder.Services.AddScoped<IServiceDal, ServiceDal>();
 
 
 

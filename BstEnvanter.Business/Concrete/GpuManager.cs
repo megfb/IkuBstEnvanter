@@ -23,7 +23,7 @@ namespace BstEnvanter.Business.Concrete
 
         public Gpu get(int id)
         {
-            throw new NotImplementedException();
+            return _gpuDal.getGpu(id);
         }
 
         public List<Gpu> getAll()

@@ -56,6 +56,16 @@ namespace BstEnvanter.Business.Concrete
             return _statusDal.getStatusAllWithDetails(p => p.Common.cLocationId == id || id == 0);
         }
 
+        public List<Status> getAllWithDetailsByCLocationAtPersonel(int id)
+        {
+            return _statusDal.getStatusAllWithDetails(p => p.Personel.cLocationId == id || id == 0);
+        }
+
+        public List<Status> getAllWithDetailsByCpu(int id)
+        {
+            return _statusDal.getStatusAllWithDetails(p => p.Product.cpuId == id || id == 0);
+        }
+
         public List<Status> getAllWithDetailsByDepartmentAtCommon(int id)
         {
             return _statusDal.getStatusAllWithDetails(p => p.Common.departmentId == id || id == 0);
@@ -63,6 +73,16 @@ namespace BstEnvanter.Business.Concrete
         public List<Status> getAllWithDetailsByDepartmentAtPersonel(int id)
         {
             return _statusDal.getStatusAllWithDetails(p => p.Personel.departmentId == id || id == 0);
+        }
+
+        public List<Status> getAllWithDetailsByGpu(int id)
+        {
+            return _statusDal.getStatusAllWithDetails(p => p.Product.gpuId == id || id == 0);
+        }
+
+        public List<Status> getAllWithDetailsByHardDrive(int id)
+        {
+            return _statusDal.getStatusAllWithDetails(p => p.Product.hardDriveId == id || id == 0);
         }
 
         public List<Status> getAllWithDetailsByModel(int id)
@@ -73,6 +93,16 @@ namespace BstEnvanter.Business.Concrete
         public List<Status> getAllWithDetailsByPersonel(int id)
         {
             return _statusDal.getStatusAllWithDetails(p => p.personelId == id || id == 0);
+        }
+
+        public List<Status> getAllWithDetailsByRam(int id)
+        {
+            return _statusDal.getStatusAllWithDetails(p => p.Product.ramId == id || id == 0);
+        }
+
+        public List<Status> getAllWithDetailsByService(int id)
+        {
+            return _statusDal.getStatusAllWithDetails(x => x.Product.categoryId == id || id == 0 & x.serviceId != null);
         }
 
         public Status getStatus(int id)

@@ -9,5 +9,6 @@ namespace BstEnvanter.Dal.Abstract
 {
     public interface IRamDal: IRepositoryBase<Ram>
     {
+        Ram getRam(int id);
     }
 }

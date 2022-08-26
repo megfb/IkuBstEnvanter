@@ -16,5 +16,7 @@ namespace BstEnvanter.Entity.Concrete
         public string definition { get; set; }
         public DateTime dateOfUpdate { get; set; }
         public string bstId { get; set; }
+        public Service Service { get; set; }
+        public int? serviceId { get; set; }
     }
 }

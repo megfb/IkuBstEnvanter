@@ -1,0 +1,13 @@
+﻿- HardWare ve tüm bölümlerin detay listeleri güncellenecek
+- delete butonlarına onay eklenecek
+- Alertler kontrol edilecek
+- validationlar kontrol edilecek
+-add to personel, add to common,
+	add cpu-gpu-hdd-ram, update cpu-gpu-hdd-ram,
+	hdd category, update category,
+	Add brand, update brand,
+	add model, update model,
+	add personel, update personel (gender, email),
+	add a campus, update a campus,
+	add a department, update a department,
+	add a location, update a location,

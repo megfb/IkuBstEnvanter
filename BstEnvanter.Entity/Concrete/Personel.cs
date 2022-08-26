@@ -2,7 +2,7 @@
 
 namespace BstEnvanter.Entity.Concrete
 {
-    public class Personel:IEntity
+    public class Personel : IEntity
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -12,7 +12,8 @@ namespace BstEnvanter.Entity.Concrete
         public int sexId { get; set; }
         public Department Department { get; set; }
         public int departmentId { get; set; }
-        public string roomNo { get; set; }
+        public CLocation CLocation { get; set; }
+        public int cLocationId { get; set; }
         public string eMail { get; set; }
         public ICollection<Status> status { get; set; }
     }

@@ -46,10 +46,9 @@
         </div>
 
         <div class="form-group row mb-3">
-            <label for="inputRoomNo" class="col-md-2 col-form-label">Room No</label>
+            <label for="inputGender" class="col-md-2 col-form-label">Gender</label>
             <div class="col-md-10">
-                <input asp-for="personel.roomNo" id="inputRoomNo" class="form-control" type="text" placeholder="Room No" />
-                <span asp-validation-for="personel.roomNo"></span>
+                <select asp-for="personel.cLocationId" id="inputGender" class="form-select" asp-items="@(new SelectList(Model.cLocation,"id","name"))"></select>
             </div>
         </div>
 
