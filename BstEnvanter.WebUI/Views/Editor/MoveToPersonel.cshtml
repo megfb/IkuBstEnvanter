@@ -165,7 +165,6 @@
                 <input type="hidden" asp-for="status.id" />
                 <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
                 <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
-                <input type="hidden" asp-for="status.bstId" value="ID" />
                 <button class="btn btn-primary col-md-2" asp-route-id="@Model.status.commonId">Update</button>
                 <a class="btn btn-secondary col-md-2" asp-controller="editor" onClick="history.go(-1); return false;">Back</a>
 

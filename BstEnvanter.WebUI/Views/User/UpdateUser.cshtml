@@ -1,0 +1,72 @@
+﻿@model BstEnvanter.WebUI.Models.UpdateUserViewModel
+@{
+    ViewData["Title"] = "UpdateUser";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Update a Personel</h1>
+        <hr />
+    </div>
+    <form method="post" asp-action="updateuser" class="p-3 mb-3 col-md-8">
+        <div class="form-group row mb-3">
+            <label for="inputUserName" class="col-md-2 col-form-label">Name</label>
+            <div class="col-md-10">
+                <input asp-for="user.name" id="inputName" class="form-control" type="text" placeholder="Name" />
+                <span asp-validation-for="user.name"></span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="inputUserSurname" class="col-md-2 col-form-label">Surname</label>
+            <div class="col-md-10">
+                <input asp-for="user.surname" class="form-control" type="text" placeholder="Surname" />
+                <span asp-validation-for="user.surname"></span>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputUserAge" class="col-md-2 col-form-label">Age</label>
+            <div class="col-md-10">
+                <input asp-for="user.age" id="inputUserAge" value="@Model.user.age" class="form-control" type="text" placeholder="Age" />
+                <span asp-validation-for="user.age"></span>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputUserGender" class="col-md-2 col-form-label">Gender</label>
+            <div class="col-md-10">
+                <input asp-for="user.gender" id="inputUserGender" value="@Model.user.gender" class="form-control" type="text" placeholder="Gender" />
+                <span asp-validation-for="user.gender"></span>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputUserDepartment" class="col-md-2 col-form-label">Department</label>
+            <div class="col-md-10">
+                <input asp-for="user.department" id="inputUserDepartment" value="@Model.user.department" class="form-control" type="text" placeholder="Department" />
+                <span asp-validation-for="user.department"></span>
+            </div>
+        </div>
+        <div class="form-group row mb-3">
+            <label for="inputUserRoomNo" class="col-md-2 col-form-label">Room No</label>
+            <div class="col-md-10">
+                <input asp-for="user.roomNo" id="inputUserRoomNo" value="@Model.user.roomNo" class="form-control" type="text" placeholder="RoomNo" />
+                <span asp-validation-for="user.roomNo"></span>
+            </div>
+        </div>       
+        <div class="form-group row mb-3">
+            <label for="inputUserEMail" class="col-md-2 col-form-label">E-Mail</label>
+            <div class="col-md-10">
+                <input asp-for="user.Email" id="inputUserEMail" value="@Model.user.Email" class="form-control" type="text" placeholder="E-Mail" />
+                <span asp-validation-for="user.Email"></span>
+            </div>
+        </div>
+
+        <div class="text-end">
+            <input type="hidden" asp-for="user.Id" />
+            <input type="hidden" asp-for="user.UserName" value="@Model.user.Email" />
+
+            <button type="submit" class="btn btn-primary col-md-2">Update</button>
+            <a asp-action="profile" class="btn btn-info col-md-2">Back</a>
+        </div>
+    </form>
+</div>
+

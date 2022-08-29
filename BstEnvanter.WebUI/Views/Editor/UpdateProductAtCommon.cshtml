@@ -76,7 +76,6 @@
             <input type="hidden" asp-for="status.commonId" value="@Model.common.id" />
             <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
             <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
-            <input type="hidden" asp-for="status.bstId" value="ID" />
             <button class="btn btn-primary col-md-2" asp-route-commonId="@Model.status.commonId">Update</button>
             <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
         </div>

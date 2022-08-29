@@ -59,7 +59,7 @@
                     </tbody>
                 </table>
             </div>
-                        <div class=" border col-md-4 rounded">
+            <div class=" border col-md-4 rounded">
                 <div class="row bg-primary">
                     <h3 class="pt-3 text-light">Service Details</h3>
                 </div>
@@ -100,34 +100,75 @@
                 <div class="row bg-primary">
                     <h3 class="pt-3 text-light">Specialist Details</h3>
                 </div>
-                <table class="table table-borderless">
-                    <tbody>
-                        <tr>
-                            <td>Name:</td>
-                            @*<td>@Model.status.Personel.name</td>*@
-                        </tr>
-                        <tr>
-                            <td>Surname:</td>
-                            @*<td>@Model.status.Personel.surname</td>*@
-                        </tr>
-                        <tr>
-                            <td>Age:</td>
-                            @*<td>@Model.status.Personel.age</td>*@
-                        </tr>
-                        <tr>
-                            <td>Gender:</td>
-                            @*<td>@Model.status.Personel.Sex.name</td>*@
-                        </tr>
-                        <tr>
-                            <td>Department:</td>
-                            @*<td>@Model.status.Personel.Department.name</td>*@
-                        </tr>
-                        <tr>
-                            <td>Location:</td>
-                            @*<td>@Model.status.Personel.roomNo</td>*@
-                        </tr>
-                    </tbody>
-                </table>
+                @{
+                    if (Model.user != null)
+                    {
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td>@Model.user.name</td>
+                                </tr>
+                                <tr>
+                                    <td>Surname:</td>
+                                    <td>@Model.user.surname</td>
+                                </tr>
+                                <tr>
+                                    <td>Age:</td>
+                                    <td>@Model.user.age</td>
+                                </tr>
+                                <tr>
+                                    <td>Gender:</td>
+                                    <td>@Model.user.gender</td>
+                                </tr>
+                                <tr>
+                                    <td>Department:</td>
+                                    <td>@Model.user.department</td>
+                                </tr>
+                                <tr>
+                                    <td>Location:</td>
+                                    <td>@Model.user.roomNo</td>
+                                </tr>
+                                <tr>
+                                    <td>E-Mail:</td>
+                                    <td>@Model.user.Email</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>Name:</td>
+                                    @*<td>@Model.status.Personel.name</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Surname:</td>
+                                    @*<td>@Model.status.Personel.surname</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Age:</td>
+                                    @*<td>@Model.status.Personel.age</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Gender:</td>
+                                    @*<td>@Model.status.Personel.Sex.name</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Department:</td>
+                                    @*<td>@Model.status.Personel.Department.name</td>*@
+                                </tr>
+                                <tr>
+                                    <td>Location:</td>
+                                    @*<td>@Model.status.Personel.roomNo</td>*@
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                }
             </div>
             <div class="col-md-12 border border-rounded  rounded">
                 <div class="text-end mt-2 pb-3">

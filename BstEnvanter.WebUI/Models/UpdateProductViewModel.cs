@@ -1,4 +1,5 @@
 ﻿using BstEnvanter.Entity.Concrete;
+using BstEnvanter.WebUI.Identity;
 
 namespace BstEnvanter.WebUI.Models
 {
@@ -14,5 +15,7 @@ namespace BstEnvanter.WebUI.Models
         public List<Ram> ram { get; internal set; }
         public List<HardDrive> hardDrive { get; internal set; }
         public List<Gpu> gpu { get; internal set; }
+        public ApplicationUser user { get; set; }
+
     }
 }

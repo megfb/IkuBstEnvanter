@@ -19,3 +19,5 @@
 -product detail sayfalarında ki specialist detail
 -authorize işlemleri
 -access denied sayfası
+-update product kısmında status çekilecek
+-change password controller değişecek

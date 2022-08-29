@@ -1,6 +1,8 @@
 ﻿using BstEnvanter.Business.Abstract;
 using BstEnvanter.Entity.Concrete;
+using BstEnvanter.WebUI.Identity;
 using BstEnvanter.WebUI.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BstEnvanter.WebUI.Controllers
@@ -24,11 +26,13 @@ namespace BstEnvanter.WebUI.Controllers
         private IRamService _ramService;
         private IHardDriveService _hardDriveService;
         private IServiceService _serviceService;
-
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
+        private RoleManager<ApplicationRole> _roleManager;
         public EditorController(IBrandService brandService, ICategoryService categoryService, IModelService modelService, IProductService productService,
             IDepartmentService departmentService, ICLocationService cLocationService, ICampusService campusService, ISexService sexService, IPersonelService personelService,
             IStatusService statusService, ICommonService commonService, ICpuService cpuService, IGpuService gpuService, IRamService ramService, IHardDriveService hardDriveService,
-            IServiceService serviceService)
+            IServiceService serviceService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
             _brandService = brandService;
             _categoryService = categoryService;
@@ -46,6 +50,9 @@ namespace BstEnvanter.WebUI.Controllers
             _ramService = ramService;
             _hardDriveService = hardDriveService;
             _serviceService = serviceService;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         public IActionResult Index()
         {
@@ -358,6 +365,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);                
                 _statusService.add(status);
                 TempData.Add("Success", $"New product succesfully added");
                 return RedirectToAction("listofproduct");
@@ -414,7 +422,9 @@ namespace BstEnvanter.WebUI.Controllers
             var model = new UpdateProductViewModel()
             {
                 status = _statusService.get(id),
+                
             };
+            model.user = _userManager.Users.FirstOrDefault(x => x.Id == model.status.bstId);
             return View(model);
         }
         public IActionResult AddProductAtPersonel(int id)
@@ -433,6 +443,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 TempData.Add("Success", $"The product succesfully added to personel");
                 return RedirectToAction("listofproduct");
@@ -456,6 +467,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             var model = _statusService.getStatus(id);
             model.personelId = null;
+            model.bstId = _userManager.GetUserId(User);
             _statusService.update(model);
             TempData.Add("Success", $"The product succesfully deleted from personel");
             return RedirectToAction("listofproductatpersonel");
@@ -476,6 +488,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 int id = status.id;
                 TempData.Add("Success", $"The product succesfully updated");
@@ -521,6 +534,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
 
                 return RedirectToAction("listofproduct");
@@ -541,6 +555,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             var model = _statusService.getStatus(id);
             model.commonId = null;
+            model.bstId = _userManager.GetUserId(User);
             _statusService.update(model);
             _commonService.remove(commonId);
             return RedirectToAction("listofproductatcommon");
@@ -583,6 +598,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 _commonService.remove(commonId);
                 return RedirectToAction("listofproduct");
@@ -606,6 +622,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 _commonService.remove(id);
             }
@@ -629,6 +646,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
             }
             return RedirectToAction("listofproductatcommon");
@@ -1358,6 +1376,7 @@ namespace BstEnvanter.WebUI.Controllers
 
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 return RedirectToAction("listofproduct");
             }
@@ -1381,6 +1400,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 return RedirectToAction("listofproduct");
             }
@@ -1392,6 +1412,8 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status = _statusService.get(id),
             };
+            model.user = _userManager.Users.FirstOrDefault(x => x.Id == model.status.bstId);
+
             return View(model);
         }
     }

@@ -110,7 +110,7 @@
         </div>
         <div class="mt-1 text-end">
             <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
-            <input type="hidden" asp-for="status.bstId" value="ID" />
+            @*<input type="hidden" asp-for="status.bstId" value="@" />*@
             <button class="btn btn-primary col-md-2">Add</button>
             <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
         </div>

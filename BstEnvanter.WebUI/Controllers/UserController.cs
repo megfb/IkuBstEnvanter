@@ -46,6 +46,45 @@ namespace BstEnvanter.WebUI.Controllers
             };
             return View(model);
         }
+        public async Task<IActionResult> Profile()
+        {
+
+            var model = new ProfileViewModel()
+            {
+                user = await _userManager.GetUserAsync(User),
+            };
+            model.role = await _userManager.GetRolesAsync(model.user);
+            return View(model);
+        }
+        public async Task<IActionResult> UpdateUser(string id)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            var model = new UpdateUserViewModel()
+            {
+                user = user
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateUser(UpdateUserViewModel updateUserViewModel)
+        {
+            var getUser = await _userManager.FindByIdAsync(updateUserViewModel.user.Id);
+
+            if (ModelState.IsValid)
+            {
+                getUser.UserName = updateUserViewModel.user.UserName;
+                getUser.name = updateUserViewModel.user.name;
+                getUser.surname = updateUserViewModel.user.surname;
+                getUser.age = updateUserViewModel.user.age;
+                getUser.gender = updateUserViewModel.user.gender;
+                getUser.department = updateUserViewModel.user.department;
+                getUser.roomNo = updateUserViewModel.user.roomNo;
+                getUser.Email = updateUserViewModel.user.Email;
+                await _userManager.UpdateAsync(getUser);
+            }
+            return RedirectToAction("profile");
+        }
     }
 
 }
