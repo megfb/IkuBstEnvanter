@@ -2,11 +2,13 @@
 using BstEnvanter.Entity.Concrete;
 using BstEnvanter.WebUI.Identity;
 using BstEnvanter.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BstEnvanter.WebUI.Controllers
 {
+    [Authorize(Roles ="admin,editor")]    
     public class EditorController : Controller
     {
 
@@ -536,9 +538,12 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
+                TempData.Add("Success", $"The product succesfully added to common");
 
                 return RedirectToAction("listofproduct");
             }
+            TempData.Add("Alert", $"The product could not be added to common");
+
             return RedirectToAction("listofproduct");
         }
         public IActionResult ListOfProductAtCommon(int id)
@@ -558,6 +563,8 @@ namespace BstEnvanter.WebUI.Controllers
             model.bstId = _userManager.GetUserId(User);
             _statusService.update(model);
             _commonService.remove(commonId);
+            TempData.Add("Success", $"The product succesfully deleted from common");
+
             return RedirectToAction("listofproductatcommon");
         }
         [HttpGet]
@@ -601,8 +608,12 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 _commonService.remove(commonId);
+                TempData.Add("Success", $"The product succesfully updated");
+
                 return RedirectToAction("listofproduct");
             }
+            TempData.Add("Alert", $"The product could not be updated");
+
             return RedirectToAction("listofproduct");
         }
         [HttpGet]
@@ -625,7 +636,12 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 _commonService.remove(id);
+                TempData.Add("Success", $"The product succesfully moved to personel");
+                return RedirectToAction("listofproductatpersonel");
+
+
             }
+            TempData.Add("Alert", $"The product could not be moved to personel");
             return RedirectToAction("listofproductatpersonel");
         }
         [HttpGet]
@@ -648,7 +664,11 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
+                TempData.Add("Success", $"The product succesfully moved to common");
+                return RedirectToAction("listofproductatcommon");
+
             }
+            TempData.Add("Alert", $"The product could not be moved to personel");
             return RedirectToAction("listofproductatcommon");
         }
         public IActionResult ListOfProductAtService(int id)
@@ -1050,8 +1070,12 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _cpuService.add(cpu);
+                TempData.Add("Success", $"New cpu succesfully added");
+
                 return RedirectToAction("listofcpu");
             }
+            TempData.Add("Alert", $"New cpu could not be added");
+
             return View();
         }
         [HttpGet]
@@ -1069,12 +1093,18 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _cpuService.update(cpu);
+                TempData.Add("Success", $"The personel succesfully updated");
+                return RedirectToAction("listofcpu");
+
             }
+            TempData.Add("Alert", $"The cpu could not be updated");
             return RedirectToAction("listofcpu");
+
         }
         public IActionResult DeleteCpu(int id)
         {
             _cpuService.remove(id);
+            TempData.Add("Success", $"The cpu succesfully deleted");
             return RedirectToAction("listofcpu");
         }
         public IActionResult DetailCpu(int id)
@@ -1132,9 +1162,12 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData.Add("Success", $"New gpu succesfully added");
                 _gpuService.add(gpu);
                 return RedirectToAction("listofgpu");
             }
+            TempData.Add("Alert", $"New gpu could not be added");
+
             return View();
         }
         [HttpGet]
@@ -1152,13 +1185,19 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _gpuService.update(gpu);
+                TempData.Add("Success", $"The gpu succesfully updated");
+
                 return RedirectToAction("listofgpu");
             }
+            TempData.Add("Alert", $"The gpu could not be updated");
+
             return View();
         }
         public IActionResult DeleteGpu(int id)
         {
             _gpuService.remove(id);
+            TempData.Add("Success", $"The gpu succesfully deleted");
+
             return RedirectToAction("listofgpu");
         }
         public IActionResult DetailGpu(int id)
@@ -1216,9 +1255,14 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 _ramService.add(ram);
+                TempData.Add("Success", $"New ram succesfully added");
+
                 return RedirectToAction("listofram");
             }
+            TempData.Add("Alert", $"New ram could not be added");
+
             return View();
         }
         public IActionResult UpdateRam(int id)
@@ -1235,13 +1279,19 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _ramService.update(ram);
+                TempData.Add("Success", $"The ram succesfully updated");
+
                 return RedirectToAction("ListOfRam");
             }
+            TempData.Add("Alert", $"The ram could not be updated");
+
             return View();
         }
         public IActionResult DeleteRam(int id)
         {
             _ramService.remove(id);
+            TempData.Add("Success", $"The ram succesfully deleted");
+
             return RedirectToAction("listofram");
         }
         public IActionResult DetailRam(int id)
@@ -1300,8 +1350,12 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _hardDriveService.add(hardDrive);
+                TempData.Add("Success", $"New hard drive succesfully added");
+
                 return RedirectToAction("listofharddrive");
             }
+            TempData.Add("Alert", $"New hard drive could not be added");
+
             return View();
         }
         public IActionResult UpdateHardDrive(int id)
@@ -1318,13 +1372,19 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _hardDriveService.update(hardDrive);
+                TempData.Add("Success", $"The hard drive succesfully updated");
+
                 return RedirectToAction("listofharddrive");
             }
+            TempData.Add("Success", $"The hard drive could not be updated");
+
             return View();
         }
         public IActionResult DeleteHardDrive(int id)
         {
             _hardDriveService.remove(id);
+            TempData.Add("Success", $"The hard drive succesfully deleted");
+
             return RedirectToAction("listofharddrive");
         }
         public IActionResult DetailHardDrive(int id)
@@ -1378,13 +1438,17 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
+                TempData.Add("Success", $"The product succesfully added to service");
                 return RedirectToAction("listofproduct");
             }
+            TempData.Add("Alert", $"The product could not be added to service");
+
             return View();
         }
         public IActionResult DeleteService(int id)
         {
             _serviceService.remove(id);
+            TempData.Add("Success", $"The service case succesfully closed");
             return RedirectToAction("listofproduct");
         }
         public IActionResult UpdateService(int id)
@@ -1402,8 +1466,12 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
+                TempData.Add("Success", $"The service case succesfully updated");
+
                 return RedirectToAction("listofproduct");
             }
+            TempData.Add("Alert", $"The service case could not be updated");
+
             return View();
         }
         public IActionResult DetailService(int id)

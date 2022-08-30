@@ -1,5 +1,6 @@
 ﻿using BstEnvanter.WebUI.Identity;
 using BstEnvanter.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +18,12 @@ namespace BstEnvanter.WebUI.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+        [Authorize(Roles = "admin")]
         public IActionResult Register()
         {
             return View();
         }
+        [Authorize(Roles ="admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterViewModel registerViewModel)
@@ -89,30 +92,13 @@ namespace BstEnvanter.WebUI.Controllers
             TempData.Add("Alert", "E-Mail or Password is wrong");
             return View(loginViewModel);
         }
+        [Authorize]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("index", "Home");
         }
-        public IActionResult ChangePassword()
-        {
-            return View(new ChangePasswordViewModel());
-        }
-        [HttpPost]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel changePasswordViewModel)
-        {
 
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            
-            await _userManager.ChangePasswordAsync(user, changePasswordViewModel.OldPassword, changePasswordViewModel.NewPassword);
-            IdentityResult result = await _userManager.UpdateAsync(user);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("index","home");
-            }
-
-            return View();
-        }
 
 
     }

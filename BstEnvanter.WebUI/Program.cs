@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationIdentityDbContext>(options => {
-    options.UseSqlServer("Server=DESKTOP-U3KQDUS;Database=BstEnvanter;Trusted_Connection=true");
+    options.UseSqlServer("Server=DESKTOP-0ALOVMI\\SQLEXPRESS;Database=BstEnvanter;Trusted_Connection=true");
 }); builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IBrandService, BrandManager>(); builder.Services.AddScoped<IBrandDal, BrandDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>(); builder.Services.AddScoped<ICategoryDal, CategoryDal>();
@@ -77,7 +77,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=home}/{action=index}/{id?}");
+    pattern: "{controller=account}/{action=login}/{id?}");
 
 app.MapRazorPages();
 

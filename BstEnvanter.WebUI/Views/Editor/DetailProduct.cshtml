@@ -42,24 +42,42 @@
                             </tr>
                             <tr>
                                 <td>Inventory No:</td>
+
                                 <td>@Model.status.Product.inventoryNo</td>
                             </tr>
+
                             <tr>
                                 <td>Cpu:</td>
-                                <td>@Model.status.Product.Cpu.name</td>
+
+                                @if (Model.status.Product.cpuId != null)
+                                {
+                                    <td>@Model.status.Product.Cpu.name</td>
+                                }
+
                             </tr>
                             <tr>
                                 <td>Gpu:</td>
-                                <td>@Model.status.Product.Gpu.name</td>
+                                @if (Model.status.Product.gpuId != null)
+                                {
+                                    <td>@Model.status.Product.Gpu.name</td>
+                                }
                             </tr>
                             <tr>
+
                                 <td>Ram:</td>
-                                <td>@Model.status.Product.Ram.name</td>
+                                @if (Model.status.Product.ramId != null)
+                                {
+                                    <td>@Model.status.Product.Ram.name</td>
+                                }
                             </tr>
                             <tr>
                                 <td>Hard Drive:</td>
-                                <td>@Model.status.Product.HardDrive.name</td>
+                                @if (Model.status.Product.hardDriveId != null)
+                                {
+                                    <td>@Model.status.Product.HardDrive.name</td>
+                                }
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -244,20 +262,36 @@
                             </tr>
                             <tr>
                                 <td>Cpu:</td>
-                                <td>@Model.status.Product.Cpu.name</td>
+
+                                @if (Model.status.Product.cpuId != null)
+                                {
+                                    <td>@Model.status.Product.Cpu.name</td>
+                                }
+
                             </tr>
                             <tr>
                                 <td>Gpu:</td>
-                                <td>@Model.status.Product.Gpu.name</td>
+                                @if (Model.status.Product.gpuId != null)
+                                {
+                                    <td>@Model.status.Product.Gpu.name</td>
+                                }
                             </tr>
                             <tr>
+
                                 <td>Ram:</td>
-                                <td>@Model.status.Product.Ram.name</td>
+                                @if (Model.status.Product.ramId != null)
+                                {
+                                    <td>@Model.status.Product.Ram.name</td>
+                                }
                             </tr>
                             <tr>
-                                <td>HardDrive:</td>
-                                <td>@Model.status.Product.HardDrive.name</td>
+                                <td>Hard Drive:</td>
+                                @if (Model.status.Product.hardDriveId != null)
+                                {
+                                    <td>@Model.status.Product.HardDrive.name</td>
+                                }
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -475,20 +509,36 @@
                             </tr>
                             <tr>
                                 <td>Cpu:</td>
-                                <td>@Model.status.Product.Cpu.name</td>
+
+                                @if (Model.status.Product.cpuId != null)
+                                {
+                                    <td>@Model.status.Product.Cpu.name</td>
+                                }
+
                             </tr>
                             <tr>
                                 <td>Gpu:</td>
-                                <td>@Model.status.Product.Gpu.name</td>
+                                @if (Model.status.Product.gpuId != null)
+                                {
+                                    <td>@Model.status.Product.Gpu.name</td>
+                                }
                             </tr>
                             <tr>
+
                                 <td>Ram:</td>
-                                <td>@Model.status.Product.Ram.name</td>
+                                @if (Model.status.Product.ramId != null)
+                                {
+                                    <td>@Model.status.Product.Ram.name</td>
+                                }
                             </tr>
                             <tr>
-                                <td>HardDrive:</td>
-                                <td>@Model.status.Product.HardDrive.name</td>
+                                <td>Hard Drive:</td>
+                                @if (Model.status.Product.hardDriveId != null)
+                                {
+                                    <td>@Model.status.Product.HardDrive.name</td>
+                                }
                             </tr>
+
                         </tbody>
                     </table>
                 </div>

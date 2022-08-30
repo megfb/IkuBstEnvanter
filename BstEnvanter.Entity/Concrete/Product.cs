@@ -1,6 +1,7 @@
 ﻿using BstEnvanter.Entity.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,11 @@ namespace BstEnvanter.Entity.Concrete
         public int brandId { get; set; }
         public Model Model { get; set; }
         public int modelId { get; set; }
+        [Required]
         public string name { get; set; }
+        [Required]
         public string serialNo { get; set; }
+        [Required]
         public string inventoryNo { get; set; }
         public Cpu Cpu { get; set; }
         public int? cpuId { get; set; }

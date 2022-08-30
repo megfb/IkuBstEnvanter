@@ -1,32 +1,47 @@
 ﻿@model BstEnvanter.WebUI.Models.LoginViewModel
 @{
-    ViewData["Title"] = "Login";
-    Layout = "~/Views/_Layout.cshtml";
+    Layout = null;
 }
-<div class="container-fluid">
 
-    <form asp-action="login" asp-controller="account" class="col-md-8 p-3 mb-3 border rounded" method="post">
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/Fonts.css" />
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div class="container-fluid" >
+        <form asp-action="login" asp-controller="account" class="col-md-8 p-3 mb-3 mx-auto mt-xl-5 border rounded" method="post">
 
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label" for="inputRegisterName">EMail</label>
-            <div class="col-md-10">
-                <input id="inputRegisterName" asp-for="EMail" class="form-control" type="text" placeholder="EMail" />
-                <span class="text-danger fw-bold" asp-validation-for="EMail"></span>
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label" for="inputRegisterName">EMail</label>
+                <div class="col-md-10">
+                    <input id="inputRegisterName" asp-for="EMail" class="form-control" type="text" placeholder="EMail" />
+                    <span class="text-danger fw-bold" asp-validation-for="EMail"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group row pt-4">
-            <label class="col-md-2 col-form-label" for="inputRegisterSurname">Password</label>
-            <div class="col-md-10">
-                <input asp-for="Password" class="form-control" type="password" placeholder="Password" />
-                <span asp-validation-for="Password"></span>
+            <div class="form-group row pt-4">
+                <label class="col-md-2 col-form-label" for="inputRegisterSurname">Password</label>
+                <div class="col-md-10">
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
             </div>
-        </div>
-      
-        <div class="mt-1 text-end">
-            <button type="submit" class="btn btn-primary col-md-2">Login</button>
-        </div>
-    </form>
-</div>
 
+            <div class="mt-1 text-end">
+                <button type="submit" class="btn btn-primary col-md-2">Login</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

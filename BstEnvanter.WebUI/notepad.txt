@@ -1,8 +1,4 @@
-﻿- HardWare ve tüm bölümlerin detay listeleri güncellenecek
-- delete butonlarına onay eklenecek
-- Alertler kontrol edilecek
-- validationlar kontrol edilecek
--product detail sayfalarında ki nullsa 
+﻿- validationlar kontrol edilecek
 -add to personel, add to common,
 	add cpu-gpu-hdd-ram, update cpu-gpu-hdd-ram,
 	hdd category, update category,
@@ -15,9 +11,9 @@
 -validation işlemleri,
 -searchable dropdown
 -notification
--user detail, user update, user list
 -product detail sayfalarında ki specialist detail
--authorize işlemleri
 -access denied sayfası
 -update product kısmında status çekilecek
--change password controller değişecek
+-dil türkçe yapılacak
+-user list te aktif user görüntülenmeyecek,
+buton linklemeleri düzeltilecek

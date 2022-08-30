@@ -1,10 +1,12 @@
 ﻿using BstEnvanter.WebUI.Identity;
 using BstEnvanter.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BstEnvanter.WebUI.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
@@ -21,13 +23,14 @@ namespace BstEnvanter.WebUI.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> DeleteAccount()
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteAccount(string id)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            await _signInManager.SignOutAsync();
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
             await _userManager.DeleteAsync(user);
             return RedirectToAction("index", "home");
         }
+        [Authorize(Roles = "admin")]
         public IActionResult ListOfUsers()
         {
             var model = new ListOfUserViewModel()
@@ -36,6 +39,7 @@ namespace BstEnvanter.WebUI.Controllers
             };
             return View(model);
         }
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DetailUser(string id)
         {
             var getUser = _userManager.Users.FirstOrDefault(x => x.Id == id);
@@ -48,7 +52,6 @@ namespace BstEnvanter.WebUI.Controllers
         }
         public async Task<IActionResult> Profile()
         {
-
             var model = new ProfileViewModel()
             {
                 user = await _userManager.GetUserAsync(User),
@@ -58,13 +61,26 @@ namespace BstEnvanter.WebUI.Controllers
         }
         public async Task<IActionResult> UpdateUser(string id)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-
-            var model = new UpdateUserViewModel()
+            if (id == null)
             {
-                user = user
-            };
-            return View(model);
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var model = new UpdateUserViewModel()
+                {
+                    user = user
+                };
+                return View(model);
+
+            }
+            else
+            {
+                var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+                var model = new UpdateUserViewModel()
+                {
+                    user = user
+                };
+                return View(model);
+            }
+
         }
         [HttpPost]
         public async Task<IActionResult> UpdateUser(UpdateUserViewModel updateUserViewModel)
@@ -83,8 +99,30 @@ namespace BstEnvanter.WebUI.Controllers
                 getUser.Email = updateUserViewModel.user.Email;
                 await _userManager.UpdateAsync(getUser);
             }
-            return RedirectToAction("profile");
+            return RedirectToAction("index", "home");
+        }
+
+        public IActionResult ChangePassword()
+        {
+            return View(new ChangePasswordViewModel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel changePasswordViewModel)
+        {
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            await _userManager.ChangePasswordAsync(user, changePasswordViewModel.OldPassword, changePasswordViewModel.NewPassword);
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("index", "home");
+            }
+
+            return View();
         }
     }
+    
+
 
 }

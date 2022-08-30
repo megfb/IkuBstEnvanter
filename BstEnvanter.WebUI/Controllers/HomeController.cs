@@ -3,12 +3,14 @@ using BstEnvanter.Business.Concrete;
 using BstEnvanter.Entity.Concrete;
 using BstEnvanter.WebUI.Identity;
 using BstEnvanter.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BstEnvanter.WebUI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IStatusService _statusService;
@@ -39,7 +41,6 @@ namespace BstEnvanter.WebUI.Controllers
                     Quantity = status.Count
                 });
             }
-            //var user =  _userManager.Users.FirstOrDefault(x => x.Id == "363c975c-4c6b-4af7-9838-4467eacc7511");
             return View(lstModel);
         }
     }

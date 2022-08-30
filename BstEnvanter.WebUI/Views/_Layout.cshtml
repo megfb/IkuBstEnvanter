@@ -10,10 +10,11 @@
     <link rel="stylesheet" type="text/css" href="~/css/Fonts.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.css" />
     <script src="~/lib/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/b-2.2.3/fc-4.1.0/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/datatables.min.js"></script>
+
 </head>
 <body>
 
@@ -106,14 +107,15 @@
                             <a asp-controller="editor" asp-action="listofclocation" class="nav-link px-sm-0 px-2">
                                 <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Locations</span>
                             </a>
-                        </li>                        <li>
-                            <a asp-controller="user" asp-action="listofusers" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Users</span>
-                            </a>
                         </li>
-
-
-
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                        {
+                            <li>
+                                <a asp-controller="user" asp-action="listofusers" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Users</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -125,7 +127,7 @@
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                                 <li><a class="dropdown-item" asp-action="profile" asp-controller="user">My Profile</a></li>
                                 <li>
-                                    <a asp-controller="account" asp-action="ChangePassword" class="dropdown-item">
+                                    <a asp-controller="user" asp-action="ChangePassword" class="dropdown-item">
                                         Change Password
                                     </a>
                                 </li>
