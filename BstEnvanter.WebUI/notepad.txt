@@ -1,19 +1,10 @@
-﻿- validationlar kontrol edilecek
--add to personel, add to common,
-	add cpu-gpu-hdd-ram, update cpu-gpu-hdd-ram,
-	hdd category, update category,
-	Add brand, update brand,
-	add model, update model,
-	add personel, update personel (gender, email),
-	add a campus, update a campus,
-	add a department, update a department,
-	add a location, update a location,
--validation işlemleri,
--searchable dropdown
--notification
--product detail sayfalarında ki specialist detail
--access denied sayfası
--update product kısmında status çekilecek
--dil türkçe yapılacak
+﻿-login page daha şık hale getirilecek,
+-validation yazıları kırmızı yapılacak ve türkçeye çevrilecek,
+-searchable dropdown,
 -user list te aktif user görüntülenmeyecek,
-buton linklemeleri düzeltilecek
+-db ye veriler küçük harflerle kaydedilecek,
+-temada buton renkleri ve sıraları daha uyumlu olacak,
+-uygulama yüklenirken otomatik olarak üyelik oluşturulacak,
+-buton linklemeleri düzeltilecek,
+-notification,
+-pie chart geliştirilecek,

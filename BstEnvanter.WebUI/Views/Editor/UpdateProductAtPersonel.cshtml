@@ -6,56 +6,80 @@
 
 <div class="containter-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Update A Personel Product</h1>
+        <h1 class="display-4">Personel Bilgilerini Güncelle</h1>
         <hr />
     </div>
     <div class="row">
         <div class=" border col-md-8 rounded">
 
             <div class="row bg-primary">
-                <h3 class="pt-3 text-light">Product Details</h3>
+                <h3 class="pt-3 text-light">Ürün Detayları</h3>
             </div>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
-                        <td>Name:</td>
+                        <td>Ad:</td>
                         <td>@Model.status.Product.name</td>
                     </tr>
                     <tr>
-                        <td>Category:</td>
-                        <td>@Model.status.Product.Category.name</td>
+                        <td>Kategori:</td>
+                        @if (Model.status.Product.categoryId != null)
+                        {
+                            <td>@Model.status.Product.Category.name</td>
+                        }
                     </tr>
                     <tr>
-                        <td>Brand:</td>
-                        <td>@Model.status.Product.Brand.name</td>
+                        <td>Marka:</td>
+                        @if (Model.status.Product.brandId != null)
+                        {
+                            <td>@Model.status.Product.Brand.name</td>
+                        }
                     </tr>
                     <tr>
                         <td>Model:</td>
-                        <td>@Model.status.Product.Model.name</td>
+                        @if (Model.status.Product.modelId != null)
+                        {
+                            <td>@Model.status.Product.Model.name</td>
+                        }
                     </tr>
                     <tr>
-                        <td>Serial No:</td>
+                        <td>Seri Numara:</td>
                         <td>@Model.status.Product.serialNo</td>
                     </tr>
                     <tr>
-                        <td>Inventory No:</td>
+                        <td>Envanter Numarası:</td>
                         <td>@Model.status.Product.inventoryNo</td>
                     </tr>
                     <tr>
-                        <td>Cpu:</td>
-                        <td>@Model.status.Product.Cpu.name</td>
+                        <td>İşlemci:</td>
+
+                        @if (Model.status.Product.cpuId != null)
+                        {
+                            <td>@Model.status.Product.Cpu.name</td>
+                        }
+
                     </tr>
                     <tr>
-                        <td>Gpu:</td>
-                        <td>@Model.status.Product.Gpu.name</td>
+                        <td>Ekran Kartı:</td>
+                        @if (Model.status.Product.gpuId != null)
+                        {
+                            <td>@Model.status.Product.Gpu.name</td>
+                        }
                     </tr>
                     <tr>
+
                         <td>Ram:</td>
-                        <td>@Model.status.Product.Ram.name</td>
+                        @if (Model.status.Product.ramId != null)
+                        {
+                            <td>@Model.status.Product.Ram.name</td>
+                        }
                     </tr>
                     <tr>
-                        <td>Hard Drive:</td>
-                        <td>@Model.status.Product.HardDrive.name</td>
+                        <td>Sabit Disk:</td>
+                        @if (Model.status.Product.hardDriveId != null)
+                        {
+                            <td>@Model.status.Product.HardDrive.name</td>
+                        }
                     </tr>
                 </tbody>
             </table>
@@ -63,7 +87,7 @@
     </div>
     <form class="col-md-8 my-3" method="post" asp-action="updateproductatpersonel">
         <div class="form-group pt-3">
-            <label for="inputDefinition" class="form-label">Definition</label>
+            <label for="inputDefinition" class="form-label">Açıklama</label>
             <textarea class="form-control" id="inputDefinition" asp-for="status.definition" placeholder="@Model.status.definition" rows="3"></textarea>
             <span asp-validation-for="status.definition"></span>
         </div>
@@ -72,7 +96,7 @@
             <select asp-for="status.personelId" id="inputPersonel" class="form-select" asp-items='new SelectList(from x in Model.personel select new { Value = x.id ,Text = x.name + " " + x.surname + " " + x.age}, "Value","Text")'></select>
         </div>
         <div class="form-group pt-3">
-            <label for="inputCampus" class="form-label">Campus</label>
+            <label for="inputCampus" class="form-label">Yerleşke</label>
             <select asp-for="status.campusId" id="inputCampus" class="form-select" asp-items="@(new SelectList(Model.campus,"id","name"))"></select>
         </div>
         <div class="mt-1 text-end">
@@ -80,8 +104,8 @@
             <input type="hidden" asp-for="status.productId" value="@Model.status.productId" />
             <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
             <input type="hidden" asp-for="status.serviceId" value="@Model.status.serviceId" />
-            <button class="btn btn-primary col-md-2">Update</button>
-            <a asp-action="listofproductatpersonel" class="btn btn-info col-md-2">Back</a>
+            <button class="btn btn-primary col-md-2">Güncelle</button>
+            <a asp-action="listofproductatpersonel" class="btn btn-info col-md-2">Geri</a>
         </div>
     </form>
 </div>

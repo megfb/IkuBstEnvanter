@@ -4,41 +4,64 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 
+
+
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Add a New Personel</h1>
+        <h1 class="display-4">Yeni Personel Ekle</h1>
         <hr />
     </div>
-    <form asp-action="addpersonel" class="col-md-8" method="post">
-        <div class="form-group">
-            <input asp-for="personel.name" class="form-control" type="text" placeholder="Name" />
-            <span asp-validation-for="personel.name"></span>
+    <form asp-action="addpersonel" class="col-md-8 p-3 mb-3 border rounded" method="post">
+        <div class="form-group row">
+            <label for="inputPersonelName" class="col-md-2 col-form-label">Ad</label>
+            <div class="col-md-10">
+                <input asp-for="personel.name" id="inputPersonelName" class="form-control" type="text" placeholder="Ad" />
+                <span asp-validation-for="personel.name"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <input asp-for="personel.surname" class="form-control" type="text" placeholder="Surname" />
-            <span asp-validation-for="personel.surname"></span>
+        <div class="form-group row pt-4">
+            <label for="inputPersonelSurname" class="col-md-2 col-form-label">Soyad</label>
+            <div class="col-md-10">
+                <input asp-for="personel.surname" id="inputPersonelSurname" class="form-control" type="text" placeholder="Soyad" />
+                <span asp-validation-for="personel.surname"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <input asp-for="personel.age" class="form-control" type="number" placeholder="Age" />
-            <span asp-validation-for="personel.age"></span>
+        <div class="form-group row pt-4">
+            <label for="inputPersonelAge" class="col-md-2 col-form-label">Yaş</label>
+            <div class="col-md-10">
+                <input asp-for="personel.age" id="inputPersonelAge" class="form-control" type="number" placeholder="Yaş" />
+                <span asp-validation-for="personel.age"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <select asp-for="personel.sexId" class="form-control" asp-items="@(new SelectList(Model.sex,"id","name"))"></select>
+        <div class="form-group row pt-4">
+            <label for="inputPersonelSex" class="col-md-2 col-form-label">Cinsiyet</label>
+            <div class="col-md-10">
+                <select asp-for="personel.sexId" id="inputPersonelSex" class="form-select" asp-items="@(new SelectList(Model.sex,"id","name"))"></select>
+            </div>
         </div>
-        <div class="form-group">
-            <select asp-for="personel.departmentId" class="form-control" asp-items="@(new SelectList(Model.deparment,"id","name"))"></select>
+        <div class="form-group row pt-4">
+            <label for="inputPersonelDepartment" class="col-md-2 col-form-label">Departman</label>
+            <div class="col-md-10">
+                <select asp-for="personel.departmentId" id="inputPersonelDepartment" class="form-select" asp-items="@(new SelectList(Model.deparment,"id","name"))"></select>
+            </div>
         </div>
-        <div class="form-group">
-            <input asp-for="personel.eMail" class="form-control" type="email" placeholder="E-Mail" />
-            <span asp-validation-for="personel.eMail"></span>
+        <div class="form-group row pt-4">
+            <label for="inputPersonelEMail" class="col-md-2 col-form-label">E-Mail</label>
+            <div class="col-md-10">
+                <input asp-for="personel.eMail" id="inputPersonelEMail" class="form-control" type="email" placeholder="E-Mail" />
+                <span asp-validation-for="personel.eMail"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <select asp-for="personel.cLocationId" class="form-control" asp-items="@(new SelectList(Model.cLocation,"id","name"))"></select>
+        <div class="form-group row pt-4">
+            <label for="inputPersonelCLocation" class="col-md-2 col-form-label">Lokasyon</label>
+            <div class="col-md-10">
+                <select asp-for="personel.cLocationId" id="inputPersonelCLocation" class="form-select" asp-items="@(new SelectList(Model.cLocation,"id","name"))"></select>
+            </div>
         </div>
 
         <div class="mt-1 text-end">
-            <button class="btn btn-primary col-md-2">Add</button>
-            <a asp-action="listofpersonel" class="btn btn-info col-md-2">Back</a>
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofpersonel" class="btn btn-info col-md-2">Geri</a>
         </div>
     </form>
 </div>

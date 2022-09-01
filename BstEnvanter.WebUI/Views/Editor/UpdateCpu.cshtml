@@ -6,18 +6,21 @@
 
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Update a Cpu</h1>
+        <h1 class="display-4">İşlemci Güncelle</h1>
         <hr />
     </div>
     <form asp-action="updatecpu" class="col-md-8" method="post">
-        <div class="form-group">
-            <input asp-for="cpu.name" class="form-control" type="text" placeholder="@Model.cpu.name" />
-            <span asp-validation-for="cpu.name"></span>
+        <div class="form-group row pt-4">
+            <label for="inputCpu" class="col-md-2 col-form-label">İşlemci</label>
+            <div class="col-md-10">
+                <input asp-for="cpu.name" class="form-control" type="text" placeholder="@Model.cpu.name" />
+                <span asp-validation-for="cpu.name"></span>
+            </div>
         </div>
-        <div class="form-group text-end">
+        <div class="form-group text-end mt-3">
             <input type="hidden" asp-for="cpu.id" />
-            <input type="submit" value="Update" class="btn btn-success col-md-2">
-            <a class="btn btn-info col-md-2" asp-action="listofcpu">Back</a>
+            <input type="submit" value="Güncelle" class="btn btn-success col-md-2">
+            <a class="btn btn-info col-md-2" asp-action="listofcpu">Geri</a>
         </div>
     </form>
 </div>

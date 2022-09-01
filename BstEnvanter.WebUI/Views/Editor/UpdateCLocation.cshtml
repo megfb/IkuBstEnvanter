@@ -4,19 +4,22 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 <div class="container-fluid">
-        <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Update a Location</h1>
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Lokasyon Güncelle</h1>
         <hr />
     </div>
     <form asp-action="updateclocation" class="col-md-8" method="post">
-        <div class="form-group">
-            <input asp-for="cLocation.name" class="form-control" type="text" placeholder="@Model.cLocation.name" />
-            <span asp-validation-for="cLocation.name"></span>
+        <div class="form-group row">
+            <label for="inputLocation" class="col-md-2 col-form-label">Lokasyon</label>
+            <div class="col-md-10">
+                <input asp-for="cLocation.name" id="inputLocation" class="form-control" type="text" placeholder="@Model.cLocation.name" />
+                <span asp-validation-for="cLocation.name"></span>
+            </div>
         </div>
-        <div class="form-group text-end">
+        <div class="form-group text-end mt-3">
             <input type="hidden" asp-for="cLocation.id" />
-            <input type="submit" value="Update" class="btn btn-success col-md-2">
-            <a class="btn btn-info col-md-2" asp-action="listofclocation">Back</a>
+            <input type="submit" value="Güncelle" class="btn btn-success col-md-2">
+            <a class="btn btn-info col-md-2" asp-action="listofclocation">Geri</a>
         </div>
     </form>
 </div>

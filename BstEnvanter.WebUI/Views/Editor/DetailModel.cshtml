@@ -6,14 +6,14 @@
 
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">@Model.model.name List</h1>
+        <h1 class="display-4">@Model.model.name - Ürün Listesi</h1>
         <hr />
     </div>
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <a type="button" asp-action="detailmodel" asp-route-id="@Model.model.id" class="btn btn-secondary">Product</a>
+        <a type="button" asp-action="detailmodel" asp-route-id="@Model.model.id" class="btn btn-secondary">Depo</a>
         <a type="button" asp-action="detailmodelatpersonel" asp-route-id="@Model.model.id" class="btn btn-secondary">Personel</a>
-        <a type="button" asp-action="detailmodelatcommon" asp-route-id="@Model.model.id" class="btn btn-secondary">Commons</a>
-        <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
+        <a type="button" asp-action="detailmodelatcommon" asp-route-id="@Model.model.id" class="btn btn-secondary">Ortak</a>
+        <a type="button" asp-action="addproduct" class="btn btn-secondary">Yeni Ürün</a>
     </div>
     <table class="table">
         <thead>

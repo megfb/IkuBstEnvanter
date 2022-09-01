@@ -5,16 +5,16 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Update a Product</h1>
+        <h1 class="display-4">Ürün Güncelle</h1>
         <hr />
     </div>
     <form method="post" asp-action="updateproduct" class="col-md-8 p-3 mb-3 border rounded">
 
         <div class="form-group row">
-            <label for="inputCategory" class="col-md-2 col-form-label">Category</label>
+            <label for="inputCategory" class="col-md-2 col-form-label">Kategori</label>
             <div class="col-md-10">
-                <select asp-for="product.categoryId" id="inputCategory" class="form-control" asp-items="@(new SelectList(Model.category,"id","name"))"></select>
-                <span asp-validation-for="product.categoryId"></span>
+                <select asp-for="status.Product.categoryId" id="inputCategory" class="form-control" asp-items="@(new SelectList(Model.category,"id","name"))"></select>
+                <span asp-validation-for="status.Product.categoryId"></span>
                 <div class="text-end">
                     <a asp-action="addcategory">add a new category</a>
                 </div>
@@ -22,12 +22,12 @@
         </div>
 
         <div class="form-group row">
-            <label for="inputBrand" class="col-md-2 col-form-label">Brand</label>
+            <label for="inputBrand" class="col-md-2 col-form-label">Marka</label>
             <div class="col-md-10">
-                <select asp-for="product.brandId" class="form-control" asp-items="@(new SelectList(Model.brand,"id","name"))"></select>
-                <span asp-validation-for="product.brandId"></span>
+                <select asp-for="status.Product.brandId" class="form-control" asp-items="@(new SelectList(Model.brand,"id","name"))"></select>
+                <span asp-validation-for="status.Product.brandId"></span>
                 <div class="text-end">
-                    <a class="ml-3" asp-action="addbrand">add a new brand</a>
+                    <a class="ml-3" asp-action="addbrand">yeni bir marka ekle</a>
                 </div>
             </div>
         </div>
@@ -35,76 +35,84 @@
         <div class="form-group row">
             <label for="inputModel" class="col-md-2 col-form-label">Model</label>
             <div class="col-md-10">
-                <select id="inputModel" asp-for="product.modelId" class="form-control" asp-items="@(new SelectList(Model.model,"id","name"))"></select>
+                <select id="inputModel" asp-for="status.Product.modelId" class="form-control" asp-items="@(new SelectList(Model.model,"id","name"))"></select>
                 <div class="text-end">
-                    <a class="ml-3" asp-action="addmodel">add a new model</a>
+                    <a class="ml-3" asp-action="addmodel">yeni bir model ekle</a>
                 </div>
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-md-2 col-form-label" for="inputName">Name</label>
+            <label class="col-md-2 col-form-label" for="inputName">Ürün Adı</label>
             <div class="col-md-10">
-                <input id="inputName" asp-for="product.name" class="form-control" type="text" placeholder="@Model.product.name" />
-                <span asp-validation-for="product.name"></span>
-            </div>
-        </div>
-
-        <div class="form-group row pt-4">
-            <label class="col-md-2 col-form-label" for="inputSerialNo">Serial Number</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" asp-for="product.serialNo" placeholder="@Model.product.serialNo" />
-                <span asp-validation-for="product.serialNo"></span>
+                <input id="inputName" asp-for="status.Product.name" class="form-control" type="text" placeholder="@Model.status.Product.name" />
+                <span asp-validation-for="status.Product.name"></span>
             </div>
         </div>
         <div class="form-group row pt-4">
-            <label class="col-md-2 col-form-label" for="inputInventoryNo">Inventory Number</label>
+            <label for="inputCampus" class="col-md-2 col-form-label">Yerleşke</label>
             <div class="col-md-10">
-                <input type="text" id="inputInventoryNo" class="form-control" asp-for="product.inventoryNo" placeholder="@Model.product.inventoryNo" />
-                <span asp-validation-for="product.inventoryNo"></span>
+                <select id="inputCampus" asp-for="status.campusId" class="form-control" asp-items="@(new SelectList(Model.campus,"id","name"))"></select>
             </div>
         </div>
         <div class="form-group row pt-4">
-            <label for="inputCpu" class="col-md-2 col-form-label">Cpu</label>
+            <label class="col-md-2 col-form-label" for="inputSerialNo">Seri Numarası</label>
             <div class="col-md-10">
-                <select id="inputCpu" asp-for="product.cpuId" class="form-select" asp-items="@(new SelectList(Model.cpu,"id","name"))"></select>
+                <input type="text" class="form-control" asp-for="status.Product.serialNo" placeholder="@Model.status.Product.serialNo" />
+                <span asp-validation-for="status.Product.serialNo"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label class="col-md-2 col-form-label" for="inputInventoryNo">Envanter Numarası</label>
+            <div class="col-md-10">
+                <input type="text" id="inputInventoryNo" class="form-control" asp-for="status.Product.inventoryNo" placeholder="@Model.status.Product.inventoryNo" />
+                <span asp-validation-for="status.Product.inventoryNo"></span>
+            </div>
+        </div>
+        <div class="form-group row pt-4">
+            <label for="inputCpu" class="col-md-2 col-form-label">İşlemci</label>
+            <div class="col-md-10">
+                <select id="inputCpu" asp-for="status.Product.cpuId" class="form-select" asp-items="@(new SelectList(Model.cpu,"id","name"))"></select>
                 <div class="text-end">
-                    <a class="ml-3" asp-action="addmodel">add a new model</a>
+                    <a class="ml-3" asp-action="addcpu">yeni bir işlemci ekle</a>
                 </div>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputGpu" class="col-md-2 col-form-label">Cpu</label>
+            <label for="inputGpu" class="col-md-2 col-form-label">Ekran Kartı</label>
             <div class="col-md-10">
-                <select id="inputGpu" asp-for="product.gpuId" class="form-select" asp-items="@(new SelectList(Model.gpu,"id","name"))"></select>
+                <select id="inputGpu" asp-for="status.Product.gpuId" class="form-select" asp-items="@(new SelectList(Model.gpu,"id","name"))"></select>
                 <div class="text-end">
-                    <a class="ml-3" asp-action="addmodel">add a new model</a>
+                    <a class="ml-3" asp-action="addgpu">yeni bir ekran kartı ekle</a>
                 </div>
             </div>
         </div>
         <div class="form-group row">
-                <label for="inputRam" class="col-md-2 col-form-label">Ram</label>
-                <div class="col-md-10">
-                <select id="inputRam" asp-for="product.ramId" class="form-select" asp-items="@(new SelectList(Model.ram,"id","name"))"></select>
-                    <div class="text-end">
-                        <a class="ml-3" asp-action="addmodel">add a new model</a>
-                    </div>
+            <label for="inputRam" class="col-md-2 col-form-label">Ram</label>
+            <div class="col-md-10">
+                <select id="inputRam" asp-for="status.Product.ramId" class="form-select" asp-items="@(new SelectList(Model.ram,"id","name"))"></select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addram">yeni bir ram ekle</a>
                 </div>
             </div>
+        </div>
         <div class="form-group row">
-                <label for="inputHdd" class="col-md-2 col-form-label">Hard Drive</label>
-                <div class="col-md-10">
-                <select id="inputHdd" asp-for="product.hardDriveId" class="form-select" asp-items="@(new SelectList(Model.hardDrive,"id","name"))"></select>
-                    <div class="text-end">
-                        <a class="ml-3" asp-action="addmodel">add a new model</a>
-                    </div>
+            <label for="inputHdd" class="col-md-2 col-form-label">Sabit Disk</label>
+            <div class="col-md-10">
+                <select id="inputHdd" asp-for="status.Product.hardDriveId" class="form-select" asp-items="@(new SelectList(Model.hardDrive,"id","name"))"></select>
+                <div class="text-end">
+                    <a class="ml-3" asp-action="addharddrive">yeni bir sabit disk ekle</a>
                 </div>
             </div>
+        </div>
 
         <div class="mt-1 text-end">
-            <input type="hidden" asp-for="product.id" />
-            <button class="btn btn-primary col-md-2">Update</button>
-            <a asp-action="listofproduct" class="btn btn-info col-md-2">Back</a>
+            <input type="hidden" asp-for="status.id" />
+            <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
+            <input type="hidden" asp-for="status.definition" value="@Model.status.definition" />
+            <input type="hidden" asp-for="status.serviceId" value="@Model.status.serviceId" />
+            <button class="btn btn-primary col-md-2">Güncelle</button>
+            <a asp-action="listofproduct" class="btn btn-info col-md-2">Geri</a>
         </div>
 
     </form>

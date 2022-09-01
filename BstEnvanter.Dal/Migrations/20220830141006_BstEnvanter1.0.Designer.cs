@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BstEnvanter.Dal.Migrations
 {
     [DbContext(typeof(EfContext))]
-    [Migration("20220822150829_BstEnvanterV1.5")]
-    partial class BstEnvanterV15
+    [Migration("20220830141006_BstEnvanter1.0")]
+    partial class BstEnvanter10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -33,6 +33,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -49,6 +50,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -65,6 +67,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -81,6 +84,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -96,10 +100,10 @@ namespace BstEnvanter.Dal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int>("cLocationId")
+                    b.Property<int?>("cLocationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("departmentId")
+                    b.Property<int?>("departmentId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
@@ -120,6 +124,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -136,6 +141,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -152,6 +158,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -168,6 +175,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -184,6 +192,7 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -202,25 +211,25 @@ namespace BstEnvanter.Dal.Migrations
                     b.Property<int>("age")
                         .HasColumnType("int");
 
-                    b.Property<int>("cLocationId")
+                    b.Property<int?>("cLocationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("departmentId")
+                    b.Property<int?>("departmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("eMail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("roomNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("sexId")
                         .HasColumnType("int");
 
                     b.Property<string>("surname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -242,10 +251,10 @@ namespace BstEnvanter.Dal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int>("brandId")
+                    b.Property<int?>("brandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("categoryId")
+                    b.Property<int?>("categoryId")
                         .HasColumnType("int");
 
                     b.Property<int?>("cpuId")
@@ -258,18 +267,21 @@ namespace BstEnvanter.Dal.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("inventoryNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("modelId")
+                    b.Property<int?>("modelId")
                         .HasColumnType("int");
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ramId")
                         .HasColumnType("int");
 
                     b.Property<string>("serialNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -300,11 +312,53 @@ namespace BstEnvanter.Dal.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
                     b.Property<string>("name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
                     b.ToTable("Ram");
+                });
+
+            modelBuilder.Entity("BstEnvanter.Entity.Concrete.Service", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("dateOfEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("dateOfStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("issue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("processNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("specialist")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Service");
                 });
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Sex", b =>
@@ -334,7 +388,7 @@ namespace BstEnvanter.Dal.Migrations
                     b.Property<string>("bstId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("campusId")
+                    b.Property<int?>("campusId")
                         .HasColumnType("int");
 
                     b.Property<int?>("commonId")
@@ -352,6 +406,9 @@ namespace BstEnvanter.Dal.Migrations
                     b.Property<int>("productId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("serviceId")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
 
                     b.HasIndex("campusId");
@@ -362,6 +419,8 @@ namespace BstEnvanter.Dal.Migrations
 
                     b.HasIndex("productId");
 
+                    b.HasIndex("serviceId");
+
                     b.ToTable("Status");
                 });
 
@@ -369,15 +428,11 @@ namespace BstEnvanter.Dal.Migrations
                 {
                     b.HasOne("BstEnvanter.Entity.Concrete.CLocation", "CLocation")
                         .WithMany("common")
-                        .HasForeignKey("cLocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("cLocationId");
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Department", "department")
                         .WithMany("common")
-                        .HasForeignKey("departmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("departmentId");
 
                     b.Navigation("CLocation");
 
@@ -388,15 +443,11 @@ namespace BstEnvanter.Dal.Migrations
                 {
                     b.HasOne("BstEnvanter.Entity.Concrete.CLocation", "CLocation")
                         .WithMany("personel")
-                        .HasForeignKey("cLocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("cLocationId");
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Department", "Department")
                         .WithMany("personel")
-                        .HasForeignKey("departmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("departmentId");
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Sex", "Sex")
                         .WithMany("personel")
@@ -415,15 +466,11 @@ namespace BstEnvanter.Dal.Migrations
                 {
                     b.HasOne("BstEnvanter.Entity.Concrete.Brand", "Brand")
                         .WithMany("product")
-                        .HasForeignKey("brandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("brandId");
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Category", "Category")
                         .WithMany("product")
-                        .HasForeignKey("categoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("categoryId");
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Cpu", "Cpu")
                         .WithMany("product")
@@ -439,9 +486,7 @@ namespace BstEnvanter.Dal.Migrations
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Model", "Model")
                         .WithMany("product")
-                        .HasForeignKey("modelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("modelId");
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Ram", "Ram")
                         .WithMany("product")
@@ -466,9 +511,7 @@ namespace BstEnvanter.Dal.Migrations
                 {
                     b.HasOne("BstEnvanter.Entity.Concrete.Campus", "Campus")
                         .WithMany("status")
-                        .HasForeignKey("campusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("campusId");
 
                     b.HasOne("BstEnvanter.Entity.Concrete.Common", "Common")
                         .WithMany("status")
@@ -484,6 +527,10 @@ namespace BstEnvanter.Dal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BstEnvanter.Entity.Concrete.Service", "Service")
+                        .WithMany("status")
+                        .HasForeignKey("serviceId");
+
                     b.Navigation("Campus");
 
                     b.Navigation("Common");
@@ -491,6 +538,8 @@ namespace BstEnvanter.Dal.Migrations
                     b.Navigation("Personel");
 
                     b.Navigation("Product");
+
+                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Brand", b =>
@@ -560,6 +609,11 @@ namespace BstEnvanter.Dal.Migrations
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Ram", b =>
                 {
                     b.Navigation("product");
+                });
+
+            modelBuilder.Entity("BstEnvanter.Entity.Concrete.Service", b =>
+                {
+                    b.Navigation("status");
                 });
 
             modelBuilder.Entity("BstEnvanter.Entity.Concrete.Sex", b =>

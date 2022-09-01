@@ -5,17 +5,20 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Add a New Ram</h1>
+        <h1 class="display-4">Yeni Ram Ekle</h1>
         <hr />
     </div>
     <form asp-action="addram" class="col-md-8" method="post">
-        <div class="form-group">
-            <input asp-for="ram.name" class="form-control" type="text" placeholder="Name" />
-            <span asp-validation-for="ram.name"></span>
+        <div class="form-group row pt-4">
+            <label for="inputRam" class="col-md-2 col-form-label">Ram</label>
+            <div class="col-md-10">
+                <input asp-for="ram.name" class="form-control" type="text" placeholder="Ram" />
+                <span asp-validation-for="ram.name"></span>
+            </div>
         </div>
         <div class="mt-1 text-end">
-            <button class="btn btn-primary col-md-2">Add</button>
-            <a asp-action="listofram" class="btn btn-info col-md-2">Back</a>
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofram" class="btn btn-info col-md-2">Geri</a>
         </div>
     </form>
 </div>

@@ -5,18 +5,21 @@
 }
 
 <div class="container-fluid">
-        <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Add a Location</h1>
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4">Yeni Lokasyon Ekle</h1>
         <hr />
     </div>
     <form asp-action="addclocation" class="col-md-8" method="post">
-        <div class="form-group">
-            <input asp-for="cLocation.name" class="form-control" type="text" placeholder="Name" />
-            <span asp-validation-for="cLocation.name"></span>
+        <div class="form-group row">
+            <label for="inputLocation" class="col-md-2 col-form-label">Lokasyon</label>
+            <div class="col-md-10">
+                <input asp-for="cLocation.name" id="inputLocation" class="form-control" type="text" placeholder="Lokasyon" />
+                <span asp-validation-for="cLocation.name"></span>
+            </div>
         </div>
-        <div class="mt-1 text-end">
-            <button class="btn btn-primary col-md-2">Add</button>
-            <a asp-action="listofclocation" class="btn btn-info col-md-2">Back</a>
+        <div class="mt-3 text-end">
+            <button class="btn btn-primary col-md-2">Ekle</button>
+            <a asp-action="listofclocation" class="btn btn-info col-md-2">Geri</a>
         </div>
     </form>
 </div>

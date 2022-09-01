@@ -5,42 +5,42 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">User Detail</h1>
+        <h1 class="display-4">Kullancıı Detayı</h1>
         <hr />
     </div>
     <div class="row">
         <div class="border border-rounded rounded">
             <div class="row bg-primary">
-                <h3 class="pt-3 text-light">Personel Details</h3>
+                <h3 class="pt-3 text-light">Kullancıı Detayları</h3>
             </div>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
-                        <td>Name:</td>
+                        <td>Ad:</td>
                         <td>@Model.user.name</td>
                     </tr>
                     <tr>
-                        <td>Surname:</td>
+                        <td>Soyad:</td>
                         <td>@Model.user.surname</td>
                     </tr>
                     <tr>
-                        <td>Age:</td>
+                        <td>Yaş:</td>
                         <td>@Model.user.age</td>
                     </tr>
                     <tr>
-                        <td>Gender:</td>
+                        <td>Cinsiyet:</td>
                         <td>@Model.user.gender</td>
                     </tr>
                     <tr>
-                        <td>Department:</td>
+                        <td>Departman:</td>
                         <td>@Model.user.department</td>
                     </tr>
                     <tr>
-                        <td>Room No:</td>
+                        <td>Lokasyon:</td>
                         <td>@Model.user.roomNo</td>
                     </tr>
                     <tr>
-                        <td>Title:</td>
+                        <td>Ünvan:</td>
                         <td>@Model.user.title</td>
                     </tr>
                     <tr>
@@ -48,7 +48,7 @@
                         <td>@Model.user.Email</td>
                     </tr>
                     <tr>
-                        <td>Role:</td>
+                        <td>Rol:</td>
                         @foreach (var item in Model.role)
                         {
                             <td>@item</td>

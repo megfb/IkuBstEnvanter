@@ -81,10 +81,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _brandService.add(brand);
-                TempData.Add("Success", $"New brand succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni marka eklendi");
                 return RedirectToAction("addbrand");
             }
-            TempData.Add("Alert", $"New brand could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni marka eklenemedi!");
             return View();
         }
         [HttpGet]
@@ -113,16 +113,16 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _brandService.update(brand);
-                TempData.Add("Success", $"{brand.name} succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, {brand.name} güncelleştirildi");
                 return RedirectToAction("ListOfBrand");
             }
-            TempData.Add("Alert", $"{brand.name} could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, {brand.name} güncelleştirilemedi!");
             return RedirectToAction("updatebrand", brand.id);
         }
         public IActionResult DeleteBrand(int id)
         {
             _brandService.remove(id);
-            TempData.Add("Success", $"A brand succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofbrand");
         }
         public IActionResult DetailBrand(int id)
@@ -173,10 +173,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _categoryService.add(category);
-                TempData.Add("Success", $"New category succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni kategori eklendi");
                 return RedirectToAction("listofcategory");
             }
-            TempData.Add("Alert", $"New category could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni kategori eklenemedi!");
             return View();
         }
         [HttpGet]
@@ -204,16 +204,16 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _categoryService.update(category);
-                TempData.Add("Success", $"{category.name} succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, {category.name} güncelleştirildi ");
                 return RedirectToAction("listofcategory");
             }
-            TempData.Add("Alert", $"{category.name} could not be updated");
+            TempData.Add("Alert", $"İşlem Başarısız, {category.name} güncelleştirilemedi!");
             return RedirectToAction("updatecategory", category.id);
         }
         public IActionResult DeleteCategory(int id)
         {
             _categoryService.remove(id);
-            TempData.Add("Success", $"A category succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofcategory");
 
         }
@@ -269,10 +269,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _modelService.add(model);
-                TempData.Add("Success", $"New model succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni model eklendi");
                 return RedirectToAction("listofmodel");
             }
-            TempData.Add("Alert", $"New model could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni model eklenemedi!");
             return View();
         }
         public IActionResult ListOfModel()
@@ -299,16 +299,16 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _modelService.update(model);
-                TempData.Add("Success", $"{model.name} succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, {model.name} başarıyla günelleştirildi");
                 return RedirectToAction("listofmodel");
             }
-            TempData.Add("Alert", $"{model.name} could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, {model.name} güncelleştirilemedi!");
             return RedirectToAction("updatemodel", model.id);
         }
         public IActionResult DeleteModel(int id)
         {
             _modelService.remove(id);
-            TempData.Add("Success", $"A model succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofmodel");
         }
         public IActionResult DetailModel(int id)
@@ -369,10 +369,10 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);                
                 _statusService.add(status);
-                TempData.Add("Success", $"New product succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni ürün eklendi");
                 return RedirectToAction("listofproduct");
             }
-            TempData.Add("Alert", $"New product could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni ürün eklenemedi!");
             return View();
         }
         public IActionResult ListOfProduct(int id)
@@ -389,34 +389,36 @@ namespace BstEnvanter.WebUI.Controllers
         {
             var model = new UpdateProductViewModel()
             {
-                product = _productService.get(id),
+                status = _statusService.get(id),
                 category = _categoryService.getAll(),
                 brand = _brandService.getAll(),
                 model = _modelService.getAll(),
                 cpu = _cpuService.getAll(),
                 gpu = _gpuService.getAll(),
                 ram = _ramService.getAll(),
-                hardDrive = _hardDriveService.getAll()
+                hardDrive = _hardDriveService.getAll(),
+                campus = _campusService.getAll()
             };
             return View(model);
         }
         [HttpPost]
-        public IActionResult UpdateProduct(Product product)
+        public IActionResult UpdateProduct(Status status)
         {
             if (ModelState.IsValid)
             {
-                _productService.update(product);
-                TempData.Add("Success", $"{product.name} succesfully updated");
+                status.bstId = _userManager.GetUserId(User);
+                _statusService.update(status);
+                TempData.Add("Success", $"İşlem başarılı, {status.Product.name} güncelleştirildi");
                 return RedirectToAction("listofproduct");
             }
-            TempData.Add("Alert", $"{product.name} could not be updated");
-            return RedirectToAction("updateproduct", product.id);
+            TempData.Add("Alert", $"İşlem başarısız, {status.Product.name} güncelleştirilemedi!");
+            return RedirectToAction("updateproduct", status.Product.id);
         }
         public IActionResult DeleteProduct(int id, int productId)
         {
             _statusService.remove(id);
             _productService.remove(productId);
-            TempData.Add("Success", $"A product succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofproduct");
         }
         public IActionResult DetailProduct(int id)
@@ -447,10 +449,10 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
-                TempData.Add("Success", $"The product succesfully added to personel");
+                TempData.Add("Success", $"İşlem başarılı, personele ürün ataması yapıldı");
                 return RedirectToAction("listofproduct");
             }
-            TempData.Add("Alert", $"The product could not be added to personel");
+            TempData.Add("Alert", $"İşlem başarısız, personele ürün ataması yapılamadı!");
             return View();
         }
         public IActionResult ListofProductAtPersonel(int id)
@@ -471,7 +473,7 @@ namespace BstEnvanter.WebUI.Controllers
             model.personelId = null;
             model.bstId = _userManager.GetUserId(User);
             _statusService.update(model);
-            TempData.Add("Success", $"The product succesfully deleted from personel");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofproductatpersonel");
         }
         [HttpGet]
@@ -493,10 +495,10 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 int id = status.id;
-                TempData.Add("Success", $"The product succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
                 return RedirectToAction("listofproductatpersonel");
             }
-            TempData.Add("Alert", $"The product could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
             return View();
         }
         [HttpGet]
@@ -538,11 +540,11 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
-                TempData.Add("Success", $"The product succesfully added to common");
+                TempData.Add("Success", $"İşlem başarılı, ortağa ürün ataması yapıldı");
 
                 return RedirectToAction("listofproduct");
             }
-            TempData.Add("Alert", $"The product could not be added to common");
+            TempData.Add("Alert", $"İşlem başarısız, ortağa ürün ataması yapılamadı!");
 
             return RedirectToAction("listofproduct");
         }
@@ -563,7 +565,7 @@ namespace BstEnvanter.WebUI.Controllers
             model.bstId = _userManager.GetUserId(User);
             _statusService.update(model);
             _commonService.remove(commonId);
-            TempData.Add("Success", $"The product succesfully deleted from common");
+            TempData.Add("Success", $"Silme işlemi başarılı");
 
             return RedirectToAction("listofproductatcommon");
         }
@@ -608,11 +610,11 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 _commonService.remove(commonId);
-                TempData.Add("Success", $"The product succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
 
                 return RedirectToAction("listofproduct");
             }
-            TempData.Add("Alert", $"The product could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
 
             return RedirectToAction("listofproduct");
         }
@@ -626,6 +628,7 @@ namespace BstEnvanter.WebUI.Controllers
                 campus = _campusService.getAll(),
 
             };
+            model.user = _userManager.Users.FirstOrDefault(x => x.Id == model.status.bstId);
             return View(model);
         }
         [HttpPost]
@@ -636,12 +639,12 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 _commonService.remove(id);
-                TempData.Add("Success", $"The product succesfully moved to personel");
+                TempData.Add("Success", $"İşlem başarılı, personele ürün taşıması yapıldı");
                 return RedirectToAction("listofproductatpersonel");
 
 
             }
-            TempData.Add("Alert", $"The product could not be moved to personel");
+            TempData.Add("Alert", $"İşlem başarısız, personele ürün taşıması yapılamadı!");
             return RedirectToAction("listofproductatpersonel");
         }
         [HttpGet]
@@ -655,6 +658,8 @@ namespace BstEnvanter.WebUI.Controllers
                 department = _departmentService.getAll(),
                 campus = _campusService.getAll(),
             };
+            model.user = _userManager.Users.FirstOrDefault(x => x.Id == model.status.bstId);
+
             return View(model);
         }
         [HttpPost]
@@ -664,11 +669,11 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
-                TempData.Add("Success", $"The product succesfully moved to common");
+                TempData.Add("Success", $"İşlem başarılı, ortağa ürün taşıması yapıldı");
                 return RedirectToAction("listofproductatcommon");
 
             }
-            TempData.Add("Alert", $"The product could not be moved to personel");
+            TempData.Add("Alert", $"İşlem başarısız, ortağa ürün taşıması yapılamadı!");
             return RedirectToAction("listofproductatcommon");
         }
         public IActionResult ListOfProductAtService(int id)
@@ -702,10 +707,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _departmentService.add(department);
-                TempData.Add("Success", $"New department succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni departman eklendi");
                 return RedirectToAction("listofdepartment");
             }
-            TempData.Add("Alert", $"New department could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni departman eklenemedi!");
             return View();
         }
         [HttpGet]
@@ -731,16 +736,16 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _departmentService.update(department);
-                TempData.Add("Success", $"{department.name} succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, {department.name} güncelleştirildi.");
                 return RedirectToAction("listofdepartment");
             }
-            TempData.Add("Alert", $"{department.name} could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, {department.name} güncelleştirilemedi!");
             return RedirectToAction("updatedepartment", department.id);
         }
         public IActionResult DeleteDepartment(int id)
         {
             _departmentService.remove(id);
-            TempData.Add("Success", $"A department succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofdepartment");
         }
         public IActionResult DetailDepartmentAtPersonel(int id)
@@ -783,10 +788,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _clocationService.add(cLocation);
-                TempData.Add("Success", $"New CLocation succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni lokasyon eklendi");
                 return RedirectToAction("listofCLocation");
             }
-            TempData.Add("Alert", $"New CLocation could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni lokasyon eklenemedi!");
             return View();
         }
         [HttpGet]
@@ -813,16 +818,16 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _clocationService.update(cLocation);
-                TempData.Add("Success", $"{cLocation.name} succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, {cLocation.name} güncelleştirildi");
                 return RedirectToAction("listofclocation");
             }
-            TempData.Add("Alert", $"{cLocation.name} could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, {cLocation.name} güncelleştirilemedi!");
             return RedirectToAction("updateclocation", cLocation.id);
         }
         public IActionResult DeleteCLocation(int id)
         {
             _clocationService.remove(id);
-            TempData.Add("Success", $"A clocation succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofclocation");
         }
         public IActionResult DetailCLocationAtCommon(int id)
@@ -864,10 +869,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _campusService.add(campus);
-                TempData.Add("Success", $"New campus succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni yerleşke eklendi");
                 return RedirectToAction("listofcampus");
             }
-            TempData.Add("Alert", $"New campus could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni yerleşke eklenemedi!");
             return View();
         }
         public IActionResult ListOfCampus()
@@ -893,16 +898,16 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _campusService.update(campus);
-                TempData.Add("Success", $"{campus.name} succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, {campus.name} güncelleştirildi");
                 return RedirectToAction("listofcampus");
             }
-            TempData.Add("Alert", $"{campus.name} could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, {campus.name} güncelleştirilemedi!");
             return RedirectToAction("updateclocation", campus.id);
         }
         public IActionResult DeleteCampus(int id)
         {
             _campusService.remove(id);
-            TempData.Add("Success", $"A campus succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofcampus");
         }
         public IActionResult DetailCampus(int id)
@@ -956,10 +961,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _personelService.add(personel);
-                TempData.Add("Success", $"New personel succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni personel eklendi");
                 return RedirectToAction("listofpersonel");
             }
-            TempData.Add("Alert", $"New personel could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni personel eklenemedi!");
             return View();
         }
         public IActionResult ListOfPersonel()
@@ -973,7 +978,7 @@ namespace BstEnvanter.WebUI.Controllers
         public IActionResult DeletePersonel(int id)
         {
             _personelService.remove(id);
-            TempData.Add("Success", $"The Personel succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofpersonel");
         }
         [HttpGet]
@@ -995,10 +1000,10 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _personelService.update(personel);
-                TempData.Add("Success", $"The personel succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
                 return RedirectToAction("listofpersonel");
             }
-            TempData.Add("Alert", $"The personel could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
             return View();
         }
         [HttpGet]
@@ -1070,11 +1075,11 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _cpuService.add(cpu);
-                TempData.Add("Success", $"New cpu succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni işlemci eklendi");
 
                 return RedirectToAction("listofcpu");
             }
-            TempData.Add("Alert", $"New cpu could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni işlemci eklenemedi!");
 
             return View();
         }
@@ -1093,18 +1098,18 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _cpuService.update(cpu);
-                TempData.Add("Success", $"The personel succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
                 return RedirectToAction("listofcpu");
 
             }
-            TempData.Add("Alert", $"The cpu could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
             return RedirectToAction("listofcpu");
 
         }
         public IActionResult DeleteCpu(int id)
         {
             _cpuService.remove(id);
-            TempData.Add("Success", $"The cpu succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
             return RedirectToAction("listofcpu");
         }
         public IActionResult DetailCpu(int id)
@@ -1162,11 +1167,11 @@ namespace BstEnvanter.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                TempData.Add("Success", $"New gpu succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni ekran kartı eklendi");
                 _gpuService.add(gpu);
                 return RedirectToAction("listofgpu");
             }
-            TempData.Add("Alert", $"New gpu could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni ekran kartı eklenemedi!");
 
             return View();
         }
@@ -1185,18 +1190,18 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _gpuService.update(gpu);
-                TempData.Add("Success", $"The gpu succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
 
                 return RedirectToAction("listofgpu");
             }
-            TempData.Add("Alert", $"The gpu could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
 
             return View();
         }
         public IActionResult DeleteGpu(int id)
         {
             _gpuService.remove(id);
-            TempData.Add("Success", $"The gpu succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
 
             return RedirectToAction("listofgpu");
         }
@@ -1257,11 +1262,11 @@ namespace BstEnvanter.WebUI.Controllers
             {
 
                 _ramService.add(ram);
-                TempData.Add("Success", $"New ram succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni ram eklendi");
 
                 return RedirectToAction("listofram");
             }
-            TempData.Add("Alert", $"New ram could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, yeni ram eklenemedi!");
 
             return View();
         }
@@ -1279,18 +1284,18 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _ramService.update(ram);
-                TempData.Add("Success", $"The ram succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
 
                 return RedirectToAction("ListOfRam");
             }
-            TempData.Add("Alert", $"The ram could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
 
             return View();
         }
         public IActionResult DeleteRam(int id)
         {
             _ramService.remove(id);
-            TempData.Add("Success", $"The ram succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
 
             return RedirectToAction("listofram");
         }
@@ -1350,11 +1355,11 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _hardDriveService.add(hardDrive);
-                TempData.Add("Success", $"New hard drive succesfully added");
+                TempData.Add("Success", $"İşlem başarılı, yeni sabit disk eklendi");
 
                 return RedirectToAction("listofharddrive");
             }
-            TempData.Add("Alert", $"New hard drive could not be added");
+            TempData.Add("Alert", $"İşlem başarısız, sabit disk eklenemedi!");
 
             return View();
         }
@@ -1372,18 +1377,18 @@ namespace BstEnvanter.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 _hardDriveService.update(hardDrive);
-                TempData.Add("Success", $"The hard drive succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
 
                 return RedirectToAction("listofharddrive");
             }
-            TempData.Add("Success", $"The hard drive could not be updated");
+            TempData.Add("Success", $"İşlem başarısız, güncelleştirilemedi!");
 
             return View();
         }
         public IActionResult DeleteHardDrive(int id)
         {
             _hardDriveService.remove(id);
-            TempData.Add("Success", $"The hard drive succesfully deleted");
+            TempData.Add("Success", $"Silme işlemi başarılı");
 
             return RedirectToAction("listofharddrive");
         }
@@ -1427,7 +1432,10 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status = _statusService.get(id),
                 service = new Service(),
+
             };
+            model.user = _userManager.Users.FirstOrDefault(x => x.Id == model.status.bstId);
+
             return View(model);
         }
         [HttpPost]
@@ -1438,17 +1446,17 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
-                TempData.Add("Success", $"The product succesfully added to service");
+                TempData.Add("Success", $"İşlem başarılı, servis kaydı oluşturuldu");
                 return RedirectToAction("listofproduct");
             }
-            TempData.Add("Alert", $"The product could not be added to service");
+            TempData.Add("Alert", $"İşlem başarısız, servis kaydı oluşturulamadı!");
 
             return View();
         }
         public IActionResult DeleteService(int id)
         {
             _serviceService.remove(id);
-            TempData.Add("Success", $"The service case succesfully closed");
+            TempData.Add("Success", $"İşlem başarılı, servis kaydı kapatıldı");
             return RedirectToAction("listofproduct");
         }
         public IActionResult UpdateService(int id)
@@ -1457,6 +1465,8 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status = _statusService.get(id),
             };
+            model.user = _userManager.Users.FirstOrDefault(x => x.Id == model.status.bstId);
+
             return View(model);
         }
         [HttpPost]
@@ -1466,11 +1476,11 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
-                TempData.Add("Success", $"The service case succesfully updated");
+                TempData.Add("Success", $"İşlem başarılı, servis kaydı güncelleştirildi");
 
                 return RedirectToAction("listofproduct");
             }
-            TempData.Add("Alert", $"The service case could not be updated");
+            TempData.Add("Alert", $"İşlem başarısız, servis kaydı güncelleştirilemedi!");
 
             return View();
         }

@@ -6,18 +6,18 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Brand List</h1>
+        <h1 class="display-4">Marka Listesi</h1>
         <hr />
     </div>
-    <a asp-action="addbrand" class="btn btn-secondary">Add A Brand</a>
+    <a asp-action="addbrand" class="btn btn-secondary">Yeni Marka</a>
     <div class="table-responsive pt-3">
         <table id="brandTable" class="table align-middle table-hover table-sm">
             <thead class="table-light">
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Marka</th>
+                    <th scope="col">Güncelle</th>
+                    <th scope="col">Sil</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,12 +29,12 @@
                             <td scope="col">@item.id</td>
                             <td scope="col">@item.name</td>
                             <td scope="col">
-                                <a class="btn btn-warning" asp-controller="editor" asp-action="UpdateBrand" asp-route-id="@item.id">Update </a>
+                                <a class="btn btn-warning" asp-controller="editor" asp-action="UpdateBrand" asp-route-id="@item.id">Güncelle </a>
                             </td>
                             <td scope="col">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Delete
+                                    Sil
                                 </button>
 
                                 <!-- Modal -->
@@ -42,15 +42,16 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body text-start">
-                                                Are you sure to delete? This action cannot be undone!
+                                                
+                                                Silme işlemi için emin misiniz? Bu işlem geri alınamaz!
                                             </div>
                                             <div class="modal-footer">
-                                                <a class="btn btn-danger" asp-controller="editor" asp-action="deletebrand" asp-route-id="@item.id">Delete</a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <a class="btn btn-danger" asp-controller="editor" asp-action="deletebrand" asp-route-id="@item.id">Evet</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
                                             </div>
                                         </div>
                                     </div>

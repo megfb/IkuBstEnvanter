@@ -6,26 +6,26 @@
 
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Common @Model.cLocation.name Product List</h1>
+        <h1 class="display-4">@Model.cLocation.name - Ortak Ürün Listesi</h1>
         <hr />
     </div>
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
         <a type="button" asp-action="detailclocationatpersonel" asp-route-id="@Model.cLocation.id" class="btn btn-secondary">Personel</a>
-        <a type="button" asp-action="detailclocationatcommon" asp-route-id="@Model.cLocation.id" class="btn btn-secondary">Commons</a>
-        <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
+        <a type="button" asp-action="detailclocationatcommon" asp-route-id="@Model.cLocation.id" class="btn btn-secondary">Ortak</a>
+        <a type="button" asp-action="addproduct" class="btn btn-secondary">Yeni Ürün</a>
     </div>
     <div class="table-responsive pt-3">
         <table id="detailCLocationAtCommonTable" class="table align-middle table-hover table-sm">
             <thead class="table-light">
                 <tr>
-                    <th scope="col">Category</th>
-                    <th scope="col">Brand</th>
+                    <th scope="col">Kategori</th>
+                    <th scope="col">Marka</th>
                     <th scope="col">Model</th>
-                    <th scope="col">Serial No</th>
-                    <th scope="col">Inventory No</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Location</th>
-                    <th scope="col">Detail</th>
+                    <th scope="col">Seri Numarası</th>
+                    <th scope="col">Envanter Numarası</th>
+                    <th scope="col">Departman</th>
+                    <th scope="col">Lokasyon</th>
+                    <th scope="col">Detay</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,17 +35,54 @@
                         @if (item.personelId == null && item.commonId != null)
                         {
                             <tr>
+                                @if (item.Product.categoryId != null)
+                                {
+                                    <td>@item.Product.Category.name</td>
 
-                                <td scope="col">@item.Product.Category.name</td>
-                                <td scope="col">@item.Product.Brand.name</td>
-                                <td scope="col">@item.Product.Model.name</td>
+                                }
+                                @if (item.Product.categoryId == null)
+                                {
+                                    <td></td>
+                                }
+                                @if (item.Product.brandId != null)
+                                {
+                                    <td>@item.Product.Brand.name</td>
+                                }
+                                @if (item.Product.brandId == null)
+                                {
+                                    <td></td>
+                                }
+                                @if (item.Product.modelId != null)
+                                {
+                                    <td>@item.Product.Model.name</td>
+
+                                }
+                                @if (item.Product.modelId == null)
+                                {
+                                    <td></td>
+                                }
                                 <td scope="col">@item.Product.serialNo</td>
                                 <td scope="col">@item.Product.inventoryNo</td>
-                                <td scope="col">@item.Common.department.name</td>
-                                <td scope="col">@item.Common.CLocation.name</td>
+                                @if (item.Common.departmentId != null)
+                                {
+                                    <td scope="col">@item.Common.department.name</td>
 
+                                }
+                                @if (item.Common.departmentId == null)
+                                {
+                                    <td></td>
+                                }
+                                @if (item.Common.cLocationId != null)
+                                {
+                                    <td scope="col">@item.Common.CLocation.name</td>
+
+                                }
+                                @if (item.Common.cLocationId == null)
+                                {
+                                    <td></td>
+                                }
                                 <td scope="col">
-                                    <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detail</a>
+                                    <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detay</a>
                                 </td>
                             </tr>
                         }
@@ -54,7 +91,7 @@
             </tbody>
         </table>
         <div class="text-end my-3">
-            <a class="btn btn-primary col-md-2" asp-action="listofclocation">Back</a>
+            <a class="btn btn-primary col-md-2" asp-action="listofclocation">Geri</a>
         </div>
     </div>
 </div>

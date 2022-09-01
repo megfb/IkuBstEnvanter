@@ -1,4 +1,5 @@
 ﻿using BstEnvanter.Entity.Concrete;
+using BstEnvanter.WebUI.Identity;
 
 namespace BstEnvanter.WebUI.Models
 {
@@ -13,5 +14,6 @@ namespace BstEnvanter.WebUI.Models
         public List<CLocation> clocation { get; set; }
         public List<Department> department { get; set; }
         public List<Campus> campus { get; internal set; }
+        public ApplicationUser user { get; internal set; }
     }
 }

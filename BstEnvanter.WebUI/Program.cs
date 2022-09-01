@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationIdentityDbContext>(options => {
-    options.UseSqlServer("Server=DESKTOP-0ALOVMI\\SQLEXPRESS;Database=BstEnvanter;Trusted_Connection=true");
+    options.UseSqlServer("Server=DESKTOP-U3KQDUS;Database=BstEnvanter;Trusted_Connection=true");
 }); builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IBrandService, BrandManager>(); builder.Services.AddScoped<IBrandDal, BrandDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>(); builder.Services.AddScoped<ICategoryDal, CategoryDal>();
@@ -45,7 +45,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/account/login";
     options.LogoutPath = "/account/logout";
-    options.AccessDeniedPath = "/account/accessdenied";
+    options.AccessDeniedPath = "/error/HttpStatusCodeHandler";
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     options.SlidingExpiration = true;
     options.Cookie = new CookieBuilder
@@ -67,6 +67,10 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else
+{
+    app.UseStatusCodePagesWithRedirects("/Error/{0}");
 }
 
 app.UseHttpsRedirection();

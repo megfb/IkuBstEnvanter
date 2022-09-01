@@ -12,7 +12,7 @@ namespace BstEnvanter.WebUI.Controllers
         private SignInManager<ApplicationUser> _signInManager;
         private RoleManager<ApplicationRole> _roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -23,7 +23,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             return View();
         }
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterViewModel registerViewModel)
@@ -98,7 +98,10 @@ namespace BstEnvanter.WebUI.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("index", "Home");
         }
-
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
 
 
     }

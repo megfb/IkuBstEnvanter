@@ -6,16 +6,16 @@
 
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Service Product List</h1>
+        <h1 class="display-4">Servis Ürün Listesi</h1>
         <hr />
     </div>
     <div class="row">
         <div class="btn-group col-md-6 flex-column flex-sm-row" role="group" aria-label="Basic mixed styles example">
-            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Product</a>
+            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Depo</a>
             <a type="button" asp-action="listofproductatpersonel" class="btn btn-secondary">Personel</a>
-            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Commons</a>
-            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Service</a>
-            <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
+            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Ortak</a>
+            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Servis</a>
+            <a type="button" asp-action="addproduct" class="btn btn-secondary">Yeni Ürün</a>
         </div>
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
                 }
                 <a type="button" class="@css" href="/editor/listofproductatservice/@item.id">@item.name</a>
             }
-            <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproductatservice/0">All</a>
+            <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproductatservice/0">Hepsi</a>
         </div>
     </div>
     <div class="row mt-2">
@@ -38,12 +38,12 @@
                 <table id="productTableAtService" class="table align-middle table-hover table-sm">
                     <thead class="table-light">
                         <tr>
-                            <th scope="col">Category</th>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Serial No</th>
-                            <th scope="col">Inventory No</th>
-                            <th scope="col">Settings</th>
+                            <th>Kategori</th>
+                            <th>Marka</th>
+                            <th>Model</th>
+                            <th>Seri Numarası</th>
+                            <th>Envanter Numarası</th>
+                            <th>Detay</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,7 +66,7 @@
                                         <td scope="col">@item.Product.serialNo</td>
                                         <td scope="col">@item.Product.inventoryNo</td>
                                         <td scope="col">
-                                            <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detail</a>
+                                            <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detay</a>
                                         </td>
                                     </tr>
                                 }

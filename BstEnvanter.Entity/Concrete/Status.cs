@@ -12,7 +12,7 @@ namespace BstEnvanter.Entity.Concrete
         public Common Common { get; set; }
         public int ?commonId { get; set; }
         public Campus Campus { get; set; }
-        public int campusId { get; set; }
+        public int? campusId { get; set; }
         public string definition { get; set; }
         public DateTime dateOfUpdate { get; set; }
         public string bstId { get; set; }

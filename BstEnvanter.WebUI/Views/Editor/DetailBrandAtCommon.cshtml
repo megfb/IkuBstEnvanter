@@ -36,13 +36,52 @@
                     {
                         <tr>
 
-                            <td scope="col">@item.Product.Category.name</td>
-                            <td scope="col">@item.Product.Brand.name</td>
-                            <td scope="col">@item.Product.Model.name</td>
+                            @if (item.Product.categoryId != null)
+                            {
+                                <td>@item.Product.Category.name</td>
+
+                            }
+                            @if (item.Product.categoryId == null)
+                            {
+                                <td></td>
+                            }
+                            @if (item.Product.brandId != null)
+                            {
+                                <td>@item.Product.Brand.name</td>
+                            }
+                            @if (item.Product.brandId == null)
+                            {
+                                <td></td>
+                            }
+                            @if (item.Product.modelId != null)
+                            {
+                                <td>@item.Product.Model.name</td>
+
+                            }
+                            @if (item.Product.modelId == null)
+                            {
+                                <td></td>
+                            }
                             <td scope="col">@item.Product.serialNo</td>
                             <td scope="col">@item.Product.inventoryNo</td>
-                            <td scope="col">@item.Common.department.name</td>
-                            <td scope="col">@item.Common.CLocation.name</td>
+                            @if (item.Common.departmentId != null)
+                            {
+                                <td scope="col">@item.Common.department.name</td>
+
+                            }
+                            @if (item.Common.departmentId == null)
+                            {
+                                <td></td>
+                            }
+                            @if (item.Common.cLocationId != null)
+                            {
+                                <td scope="col">@item.Common.CLocation.name</td>
+
+                            }
+                            @if (item.Common.cLocationId == null)
+                            {
+                                <td></td>
+                            }
                             <td scope="col">
                                 <a class="btn btn-warning" asp-controller="editor" asp-action="updatecommon" asp-route-id="@item.id">Update </a>
                             </td>

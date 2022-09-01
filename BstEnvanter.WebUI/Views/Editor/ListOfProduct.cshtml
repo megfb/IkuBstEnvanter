@@ -5,16 +5,16 @@
 }
 <div class="container-fluid ">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Product List</h1>
+        <h1 class="display-4">Ürün Listesi</h1>
         <hr />
     </div>
     <div class="row">
         <div class="btn-group  col-md-6 flex-column flex-sm-row" role="group" aria-label="Basic mixed styles example">
-            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Product</a>
+            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Depo</a>
             <a type="button" asp-action="listofproductatpersonel" class="btn btn-secondary">Personel</a>
-            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Commons</a>
-            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Service</a>
-            <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
+            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Ortak</a>
+            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Servis</a>
+            <a type="button" asp-action="addproduct" class="btn btn-secondary">Yeni Ürün</a>
         </div>
 
     </div>
@@ -29,7 +29,7 @@
                 }
                 <a type="button" class="@css" href="/editor/listofproduct/@item.id">@item.name</a>
             }
-            <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproduct/0">All</a>
+            <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproduct/0">Hepsi</a>
         </div>
     </div>
     <div class="row mt-2">
@@ -38,12 +38,12 @@
                 <table id="myTable" class="table align-middle table-hover table-sm">
                     <thead class="table-light">
                         <tr>
-                            <th>Category</th>
-                            <th>Brand</th>
+                            <th>Kategori</th>
+                            <th>Marka</th>
                             <th>Model</th>
-                            <th>Serial No</th>
-                            <th>Inventory No</th>
-                            <th>Settings</th>
+                            <th>Seri Numarası</th>
+                            <th>Envanter Numarası</th>
+                            <th>Detay</th>
                         </tr>
 
                     </thead>
@@ -60,15 +60,37 @@
                                 @if (item.personelId == null && item.commonId == null)
                                 {
                                     <tr class="@cls">
+                                        @if (item.Product.categoryId != null)
+                                        {
+                                            <td>@item.Product.Category.name</td>
 
-                                        <td>@item.Product.Category.name</td>
-                                        <td>@item.Product.Brand.name</td>
-                                        <td>@item.Product.Model.name</td>
+                                        }
+                                        @if (item.Product.categoryId == null)
+                                        {
+                                            <td></td>
+                                        }
+                                        @if (item.Product.brandId != null)
+                                        {
+                                            <td>@item.Product.Brand.name</td>
+                                        }
+                                        @if (item.Product.brandId == null)
+                                        {
+                                            <td></td>
+                                        }
+                                        @if (item.Product.modelId != null)
+                                        {
+                                            <td>@item.Product.Model.name</td>
+
+                                        }
+                                        @if (item.Product.modelId == null)
+                                        {
+                                            <td></td>
+                                        }
                                         <td>@item.Product.serialNo</td>
                                         <td>@item.Product.inventoryNo</td>
 
                                         <td>
-                                            <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detail</a>
+                                            <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detay</a>
                                         </td>
 
 

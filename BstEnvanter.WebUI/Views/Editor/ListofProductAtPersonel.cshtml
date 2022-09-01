@@ -5,16 +5,16 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Personel Product List</h1>
+        <h1 class="display-4">Personel Ürün Listesi</h1>
         <hr />
     </div>
     <div class="row">
         <div class="btn-group col-md-6 flex-column flex-sm-row" role="group" aria-label="Basic mixed styles example">
-            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Product</a>
+            <a type="button" asp-action="listofproduct" class="btn btn-secondary">Depo</a>
             <a type="button" asp-action="listofproductatpersonel" class="btn btn-secondary">Personel</a>
-            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Commons</a>
-            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Service</a>
-            <a type="button" asp-action="addproduct" class="btn btn-secondary">Add A Product</a>
+            <a type="button" asp-action="listofproductatcommon" class="btn btn-secondary">Ortak</a>
+            <a type="button" asp-action="listofproductatservice" class="btn btn-secondary">Servis</a>
+            <a type="button" asp-action="addproduct" class="btn btn-secondary">Yeni Ürün</a>
         </div>
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
                 }
                 <a type="button" class="@css" href="/editor/listofproductatpersonel/@item.id">@item.name</a>
             }
-            <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproductatpersonel/0">All</a>
+            <a type="button" class="list-group-item list-group-item-action" href="/editor/listofproductatpersonel/0">Hepsi</a>
         </div>
     </div>
     <div class="row mt-2">
@@ -38,14 +38,14 @@
                 <table id="productTableAtPersonel" class="table align-middle table-hover table-sm">
                     <thead class="table-light">
                         <tr>
-                            <th scope="col">Category</th>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Serial No</th>
-                            <th scope="col">Inventory No</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Surname</th>
-                            <th scope="col">Settings</th>
+                            <th>Kategori</th>
+                            <th>Marka</th>
+                            <th>Model</th>
+                            <th>Seri Numarası</th>
+                            <th>Envanter Numarası</th>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>Detay</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,9 +62,32 @@
                                 {
                                     <tr class="@cls">
 
-                                        <td scope="col">@item.Product.Category.name</td>
-                                        <td scope="col">@item.Product.Brand.name</td>
-                                        <td scope="col">@item.Product.Model.name</td>
+                                        @if (item.Product.categoryId != null)
+                                        {
+                                            <td>@item.Product.Category.name</td>
+
+                                        }
+                                        @if (item.Product.categoryId == null)
+                                        {
+                                            <td></td>
+                                        }
+                                        @if (item.Product.brandId != null)
+                                        {
+                                            <td>@item.Product.Brand.name</td>
+                                        }
+                                        @if (item.Product.brandId == null)
+                                        {
+                                            <td></td>
+                                        }
+                                        @if (item.Product.modelId != null)
+                                        {
+                                            <td>@item.Product.Model.name</td>
+
+                                        }
+                                        @if (item.Product.modelId == null)
+                                        {
+                                            <td></td>
+                                        }
                                         <td scope="col">@item.Product.serialNo</td>
                                         <td scope="col">@item.Product.inventoryNo</td>
                                         <td scope="col">@item.Personel.name</td>
@@ -85,23 +108,3 @@
 
 </div>
 <script src="~/js/listofproductatpersonel.js" type="text/javascript"></script>
-@*<script src="~/lib/jquery/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        function Contains(text_one, text_two) {
-            if (text_one.indexOf(text_two) != -1)
-                return true;
-        }
-        $("#search").keyup(function() {
-            var searchText = $("#search").val().toLowerCase();
-            $(".arama").each(function() {
-                if (!Contains($(this).text().toLowerCase(), searchText)) {
-                    $(this).hide();
-                }
-                else {
-                    $(this).show();
-                }
-            });
-        });
-    });
-</script>*@

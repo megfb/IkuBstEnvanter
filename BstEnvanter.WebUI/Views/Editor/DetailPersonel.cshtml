@@ -5,44 +5,52 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Personel Detail</h1>
+        <h1 class="display-4">Personel Detayları</h1>
         <hr />
     </div>
     <div class="row">
         <div class="border border-rounded rounded">
             <div class="row bg-primary">
-                <h3 class="pt-3 text-light">Personel Details</h3>
+                <h3 class="pt-3 text-light">Personel Detayları</h3>
             </div>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
-                        <td>Name:</td>
+                        <td>Ad:</td>
                         <td>@Model.personel.name</td>
                     </tr>
                     <tr>
-                        <td>Surname:</td>
+                        <td>Soyad:</td>
                         <td>@Model.personel.surname</td>
                     </tr>
                     <tr>
-                        <td>Age:</td>
+                        <td>Yaş:</td>
                         <td>@Model.personel.age</td>
                     </tr>
                     <tr>
-                        <td>Gender:</td>
+                        <td>Cinsiyet:</td>
                         <td>@Model.personel.Sex.name</td>
                     </tr>
                     <tr>
-                        <td>Department:</td>
-                        <td>@Model.personel.Department.name</td>
+                        <td>Departman:</td>
+                        @if (Model.personel.departmentId != null)
+                        {
+                            <td>@Model.personel.Department.name</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Lokasyon:</td>
+                        @if (Model.personel.cLocationId != null)
+                        {
+                            <td>@Model.personel.CLocation.name</td>
+
+                        }
                     </tr>
                     <tr>
                         <td>E-Mail:</td>
                         <td>@Model.personel.eMail</td>
                     </tr>
-                    <tr>
-                        <td>Location:</td>
-                        <td>@Model.personel.CLocation.name</td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -59,7 +67,7 @@
                         <p class="card-text">@item.Product.serialNo</p>
                         <p class="card-text">@item.Product.inventoryNo</p>
                         <div class="text-end">
-                            <a class="btn btn-secondary" asp-action="detailproduct" asp-route-id="@item.id">Detail</a>
+                            <a class="btn btn-secondary" asp-action="detailproduct" asp-route-id="@item.id">Detay</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +75,7 @@
         }
         <hr />
         <div class="text-end">
-            <a class="btn btn-primary col-md-2" onClick="history.go(-1); return false;">Back</a>
+            <a class="btn btn-primary col-md-2" onClick="history.go(-1); return false;">Geri</a>
         </div>
     </div>
 </div>

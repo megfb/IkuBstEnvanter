@@ -33,17 +33,17 @@
                     <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
                         <li>
                             <a asp-controller="editor" asp-action="listofproduct" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Products</span>
+                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Ürünler</span>
                             </a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Hardware</span>
+                                <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Donanım</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                                 <li>
                                     <a asp-controller="editor" asp-action="listofcpu" class="nav-link px-sm-0 px-2">
-                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Cpu</span>
+                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">İşlemci</span>
                                     </a>
                                 </li>
                                 <li>
@@ -51,7 +51,7 @@
                                 </li>
                                 <li>
                                     <a asp-controller="editor" asp-action="listofgpu" class="nav-link px-sm-0 px-2">
-                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Gpu</span>
+                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Ekran Kartı</span>
                                     </a>
                                 </li>
                                 <li>
@@ -67,7 +67,7 @@
                                 </li>
                                 <li>
                                     <a asp-controller="editor" asp-action="listofharddrive" class="nav-link px-sm-0 px-2">
-                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Hard Drive</span>
+                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Sabit Disk</span>
                                     </a>
                                 </li>
 
@@ -75,44 +75,44 @@
                         </li>
                         <li class="nav-item">
                             <a asp-controller="editor" asp-action="listofcategory" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Categories</span>
+                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Kategoriler</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/editor/listofbrand" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Brands</span>
+                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Markalar</span>
                             </a>
                         </li>
                         <li>
                             <a asp-controller="editor" asp-action="listofmodel" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Models</span>
+                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Modeller</span>
                             </a>
                         </li>
                         <li>
                             <a asp-controller="editor" asp-action="listofpersonel" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Personels</span>
+                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Personeller</span>
                             </a>
                         </li>
                         <li>
                             <a asp-controller="editor" asp-action="listofcampus" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Campuses</span>
+                                <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Yerleşkeler</span>
                             </a>
                         </li>
                         <li>
                             <a asp-controller="editor" asp-action="listofdepartment" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Departments</span>
+                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Departmanlar</span>
                             </a>
                         </li>
                         <li>
                             <a asp-controller="editor" asp-action="listofclocation" class="nav-link px-sm-0 px-2">
-                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Locations</span>
+                                <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Lokasyonlar</span>
                             </a>
                         </li>
                         @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                         {
                             <li>
                                 <a asp-controller="user" asp-action="listofusers" class="nav-link px-sm-0 px-2">
-                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Users</span>
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Kullanıcılar</span>
                                 </a>
                             </li>
                         }
@@ -125,10 +125,10 @@
                                 <span class="d-none d-sm-inline mx-1">Settings</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                                <li><a class="dropdown-item" asp-action="profile" asp-controller="user">My Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="profile" asp-controller="user">Profil</a></li>
                                 <li>
                                     <a asp-controller="user" asp-action="ChangePassword" class="dropdown-item">
-                                        Change Password
+                                        Şifre Değiştir
                                     </a>
                                 </li>
 
@@ -137,7 +137,7 @@
                                 </li>
                                 <li>
                                     <a asp-controller="account" asp-action="logout" class="nav-link px-sm-0 px-2">
-                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Logout</span>
+                                        <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Oturumu Kapat</span>
                                     </a>
                                 </li>
                             </ul>
@@ -152,14 +152,14 @@
                     @if (TempData["Success"] != null)
                     {
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>New Notification:</strong> @TempData["Success"]
+                            <strong>Yeni Bildirim:</strong> @TempData["Success"]
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     }
                     @if (TempData["Alert"] != null)
                     {
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Error:</strong> @TempData["Alert"]
+                            <strong>Hata:</strong> @TempData["Alert"]
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     }

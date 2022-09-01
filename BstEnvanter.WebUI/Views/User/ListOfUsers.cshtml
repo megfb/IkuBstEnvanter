@@ -6,19 +6,19 @@
 
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">User List</h1>
+        <h1 class="display-4">Kullanıcı Listesi</h1>
         <hr />
     </div>
-    <a asp-action="register" asp-controller="account" class="btn btn-secondary">Add a New User</a>
+    <a asp-action="register" asp-controller="account" class="btn btn-secondary">Yeni Kullanıcı</a>
     <div class="table-responsive pt-3">
         <table id="userTable" class="table align-middle table-hover table-sm">
             <thead class="table-light">
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Department</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Detail</th>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>
+                    <th scope="col">Departman</th>
+                    <th scope="col">Ünvan</th>
+                    <th scope="col">Detay</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,15 +32,15 @@
                             <td scope="col">@item.department</td>
                             <td scope="col">@item.title</td>
                             <td scope="col">
-                                <a class="btn btn-primary" asp-action="detailuser" asp-route-id="@item.Id">Detail </a>
+                                <a class="btn btn-primary" asp-action="detailuser" asp-route-id="@item.Id">Detay </a>
                             </td>
                             <td scope="col">
-                                <a class="btn btn-warning" asp-action="updateuser" asp-route-id="@item.Id">Update </a>
+                                <a class="btn btn-warning" asp-action="updateuser" asp-route-id="@item.Id">Güncelle </a>
                             </td>
                             <td scope="col">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Delete
+                                    Sil
                                 </button>
 
                                 <!-- Modal -->
@@ -48,15 +48,15 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body text-start">
-                                                Are you sure to delete? This action cannot be undone!
+                                                Silme işlemi için emin misiniz? Bu işlem geri alınamaz!
                                             </div>
                                             <div class="modal-footer">
-                                                <a class="btn btn-danger" asp-action="deleteaccount" asp-route-id="@item.Id">Delete </a>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <a class="btn btn-danger" asp-action="deleteaccount" asp-route-id="@item.Id">Evet </a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
                                             </div>
                                         </div>
                                     </div>

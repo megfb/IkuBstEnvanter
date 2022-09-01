@@ -16,6 +16,6 @@ namespace BstEnvanter.WebUI.Models
         public List<HardDrive> hardDrive { get; internal set; }
         public List<Gpu> gpu { get; internal set; }
         public ApplicationUser user { get; set; }
-
+        public List<Campus> campus { get; internal set; }
     }
 }

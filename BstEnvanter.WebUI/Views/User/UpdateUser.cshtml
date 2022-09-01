@@ -5,50 +5,50 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Update a Personel</h1>
+        <h1 class="display-4">Kullanıcıyı Güncelle</h1>
         <hr />
     </div>
     <form method="post" asp-action="updateuser" class="p-3 mb-3 col-md-8">
         <div class="form-group row mb-3">
-            <label for="inputUserName" class="col-md-2 col-form-label">Name</label>
+            <label for="inputUserName" class="col-md-2 col-form-label">Ad</label>
             <div class="col-md-10">
-                <input asp-for="user.name" id="inputName" class="form-control" type="text" placeholder="Name" />
+                <input asp-for="user.name" id="inputName" class="form-control" type="text" placeholder="Ad" />
                 <span asp-validation-for="user.name"></span>
             </div>
         </div>
 
         <div class="form-group row mb-3">
-            <label for="inputUserSurname" class="col-md-2 col-form-label">Surname</label>
+            <label for="inputUserSurname" class="col-md-2 col-form-label">Soyad</label>
             <div class="col-md-10">
-                <input asp-for="user.surname" class="form-control" type="text" placeholder="Surname" />
+                <input asp-for="user.surname" class="form-control" type="text" placeholder="Soyad" />
                 <span asp-validation-for="user.surname"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
-            <label for="inputUserAge" class="col-md-2 col-form-label">Age</label>
+            <label for="inputUserAge" class="col-md-2 col-form-label">Yaş</label>
             <div class="col-md-10">
-                <input asp-for="user.age" id="inputUserAge" value="@Model.user.age" class="form-control" type="text" placeholder="Age" />
+                <input asp-for="user.age" id="inputUserAge" value="@Model.user.age" class="form-control" type="text" placeholder="Yaş" />
                 <span asp-validation-for="user.age"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
-            <label for="inputUserGender" class="col-md-2 col-form-label">Gender</label>
+            <label for="inputUserGender" class="col-md-2 col-form-label">Cinsiyet</label>
             <div class="col-md-10">
-                <input asp-for="user.gender" id="inputUserGender" value="@Model.user.gender" class="form-control" type="text" placeholder="Gender" />
+                <input asp-for="user.gender" id="inputUserGender" value="@Model.user.gender" class="form-control" type="text" placeholder="Cinsiyet" />
                 <span asp-validation-for="user.gender"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
-            <label for="inputUserDepartment" class="col-md-2 col-form-label">Department</label>
+            <label for="inputUserDepartment" class="col-md-2 col-form-label">Departman</label>
             <div class="col-md-10">
-                <input asp-for="user.department" id="inputUserDepartment" value="@Model.user.department" class="form-control" type="text" placeholder="Department" />
+                <input asp-for="user.department" id="inputUserDepartment" value="@Model.user.department" class="form-control" type="text" placeholder="Departman" />
                 <span asp-validation-for="user.department"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
-            <label for="inputUserRoomNo" class="col-md-2 col-form-label">Room No</label>
+            <label for="inputUserRoomNo" class="col-md-2 col-form-label">Lokasyon</label>
             <div class="col-md-10">
-                <input asp-for="user.roomNo" id="inputUserRoomNo" value="@Model.user.roomNo" class="form-control" type="text" placeholder="RoomNo" />
+                <input asp-for="user.roomNo" id="inputUserRoomNo" value="@Model.user.roomNo" class="form-control" type="text" placeholder="Lokasyon" />
                 <span asp-validation-for="user.roomNo"></span>
             </div>
         </div>       
@@ -64,8 +64,8 @@
             <input type="hidden" asp-for="user.Id" />
             <input type="hidden" asp-for="user.UserName" value="@Model.user.Email" />
 
-            <button type="submit" class="btn btn-primary col-md-2">Update</button>
-            <a asp-action="profile" class="btn btn-info col-md-2">Back</a>
+            <button type="submit" class="btn btn-primary col-md-2">Güncelle</button>
+            <a asp-action="profile" class="btn btn-info col-md-2">Geri</a>
         </div>
     </form>
 </div>
