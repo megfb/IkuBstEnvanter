@@ -16,7 +16,7 @@ namespace BstEnvanter.Entity.Concrete
             {
                 if (_name != null)
                 {
-                    return _name = char.ToUpper(_name.First()) + _name.Substring(1).ToLower();
+                    return _name.ToUpper();
                 }
                 else
                 {

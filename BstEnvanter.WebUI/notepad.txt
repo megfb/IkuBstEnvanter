@@ -1,8 +1,9 @@
-﻿-temada buton renkleri ve sıraları daha uyumlu olacak,
+﻿-white space
+-temada buton renkleri ve sıraları daha uyumlu olacak,
 -uygulama yüklenirken otomatik olarak üyelik oluşturulacak,
 -buton linklemeleri düzeltilecek,
--white space
-
+-navbar
+-footer	
 
 -notification,
 -pie chart geliştirilecek,
