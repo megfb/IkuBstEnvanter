@@ -93,7 +93,7 @@
         <div class="form-group pt-3">
             <label for="inputDefinition" class="form-label">Açıklama</label>
             <textarea class="form-control" id="inputDefinition" asp-for="status.definition" placeholder="@Model.status.definition" rows="3"></textarea>
-            <span asp-validation-for="status.definition"></span>
+            <span class="text-danger" asp-validation-for="status.definition"></span>
         </div>
         <div class="mt-1 text-end">
             <input type="hidden" asp-for="status.id" />

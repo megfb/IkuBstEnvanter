@@ -12,9 +12,14 @@
 
         <div class="form-group row">
             <label for="inputCategory" class="col-md-2 col-form-label">Kategori</label>
-            <div class="col-md-10">
-                <select asp-for="status.Product.categoryId" id="inputCategory" class="form-control" asp-items="@(new SelectList(Model.category,"id","name"))"></select>
-                <span asp-validation-for="status.Product.categoryId"></span>
+            <div class="col-md-10 search_select_box">
+                <select asp-for="status.Product.categoryId" data-size="5" id="inputCategory" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true" data-size="5">
+                    @foreach (var item in Model.category)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="status.Product.categoryId"></span>
                 <div class="text-end">
                     <a asp-action="addcategory">add a new category</a>
                 </div>
@@ -24,8 +29,8 @@
         <div class="form-group row">
             <label for="inputBrand" class="col-md-2 col-form-label">Marka</label>
             <div class="col-md-10">
-                <select asp-for="status.Product.brandId" class="form-control" asp-items="@(new SelectList(Model.brand,"id","name"))"></select>
-                <span asp-validation-for="status.Product.brandId"></span>
+                <select asp-for="status.Product.brandId" data-size="5" class="form-control" asp-items="@(new SelectList(Model.brand,"id","name"))"></select>
+                <span class="text-danger" asp-validation-for="status.Product.brandId"></span>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addbrand">yeni bir marka ekle</a>
                 </div>
@@ -35,7 +40,7 @@
         <div class="form-group row">
             <label for="inputModel" class="col-md-2 col-form-label">Model</label>
             <div class="col-md-10">
-                <select id="inputModel" asp-for="status.Product.modelId" class="form-control" asp-items="@(new SelectList(Model.model,"id","name"))"></select>
+                <select id="inputModel" asp-for="status.Product.modelId" data-size="5" class="form-control" asp-items="@(new SelectList(Model.model,"id","name"))"></select>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addmodel">yeni bir model ekle</a>
                 </div>
@@ -46,7 +51,7 @@
             <label class="col-md-2 col-form-label" for="inputName">Ürün Adı</label>
             <div class="col-md-10">
                 <input id="inputName" asp-for="status.Product.name" class="form-control" type="text" placeholder="@Model.status.Product.name" />
-                <span asp-validation-for="status.Product.name"></span>
+                <span class="text-danger" asp-validation-for="status.Product.name"></span>
             </div>
         </div>
         <div class="form-group row pt-4">
@@ -59,20 +64,20 @@
             <label class="col-md-2 col-form-label" for="inputSerialNo">Seri Numarası</label>
             <div class="col-md-10">
                 <input type="text" class="form-control" asp-for="status.Product.serialNo" placeholder="@Model.status.Product.serialNo" />
-                <span asp-validation-for="status.Product.serialNo"></span>
+                <span class="text-danger" asp-validation-for="status.Product.serialNo"></span>
             </div>
         </div>
         <div class="form-group row pt-4">
             <label class="col-md-2 col-form-label" for="inputInventoryNo">Envanter Numarası</label>
             <div class="col-md-10">
                 <input type="text" id="inputInventoryNo" class="form-control" asp-for="status.Product.inventoryNo" placeholder="@Model.status.Product.inventoryNo" />
-                <span asp-validation-for="status.Product.inventoryNo"></span>
+                <span class="text-danger" asp-validation-for="status.Product.inventoryNo"></span>
             </div>
         </div>
         <div class="form-group row pt-4">
             <label for="inputCpu" class="col-md-2 col-form-label">İşlemci</label>
             <div class="col-md-10">
-                <select id="inputCpu" asp-for="status.Product.cpuId" class="form-select" asp-items="@(new SelectList(Model.cpu,"id","name"))"></select>
+                <select id="inputCpu" asp-for="status.Product.cpuId" data-size="5" class="form-select" asp-items="@(new SelectList(Model.cpu,"id","name"))"></select>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addcpu">yeni bir işlemci ekle</a>
                 </div>
@@ -81,7 +86,7 @@
         <div class="form-group row">
             <label for="inputGpu" class="col-md-2 col-form-label">Ekran Kartı</label>
             <div class="col-md-10">
-                <select id="inputGpu" asp-for="status.Product.gpuId" class="form-select" asp-items="@(new SelectList(Model.gpu,"id","name"))"></select>
+                <select id="inputGpu" asp-for="status.Product.gpuId" data-size="5" class="form-select" asp-items="@(new SelectList(Model.gpu,"id","name"))"></select>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addgpu">yeni bir ekran kartı ekle</a>
                 </div>
@@ -90,7 +95,7 @@
         <div class="form-group row">
             <label for="inputRam" class="col-md-2 col-form-label">Ram</label>
             <div class="col-md-10">
-                <select id="inputRam" asp-for="status.Product.ramId" class="form-select" asp-items="@(new SelectList(Model.ram,"id","name"))"></select>
+                <select id="inputRam" asp-for="status.Product.ramId" data-size="5" class="form-select" asp-items="@(new SelectList(Model.ram,"id","name"))"></select>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addram">yeni bir ram ekle</a>
                 </div>
@@ -99,7 +104,7 @@
         <div class="form-group row">
             <label for="inputHdd" class="col-md-2 col-form-label">Sabit Disk</label>
             <div class="col-md-10">
-                <select id="inputHdd" asp-for="status.Product.hardDriveId" class="form-select" asp-items="@(new SelectList(Model.hardDrive,"id","name"))"></select>
+                <select id="inputHdd" asp-for="status.Product.hardDriveId" data-size="5" class="form-select" asp-items="@(new SelectList(Model.hardDrive,"id","name"))"></select>
                 <div class="text-end">
                     <a class="ml-3" asp-action="addharddrive">yeni bir sabit disk ekle</a>
                 </div>

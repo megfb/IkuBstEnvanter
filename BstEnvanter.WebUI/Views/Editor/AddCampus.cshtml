@@ -14,7 +14,7 @@
             <label for="inputCampus" class="col-md-2 col-form-label">Yerleşke</label>
             <div class="col-md-10">
                 <input asp-for="campus.name" id="inputCampus" class="form-control" type="text" placeholder="Yerleşke" />
-                <span asp-validation-for="campus.name"></span>
+                <span class="text-danger" asp-validation-for="campus.name"></span>
             </div>
         </div>
         <div class="mt-3 text-end">

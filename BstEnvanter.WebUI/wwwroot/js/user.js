@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#userTable').DataTable({
+    $('#user').DataTable({
         "scrollY": "450px",
         "scrollCollapse": true,
         "paging": true,
@@ -9,6 +9,9 @@
             { "orderDataType": "dom-text-numeric" },
             { "orderDataType": "dom-text-numeric" },
             { "orderDataType": "dom-text-numeric" },
+            { "orderDataType": "dom-text-numeric" },
+            { "orderDataType": "dom-text-numeric" },
+            { "orderDataType": "dom-text-numeric" }
         ]
     });
 });

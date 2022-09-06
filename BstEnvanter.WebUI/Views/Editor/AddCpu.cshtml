@@ -14,7 +14,7 @@
             <label for="inputCpu" class="col-md-2 col-form-label">İşlemci</label>
             <div class="col-md-10">
                 <input asp-for="cpu.name" id="inputCpu" class="form-control" type="text" placeholder="İşlemci" />
-                <span asp-validation-for="cpu.name"></span>
+                <span class="text-danger" asp-validation-for="cpu.name"></span>
             </div>
         </div>
         <div class="mt-1 text-end">

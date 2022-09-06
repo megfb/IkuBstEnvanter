@@ -14,7 +14,7 @@
             <label for="inputModel" class="col-md-2 col-form-label">Model</label>
             <div class="col-md-10">
                 <input asp-for="model.name" id="model" class="form-control" type="text" placeholder="Model" />
-                <span asp-validation-for="model.name"></span>
+                <span class="text-danger" asp-validation-for="model.name"></span>
             </div>
         </div>
         <div class="mt-3 text-end">

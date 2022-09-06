@@ -78,7 +78,7 @@ namespace BstEnvanter.WebUI.Controllers
             var user = await _userManager.FindByEmailAsync(loginViewModel.EMail);
             if (user == null)
             {
-                TempData.Add("Alert", "User is not found");
+                TempData.Add("Alert", "Başarısız giriş! E-mail veya parolayı kontrol edin!");
                 return View(loginViewModel);
             }
             var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);

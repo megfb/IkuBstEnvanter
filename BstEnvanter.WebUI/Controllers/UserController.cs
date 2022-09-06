@@ -1,4 +1,5 @@
-﻿using BstEnvanter.WebUI.Identity;
+﻿using BstEnvanter.Business.Concrete;
+using BstEnvanter.WebUI.Identity;
 using BstEnvanter.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,9 +34,10 @@ namespace BstEnvanter.WebUI.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult ListOfUsers()
         {
+            var currentUser = _userManager.GetUserId(User);
             var model = new ListOfUserViewModel()
             {
-                users = _userManager.Users,
+                users = _userManager.Users.Where(x => x.Id != currentUser),
             };
             return View(model);
         }
@@ -121,8 +123,31 @@ namespace BstEnvanter.WebUI.Controllers
 
             return View();
         }
+        [Authorize(Roles = "admin")]
+        public IActionResult ResetPassword(string id)
+        {
+            var model = new ResetUserPasswordViewModel()
+            {
+                id = id,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string id, ResetUserPasswordViewModel resetUserPasswordViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+                await _userManager.RemovePasswordAsync(user);
+                await _userManager.AddPasswordAsync(user, resetUserPasswordViewModel.newPassword);
+                return RedirectToAction("listofusers");
+
+            }
+            return View();
+        }
     }
-    
+
 
 
 }

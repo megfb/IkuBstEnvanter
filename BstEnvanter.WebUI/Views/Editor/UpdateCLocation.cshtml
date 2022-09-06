@@ -13,7 +13,7 @@
             <label for="inputLocation" class="col-md-2 col-form-label">Lokasyon</label>
             <div class="col-md-10">
                 <input asp-for="cLocation.name" id="inputLocation" class="form-control" type="text" placeholder="@Model.cLocation.name" />
-                <span asp-validation-for="cLocation.name"></span>
+                <span class="text-danger" asp-validation-for="cLocation.name"></span>
             </div>
         </div>
         <div class="form-group text-end mt-3">

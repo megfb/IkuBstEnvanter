@@ -14,7 +14,7 @@
             <label for="inputGpu" class="col-md-2 col-form-label">Ekran Kartı</label>
             <div class="col-md-10">
                 <input asp-for="gpu.name" id="inputGpu" class="form-control" type="text" placeholder="Ekran Kartı" />
-                <span asp-validation-for="gpu.name"></span>
+                <span class="text-danger" asp-validation-for="gpu.name"></span>
             </div>
         </div>
         <div class="mt-1 text-end">

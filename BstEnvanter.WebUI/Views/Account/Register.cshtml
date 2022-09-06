@@ -73,6 +73,8 @@
             <label class="col-md-2 col-form-label" for="inputRegisterPassword">Parola</label>
             <div class="col-md-10">
                 <input id="inputRegisterPassword" asp-for="password" class="form-control" type="password" placeholder="Parola" />
+                <small class="text-muted">Parola, minimum altı karakter, bir sayı, bir özel karakter, en az bir büyük ve bir küçük türkçe olmayan(Ö,İ,Ç,Ş) karakterler içermelidir.</small><br />
+                <small class="text-muted">Örnek parola:Eİ.mü1</small>
                 <span asp-validation-for="password"></span>
             </div>
         </div>

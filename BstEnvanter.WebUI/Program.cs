@@ -14,7 +14,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationIdentityDbContext>(options => {
     options.UseSqlServer("Server=DESKTOP-U3KQDUS;Database=BstEnvanter;Trusted_Connection=true");
-}); builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders();
+}); builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders().AddPasswordValidator<CustomPasswordValidator>();
 builder.Services.AddScoped<IBrandService, BrandManager>(); builder.Services.AddScoped<IBrandDal, BrandDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>(); builder.Services.AddScoped<ICategoryDal, CategoryDal>();
 builder.Services.AddScoped<IModelService, ModelManager>(); builder.Services.AddScoped<IModelDal, ModelDal>();
@@ -31,7 +31,6 @@ builder.Services.AddScoped<IGpuService, GpuManager>(); builder.Services.AddScope
 builder.Services.AddScoped<IRamService, RamManager>(); builder.Services.AddScoped<IRamDal, RamDal>();
 builder.Services.AddScoped<IHardDriveService, HardDriveManager>(); builder.Services.AddScoped<IHardDriveDal, HardDriveDal>();
 builder.Services.AddScoped<IServiceService, ServiceManager>(); builder.Services.AddScoped<IServiceDal, ServiceDal>();
-
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true;

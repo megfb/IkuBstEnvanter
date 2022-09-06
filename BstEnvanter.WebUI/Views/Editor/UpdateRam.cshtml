@@ -14,7 +14,7 @@
             <label for="inputRam" class="col-md-2 col-form-label">Ram</label>
             <div class="col-md-10">
                 <input asp-for="ram.name" class="form-control" type="text" placeholder="@Model.ram.name" />
-            <span asp-validation-for="ram.name"></span>
+                <span class="text-danger" asp-validation-for="ram.name"></span>
         </div>
         </div>
         <div class="form-group text-end mt-3">

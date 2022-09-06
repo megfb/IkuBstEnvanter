@@ -5,11 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BstEnvanter.Entity.Concrete
 {
     public class Product : IEntity
     {
+        string _name;
         public int id { get; set; }
         public Category Category { get; set; }
         public int? categoryId { get; set; }
@@ -17,11 +19,25 @@ namespace BstEnvanter.Entity.Concrete
         public int? brandId { get; set; }
         public Model Model { get; set; }
         public int? modelId { get; set; }
-        [Required(ErrorMessage = "Name cannot be null")]
-        public string name { get; set; }
-        [Required(ErrorMessage = "Serial number cannot be null")]
+        [Required(ErrorMessage = "Ürün adı boş olamaz")]
+        public string name
+        {
+            get
+            {
+                if (_name != null)
+                {
+                    return _name = char.ToUpper(_name.First()) + _name.Substring(1).ToLower();
+                }
+                else
+                {
+                    return _name;
+                }
+            }
+            set { _name = value.ToUpper(); }
+        }
+        [Required(ErrorMessage = "Seri numarası boş olamaz")]
         public string serialNo { get; set; }
-        [Required(ErrorMessage = "Inventory number cannot be null")]
+        [Required(ErrorMessage = "Envanter numarası boş olamaz")]
         public string inventoryNo { get; set; }
         public Cpu Cpu { get; set; }
         public int? cpuId { get; set; }

@@ -13,7 +13,7 @@
             <label for="inputDepartment" class="col-md-2 col-form-label">Departman</label>
             <div class="col-md-10">
                 <input asp-for="department.name" id="inputDepartment" class="form-control" type="text" placeholder="Departman" />
-                <span asp-validation-for="department.name"></span>
+                <span class="text-danger" asp-validation-for="department.name"></span>
             </div>
         </div>
         <div class="mt-1 text-end">

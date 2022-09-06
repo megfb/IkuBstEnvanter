@@ -1,10 +1,9 @@
-﻿-login page daha şık hale getirilecek,
--validation yazıları kırmızı yapılacak ve türkçeye çevrilecek,
--searchable dropdown,
--user list te aktif user görüntülenmeyecek,
--db ye veriler küçük harflerle kaydedilecek,
--temada buton renkleri ve sıraları daha uyumlu olacak,
+﻿-temada buton renkleri ve sıraları daha uyumlu olacak,
 -uygulama yüklenirken otomatik olarak üyelik oluşturulacak,
 -buton linklemeleri düzeltilecek,
+-white space
+
+
 -notification,
 -pie chart geliştirilecek,
+-duyuru

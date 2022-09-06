@@ -14,7 +14,7 @@
             <label for="inputName" class="col-md-2 col-form-label">Ad</label>
             <div class="col-md-10">
                 <input asp-for="personel.name" id="inputName" class="form-control" type="text" placeholder="Ad" />
-                <span asp-validation-for="personel.name"></span>
+                <span class="text-danger" asp-validation-for="personel.name"></span>
             </div>
         </div>
 
@@ -22,14 +22,14 @@
             <label for="inputSurname" class="col-md-2 col-form-label">Soyad</label>
             <div class="col-md-10">
                 <input asp-for="personel.surname" class="form-control" type="text" placeholder="Soyad" />
-                <span asp-validation-for="personel.surname"></span>
+                <span class="text-danger" asp-validation-for="personel.surname"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
             <label for="inputAge" class="col-md-2 col-form-label">Yaş</label>
             <div class="col-md-10">
                 <input asp-for="personel.age" id="inputAge" value="@Model.personel.age" class="form-control" type="text" placeholder="Yaş" />
-                <span asp-validation-for="personel.age"></span>
+                <span class="text-danger" asp-validation-for="personel.age"></span>
             </div>
         </div>
         <div class="form-group row mb-3">
@@ -40,22 +40,32 @@
         </div>
         <div class="form-group row mb-3">
             <label for="inputDepartment" class="col-md-2 col-form-label">Departman</label>
-            <div class="col-md-10">
-                <select asp-for="personel.departmentId" id="inputDepartment" class="form-control" asp-items="@(new SelectList(Model.department,"id","name"))"></select>
+            <div class="col-md-10 search_select_box">
+                <select asp-for="personel.departmentId" data-size="5" id="inputDepartment" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.department)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="inputGender" class="col-md-2 col-form-label">Lokasyon</label>
-            <div class="col-md-10">
-                <select asp-for="personel.cLocationId" id="inputGender" class="form-select" asp-items="@(new SelectList(Model.cLocation,"id","name"))"></select>
+            <div class="col-md-10 search_select_box">
+                <select asp-for="personel.cLocationId" data-size="5" id="inputGender" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.cLocation)
+                    {
+                        <option value="@item.id">@item.name</option>
+                    }
+                </select>
             </div>
         </div>
         <div class="form-group row mb-3">
             <label for="inputEMail" class="col-md-2 col-form-label">E-Mail</label>
             <div class="col-md-10">
                 <input asp-for="personel.eMail" id="inputAge" value="@Model.personel.eMail" class="form-control" type="email" placeholder="E-Mail" />
-                <span asp-validation-for="personel.eMail"></span>
+                <span class="text-danger" asp-validation-for="personel.eMail"></span>
             </div>
         </div>
 

@@ -14,7 +14,7 @@
             <label for="inputCategory" class="col-md-2 col-form-label">Kategori</label>
             <div class="col-md-10">
                 <input class="form-control" asp-for="category.name" type="text" placeholder="Kategori" />
-                <span asp-validation-for="category.name"></span>
+                <span class="text-danger" asp-validation-for="category.name"></span>
             </div>
         </div>
         <div class="mt-1 text-end">

@@ -89,11 +89,18 @@
         <div class="form-group pt-3">
             <label for="inputDefinition" class="form-label">Açıklama</label>
             <textarea class="form-control" id="inputDefinition" asp-for="status.definition" placeholder="@Model.status.definition" rows="3"></textarea>
-            <span asp-validation-for="status.definition"></span>
+            <span class="text-danger" asp-validation-for="status.definition"></span>
         </div>
         <div class="form-group pt-3">
             <label for="inputPersonel" class="form-label">Personel</label>
-            <select asp-for="status.personelId" id="inputPersonel" class="form-select" asp-items='new SelectList(from x in Model.personel select new { Value = x.id ,Text = x.name + " " + x.surname + " " + x.age}, "Value","Text")'></select>
+            <div class="search_select_box">
+                <select asp-for="status.personelId" data-size="5" id="inputPersonel" class="col-md-12 form-control border rounded" data-live-search="true" data-live-search-normalize="true">
+                    @foreach (var item in Model.personel)
+                    {
+                        <option value="@item.id">@item.name @item.surname</option>
+                    }
+                </select>
+            </div>
         </div>
         <div class="form-group pt-3">
             <label for="inputCampus" class="form-label">Yerleşke</label>
