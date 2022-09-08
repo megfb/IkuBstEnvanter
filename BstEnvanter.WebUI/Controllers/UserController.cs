@@ -37,7 +37,7 @@ namespace BstEnvanter.WebUI.Controllers
             var currentUser = _userManager.GetUserId(User);
             var model = new ListOfUserViewModel()
             {
-                users = _userManager.Users.Where(x => x.Id != currentUser),
+                users = _userManager.Users.Where(x => x.Id != currentUser && x.Email!="bst@iku.edu.tr"),
             };
             return View(model);
         }

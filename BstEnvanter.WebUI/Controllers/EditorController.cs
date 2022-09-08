@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BstEnvanter.WebUI.Controllers
 {
     [Authorize(Roles ="admin,editor")]    
+
     public class EditorController : Controller
     {
 

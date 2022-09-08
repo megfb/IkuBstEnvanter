@@ -1,10 +1,11 @@
 ﻿-white space
 -temada buton renkleri ve sıraları daha uyumlu olacak,
--uygulama yüklenirken otomatik olarak üyelik oluşturulacak,
 -buton linklemeleri düzeltilecek,
--navbar
--footer	
 
+-loglama olacak
+-email atılacak
+-reader rolü oluşturulacak
 -notification,
 -pie chart geliştirilecek,
 -duyuru
+-excel e yazdırılacak

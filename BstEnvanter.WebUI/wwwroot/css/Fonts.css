@@ -49,3 +49,9 @@ select {
         background-color: orange;
         /*opacity:1;*/
     }
+
+@media screen and (min-width: 576px) {
+    .testbuton {
+        display: none;
+    }
+}

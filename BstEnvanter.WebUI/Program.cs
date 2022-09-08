@@ -5,15 +5,18 @@ using BstEnvanter.Dal.Concrete;
 using BstEnvanter.Entity.Concrete;
 using BstEnvanter.WebUI.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-builder.Services.AddDbContext<ApplicationIdentityDbContext>(options => {
-    options.UseSqlServer("Server=DESKTOP-0ALOVMI\\SQLEXPRESS;Database=BstEnvanter;Trusted_Connection=true");
+builder.Services.AddDbContext<ApplicationIdentityDbContext>(options =>
+{
+    options.UseSqlServer("Server=DESKTOP-U3KQDUS;Database=BstEnvanter;Trusted_Connection=true");
 }); builder.Services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<ApplicationIdentityDbContext>().AddDefaultTokenProviders().AddPasswordValidator<CustomPasswordValidator>();
 builder.Services.AddScoped<IBrandService, BrandManager>(); builder.Services.AddScoped<IBrandDal, BrandDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>(); builder.Services.AddScoped<ICategoryDal, CategoryDal>();
@@ -50,15 +53,22 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie = new CookieBuilder
     {
         HttpOnly = true,
-        Name ="BstEnvanterSecurityCookie",
+        Name = "BstEnvanterSecurityCookie",
         SameSite = SameSiteMode.Strict,
     };
 });
 
 
-
-
 var app = builder.Build();
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using (var scope = scopeFactory.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    SeedIdentity.Seed(userManager, roleManager);
+
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -79,9 +89,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=account}/{action=login}/{id?}");
+name: "default",
+pattern: "{controller=account}/{action=login}/{id?}"
+);
 
 app.MapRazorPages();
-
 app.Run();
