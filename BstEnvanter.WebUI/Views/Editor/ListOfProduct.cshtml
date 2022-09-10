@@ -5,7 +5,9 @@
 }
 <div class="container-fluid ">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Ürün Listesi</h1>
+        <h1 class="display-4">
+            Ürün Listesi<a class="btn-primary rounded-circle" asp-controller="process" asp-action="exportexcel" asp-route-name="listofproducts" asp-route-exportName="Ürün_Listesi"><i class="fs-1 bi bi-printer"></i></a>
+        </h1>
         <hr />
     </div>
     <div class="row">
@@ -33,10 +35,14 @@
         </div>
     </div>
     <div class="row mt-2">
+
         <div class="col-sm-12">
             <div class="table-responsive">
+
                 <table id="myTable" class="table align-middle table-hover table-sm">
+
                     <thead class="table-light">
+
                         <tr>
                             <th>Kategori</th>
                             <th>Marka</th>
@@ -102,7 +108,6 @@
                 </table>
             </div>
         </div>
-
 
     </div>
 

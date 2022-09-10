@@ -25,8 +25,8 @@ namespace BstEnvanter.Dal.Concrete
         {
             using (EfContext context = new EfContext())
             {
-                return filter == null ? context.Set<Status>().Include(x => x.Product).ThenInclude(x => x.Brand).Include(x => x.Product.Category).Include(x => x.Product.Model).Include(x => x.Personel).Include(x => x.Common).ThenInclude(x => x.department).Include(x => x.Common.CLocation).Include(x => x.Product.Cpu).Include(x => x.Product.Gpu).Include(x => x.Product.Ram).Include(x => x.Product.HardDrive).ToList() :
-                                        context.Set<Status>().Include(x => x.Product).ThenInclude(x => x.Brand).Include(x => x.Product.Category).Include(x => x.Product.Model).Include(x => x.Personel).Include(x => x.Common).ThenInclude(x => x.department).Include(x => x.Common.CLocation).Include(x => x.Product.Cpu).Include(x => x.Product.Gpu).Include(x => x.Product.Ram).Include(x => x.Product.HardDrive).Where(filter).ToList();
+                return filter == null ? context.Set<Status>().Include(x => x.Product).ThenInclude(x => x.Brand).Include(x => x.Product.Category).Include(x => x.Product.Model).Include(x => x.Personel).Include(x => x.Common).ThenInclude(x => x.department).Include(x => x.Common.CLocation).Include(x => x.Product.Cpu).Include(x => x.Product.Gpu).Include(x => x.Product.Ram).Include(x => x.Product.HardDrive).Include(x => x.Campus).ToList() :
+                                        context.Set<Status>().Include(x => x.Product).ThenInclude(x => x.Brand).Include(x => x.Product.Category).Include(x => x.Product.Model).Include(x => x.Personel).Include(x => x.Common).ThenInclude(x => x.department).Include(x => x.Common.CLocation).Include(x => x.Product.Cpu).Include(x => x.Product.Gpu).Include(x => x.Product.Ram).Include(x => x.Product.HardDrive).Include(x => x.Campus).Where(filter).ToList();
             }
         }
 

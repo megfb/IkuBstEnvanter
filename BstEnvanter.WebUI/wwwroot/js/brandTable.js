@@ -8,6 +8,7 @@
             { "orderDataType": "dom-text-numeric" },
             { "orderDataType": "dom-text-numeric" },
             { "orderDataType": "dom-text-numeric" },
+            { "orderDataType": "dom-text-numeric" },
         ]
     });
 });

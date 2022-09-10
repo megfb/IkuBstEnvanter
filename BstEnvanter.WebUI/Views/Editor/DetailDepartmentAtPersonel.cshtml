@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">@Model.department.name - Personel Ürün Listesi</h1>
+        <h1 class="display-4">@Model.department.name - Personel Ürün Listesi<a class="btn-primary rounded-circle" asp-controller="process" asp-action="exportexcel" asp-route-name="listofdepartmentatpersonel" asp-route-exportName="Departman_Personel_Ürün_Listesi" asp-route-id="@Model.department.id"><i class="fs-1 bi bi-printer"></i></a></h1>
         <hr />
     </div>
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">

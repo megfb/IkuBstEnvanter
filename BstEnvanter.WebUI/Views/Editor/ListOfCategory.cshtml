@@ -19,6 +19,7 @@
                     <th scope="col">Marka</th>
                     <th scope="col">Güncelle</th>
                     <th scope="col">Sil</th>
+                    <th scope="col">Yazdır</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,9 +57,19 @@
                                     </div>
                                 </div>
                             </td>
-                            @*<td scope="col">
-                    <a class="btn btn-primary" asp-controller="editor" asp-action="detailcategory" asp-route-id="@item.id">Detail</a>
-                    </td>*@
+                            <td>
+                                <!-- Example single danger button -->
+                                <div class="btn-group">
+                                    <button type="button" style="border:none;" class="bg-white fs-1 bi bi-printer rounded-circle text-primary" data-bs-toggle="dropdown" aria-expanded="false">
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="process" asp-action="exportexcel" asp-route-name="listofcategory" asp-route-exportName="Kategori_Ürün_Listesi" asp-route-id="@item.id">Depo</a></li>
+                                    <li><a class="dropdown-item" asp-controller="process" asp-action="exportexcel" asp-route-name="listofcategoryatpersonel" asp-route-exportName="Personel_Kategori_Ürün_Listesi" asp-route-id="@item.id">Personel</a></li>
+                                    <li><a class="dropdown-item" asp-controller="process" asp-action="exportexcel" asp-route-name="listofcategoryatcommon" asp-route-exportName="Ortak_Kategori_Ürün_Listesi" asp-route-id="@item.id">Ortak</a></li>
+
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                     }
                 }

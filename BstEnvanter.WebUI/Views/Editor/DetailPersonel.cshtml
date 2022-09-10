@@ -5,7 +5,7 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Personel Detayları</h1>
+        <h1 class="display-4">Personel Detayları<a class="btn-primary rounded-circle" asp-controller="process" asp-action="exportexcel" asp-route-name="listofpersonel" asp-route-exportName="Personel_Ürün_Listesi" asp-route-id="@Model.personel.id"><i class="fs-1 bi bi-printer"></i></a></h1>
         <hr />
     </div>
     <div class="row">

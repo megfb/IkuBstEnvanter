@@ -3,6 +3,8 @@ using BstEnvanter.Business.Concrete;
 using BstEnvanter.Dal.Abstract;
 using BstEnvanter.Dal.Concrete;
 using BstEnvanter.Entity.Concrete;
+using BstEnvanter.WebUI.Extensions.Abstract;
+using BstEnvanter.WebUI.Extensions.Concrete;
 using BstEnvanter.WebUI.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
@@ -34,6 +36,7 @@ builder.Services.AddScoped<IGpuService, GpuManager>(); builder.Services.AddScope
 builder.Services.AddScoped<IRamService, RamManager>(); builder.Services.AddScoped<IRamDal, RamDal>();
 builder.Services.AddScoped<IHardDriveService, HardDriveManager>(); builder.Services.AddScoped<IHardDriveDal, HardDriveDal>();
 builder.Services.AddScoped<IServiceService, ServiceManager>(); builder.Services.AddScoped<IServiceDal, ServiceDal>();
+builder.Services.AddScoped<IExtensions, ExportExcel>();
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true;
