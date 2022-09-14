@@ -264,6 +264,9 @@ namespace BstEnvanter.Dal.Migrations
                     b.Property<int?>("hardDriveId")
                         .HasColumnType("int");
 
+                    b.Property<string>("imgName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("inventoryNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BstEnvanter.WebUI.Controllers
 {
-    [Authorize(Roles ="admin,editor")]    
+    [Authorize(Roles = "admin,editor")]
 
     public class EditorController : Controller
     {
@@ -32,10 +32,11 @@ namespace BstEnvanter.WebUI.Controllers
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private RoleManager<ApplicationRole> _roleManager;
+        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
         public EditorController(IBrandService brandService, ICategoryService categoryService, IModelService modelService, IProductService productService,
             IDepartmentService departmentService, ICLocationService cLocationService, ICampusService campusService, ISexService sexService, IPersonelService personelService,
             IStatusService statusService, ICommonService commonService, ICpuService cpuService, IGpuService gpuService, IRamService ramService, IHardDriveService hardDriveService,
-            IServiceService serviceService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
+            IServiceService serviceService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
         {
             _brandService = brandService;
             _categoryService = categoryService;
@@ -56,6 +57,7 @@ namespace BstEnvanter.WebUI.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _hostingEnvironment = hostingEnvironment;
         }
         public IActionResult Index()
         {
@@ -359,17 +361,35 @@ namespace BstEnvanter.WebUI.Controllers
                 cpu = _cpuService.getAll(),
                 gpu = _gpuService.getAll(),
                 ram = _ramService.getAll(),
-                hardDrive = _hardDriveService.getAll()
+                hardDrive = _hardDriveService.getAll(),
             };
             return View(model);
         }
         [HttpPost]
-        public IActionResult AddProduct(Status status)
+        public IActionResult AddProduct(AddProductViewModel addProductViewModel)
         {
             if (ModelState.IsValid)
             {
-                status.bstId = _userManager.GetUserId(User);                
-                _statusService.add(status);
+                if (addProductViewModel.img != null)
+                {
+                    addProductViewModel.status.Product.imgName = DateTime.Now.Millisecond.ToString() + "_" + addProductViewModel.img.FileName;
+                    var fileName = Path.GetFileName(addProductViewModel.status.Product.imgName);
+                    //var existPath = _hostingEnvironment.WebRootPath + "\\productImages\\" + addProductViewModel.img.FileName;
+
+                    //if (System.IO.File.Exists(existPath))
+                    //{
+                    //    fileName = Path.GetFileName("1"+addProductViewModel.img.FileName);
+                    //    addProductViewModel.status.Product.imgName = fileName;
+                    //}
+
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/productImages", fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        addProductViewModel.img.CopyTo(fileStream);
+                    }
+                }
+                addProductViewModel.status.bstId = _userManager.GetUserId(User);
+                _statusService.add(addProductViewModel.status);
                 TempData.Add("Success", $"İşlem başarılı, yeni ürün eklendi");
                 return RedirectToAction("listofproduct");
             }
@@ -403,20 +423,48 @@ namespace BstEnvanter.WebUI.Controllers
             return View(model);
         }
         [HttpPost]
-        public IActionResult UpdateProduct(Status status)
+        public IActionResult UpdateProduct(Status status, IFormFile formFile)
         {
+            var existPath = _hostingEnvironment.WebRootPath + "\\productImages\\" + status.Product.imgName;
             if (ModelState.IsValid)
             {
+                if (formFile != null)
+                {
+                    if (System.IO.File.Exists(existPath))
+                    {
+                        System.IO.File.Delete(existPath);
+                    }
+
+                    status.Product.imgName = DateTime.Now.Millisecond.ToString() + "_" + formFile.FileName;
+                    var fileName = Path.GetFileName(status.Product.imgName);
+
+
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/productImages", fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        formFile.CopyTo(fileStream);
+                    }
+                }
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 TempData.Add("Success", $"İşlem başarılı, {status.Product.name} güncelleştirildi");
-                return RedirectToAction("listofproduct");
+                return RedirectToAction("detailproduct", new
+                {
+                    id = status.id
+                });
             }
             TempData.Add("Alert", $"İşlem başarısız, {status.Product.name} güncelleştirilemedi!");
             return RedirectToAction("updateproduct", status.Product.id);
         }
         public IActionResult DeleteProduct(int id, int productId)
         {
+            var entity = _statusService.get(id);
+            var existPath = _hostingEnvironment.WebRootPath + "\\productImages\\" + entity.Product.imgName;
+
+            if (System.IO.File.Exists(existPath))
+            {
+                System.IO.File.Delete(existPath);
+            }
             _statusService.remove(id);
             _productService.remove(productId);
             TempData.Add("Success", $"Silme işlemi başarılı");
@@ -427,7 +475,7 @@ namespace BstEnvanter.WebUI.Controllers
             var model = new UpdateProductViewModel()
             {
                 status = _statusService.get(id),
-                
+
             };
             model.user = _userManager.Users.FirstOrDefault(x => x.Id == model.status.bstId);
             return View(model);
@@ -451,7 +499,7 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 TempData.Add("Success", $"İşlem başarılı, personele ürün ataması yapıldı");
-                return RedirectToAction("listofproduct");
+                return RedirectToAction("detailproduct", new { id = status.id });
             }
             TempData.Add("Alert", $"İşlem başarısız, personele ürün ataması yapılamadı!");
             return View();
@@ -475,7 +523,7 @@ namespace BstEnvanter.WebUI.Controllers
             model.bstId = _userManager.GetUserId(User);
             _statusService.update(model);
             TempData.Add("Success", $"Silme işlemi başarılı");
-            return RedirectToAction("listofproductatpersonel");
+            return RedirectToAction("detailproduct",new {id = model.id});
         }
         [HttpGet]
         public IActionResult UpdateProductAtPersonel(int id)
@@ -497,7 +545,7 @@ namespace BstEnvanter.WebUI.Controllers
                 _statusService.update(status);
                 int id = status.id;
                 TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
-                return RedirectToAction("listofproductatpersonel");
+                return RedirectToAction("detailproduct", new {id = status.id});
             }
             TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
             return View();
@@ -543,7 +591,7 @@ namespace BstEnvanter.WebUI.Controllers
                 _statusService.update(status);
                 TempData.Add("Success", $"İşlem başarılı, ortağa ürün ataması yapıldı");
 
-                return RedirectToAction("listofproduct");
+                return RedirectToAction("detailproduct", new { id = status.id });
             }
             TempData.Add("Alert", $"İşlem başarısız, ortağa ürün ataması yapılamadı!");
 
@@ -568,7 +616,7 @@ namespace BstEnvanter.WebUI.Controllers
             _commonService.remove(commonId);
             TempData.Add("Success", $"Silme işlemi başarılı");
 
-            return RedirectToAction("listofproductatcommon");
+            return RedirectToAction("detailproduct", new {id = model.id});
         }
         [HttpGet]
         public IActionResult UpdateCommon(int id)
@@ -613,7 +661,10 @@ namespace BstEnvanter.WebUI.Controllers
                 _commonService.remove(commonId);
                 TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
 
-                return RedirectToAction("listofproduct");
+                return RedirectToAction("detailproduct", new
+                {
+                    id = status.id
+                });
             }
             TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
 
@@ -641,7 +692,7 @@ namespace BstEnvanter.WebUI.Controllers
                 _statusService.update(status);
                 _commonService.remove(id);
                 TempData.Add("Success", $"İşlem başarılı, personele ürün taşıması yapıldı");
-                return RedirectToAction("listofproductatpersonel");
+                return RedirectToAction("detailproduct", new { id = status.id });
 
 
             }
@@ -671,7 +722,7 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 TempData.Add("Success", $"İşlem başarılı, ortağa ürün taşıması yapıldı");
-                return RedirectToAction("listofproductatcommon");
+                return RedirectToAction("detailproduct", new { id = status.id });
 
             }
             TempData.Add("Alert", $"İşlem başarısız, ortağa ürün taşıması yapılamadı!");
@@ -1002,7 +1053,7 @@ namespace BstEnvanter.WebUI.Controllers
             {
                 _personelService.update(personel);
                 TempData.Add("Success", $"İşlem başarılı, güncelleştirildi");
-                return RedirectToAction("listofpersonel");
+                return RedirectToAction("detailpersonel", new {id = personel.id});
             }
             TempData.Add("Alert", $"İşlem başarısız, güncelleştirilemedi!");
             return View();
@@ -1448,7 +1499,8 @@ namespace BstEnvanter.WebUI.Controllers
                 status.bstId = _userManager.GetUserId(User);
                 _statusService.update(status);
                 TempData.Add("Success", $"İşlem başarılı, servis kaydı oluşturuldu");
-                return RedirectToAction("listofproduct");
+                return RedirectToAction("detailservice", new { id = status.id });
+
             }
             TempData.Add("Alert", $"İşlem başarısız, servis kaydı oluşturulamadı!");
 
@@ -1458,7 +1510,7 @@ namespace BstEnvanter.WebUI.Controllers
         {
             _serviceService.remove(id);
             TempData.Add("Success", $"İşlem başarılı, servis kaydı kapatıldı");
-            return RedirectToAction("listofproduct");
+            return RedirectToAction("listofproductatservice");
         }
         public IActionResult UpdateService(int id)
         {
@@ -1479,7 +1531,10 @@ namespace BstEnvanter.WebUI.Controllers
                 _statusService.update(status);
                 TempData.Add("Success", $"İşlem başarılı, servis kaydı güncelleştirildi");
 
-                return RedirectToAction("listofproduct");
+                return RedirectToAction("detailproduct", new
+                {
+                    id = status.id
+                });
             }
             TempData.Add("Alert", $"İşlem başarısız, servis kaydı güncelleştirilemedi!");
 

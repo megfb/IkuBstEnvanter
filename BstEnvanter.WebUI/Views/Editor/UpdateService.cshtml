@@ -256,7 +256,7 @@
                                 <input type="hidden" asp-for="status.definition" value="@Model.status.definition" />
                                 <input type="hidden" asp-for="status.bstId" value="ID" />
                                 <button class="btn btn-primary col-md-2">Gümcelle</button>
-                                <a asp-action="listofproduct" class="btn btn-info col-md-2">Geri</a>
+                                <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="detailservice" asp-route-id="@Model.status.id">Geri</a>
                             </div>
                         </form>
                     </div>
@@ -553,7 +553,7 @@
                             <input type="hidden" asp-for="status.definition" value="@Model.status.definition" />
                             <input type="hidden" asp-for="status.bstId" value="ID" />
                             <button class="btn btn-primary col-md-2">Güncelle</button>
-                            <a asp-action="listofproduct" class="btn btn-info col-md-2">Geri</a>
+                            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="detailservice" asp-route-id="@Model.status.id">Geri</a>
                         </div>
                     </form>
                 </div>
@@ -825,7 +825,7 @@
                             <input type="hidden" asp-for="status.definition" value="@Model.status.definition" />
                             <input type="hidden" asp-for="status.bstId" value="ID" />
                             <button class="btn btn-primary col-md-2">Güncelle</button>
-                            <a asp-action="listofproduct" class="btn btn-info col-md-2">Geri</a>
+                            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="detailservice" asp-route-id="@Model.status.id">Geri</a>
                         </div>
                     </form>
                 </div>

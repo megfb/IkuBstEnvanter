@@ -58,7 +58,7 @@ namespace BstEnvanter.WebUI.Controllers
                 }
                 _userManager.AddToRoleAsync(user, registerViewModel.role).Wait();
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("detailuser", "user", new {id = user.Id});
             }
             return View();
         }
@@ -85,11 +85,11 @@ namespace BstEnvanter.WebUI.Controllers
 
             if (result.Succeeded)
             {
-                TempData.Add("Success", $"Welcome {user.name}");
+                TempData.Add("Success", $"Hoşgeldin {user.name}");
                 return RedirectToAction("Index", "Home");
             }
 
-            TempData.Add("Alert", "E-Mail or Password is wrong");
+            TempData.Add("Alert", "Başarısız giriş! E-mail veya parolayı kontrol edin!");
             return View(loginViewModel);
         }
         [Authorize]

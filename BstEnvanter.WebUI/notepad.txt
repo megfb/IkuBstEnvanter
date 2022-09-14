@@ -1,11 +1,4 @@
-﻿-white space
--temada buton renkleri ve sıraları daha uyumlu olacak,
--buton linklemeleri düzeltilecek,
-
--resim eklenecek
--loglama olacak
--email atılacak
--reader rolü oluşturulacak
+﻿-duyuru,
 -notification,
--pie chart geliştirilecek,
--duyuru
+-email atılacak,
+-loglama olacak,

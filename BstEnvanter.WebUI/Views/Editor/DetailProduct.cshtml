@@ -20,6 +20,7 @@
                     </div>
                     <table class="table table-borderless">
                         <tbody>
+
                             <tr>
                                 <td>Ad:</td>
                                 <td>@Model.status.Product.name</td>
@@ -173,29 +174,55 @@
                     <div class="row bg-primary">
                         <h3 class="pt-3 text-light">Durum Detayları</h3>
                     </div>
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td>Açıklama:</td>
-                                <td>@Model.status.definition</td>
-                            </tr>
-                            <tr>
-                                <td>Yerleşke:</td>
-                                @if (Model.status.campusId != null)
-                                {
-                                    <td>@Model.status.Campus.name</td>
-                                }
-                            </tr>
-                            <tr>
-                                <td>Son Güncelleştirme Tarihi:</td>
-                                <td>@Model.status.dateOfUpdate</td>
-                            </tr>
-                            <tr>
-                                <td>Kullanıcı Kimliği:</td>
-                                <td>@Model.status.bstId</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type="button" class="btn" style="border:none" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                <img src="/productImages/@Model.status.Product.imgName" class="img-fluid border rounded p-2 shadow" alt="...">
+
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="text-center">
+                                                <img src="/productImages/@Model.status.Product.imgName" class="img-fluid border rounded shadow" alt="...">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Açıklama:</td>
+                                        <td>@Model.status.definition</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yerleşke:</td>
+                                        @if (Model.status.campusId != null)
+                                        {
+                                            <td>@Model.status.Campus.name</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Son Güncelleştirme Tarihi:</td>
+                                        <td>@Model.status.dateOfUpdate</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kullanıcı Kimliği:</td>
+                                        <td>@Model.status.bstId</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
                     <div class="text-end mt-2 pb-3">
                         @if (Model.status.serviceId == null)
                         {
@@ -203,14 +230,16 @@
                         }
                         @if (Model.status.serviceId != null)
                         {
-                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Servis Kaydını Kapat</a>
-                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>
-                            <a class="btn btn-info" asp-controller="editor" asp-action="Detailservice" asp-route-id="@Model.status.id">Servis Kaydı Detayları</a>
+@*                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Servis Kaydını Kapat</a>
+                            <a class="btn btn-info text-white" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>*@
+                            <a class="btn btn-info text-white" asp-controller="editor" asp-action="Detailservice" asp-route-id="@Model.status.id">Servis Kaydı Detayları</a>
 
                         }
                         <a class="btn btn-primary" asp-controller="editor" asp-action="addproductatpersonel" asp-route-id="@Model.status.id">Personele Ata</a>
                         <a class="btn btn-primary" asp-controller="editor" asp-action="addcommon" asp-route-id="@Model.status.id">Ortağa Ata</a>
-                        <a class="btn text-end text-light" style="background-color:#455A64" asp-controller="editor" asp-action="updateproduct" asp-route-id="@Model.status.id">Güncelle </a>
+                        <a class="btn text-end text-white" style="background-color:#90A4AE" asp-controller="editor" asp-action="updateproduct" asp-route-id="@Model.status.id">Güncelle </a>
+                        <a class="btn text-end text-white" style="background-color:#607D8B" asp-controller="editor" asp-action="listofproduct">Geri</a>
+
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Sil
@@ -234,7 +263,6 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn text-end btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Geri</a>
                     </div>
                 </div>
             }
@@ -441,29 +469,54 @@
                     <div class="row bg-primary">
                         <h3 class="pt-3 text-light">Durum Detayları</h3>
                     </div>
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td>Açıklama:</td>
-                                <td>@Model.status.definition</td>
-                            </tr>
-                            <tr>
-                                <td>Yerleşke:</td>
-                                @if (Model.status.campusId != null)
-                                {
-                                    <td>@Model.status.Campus.name</td>
-                                }
-                            </tr>
-                            <tr>
-                                <td>Son Güncelleştirme Tarihi:</td>
-                                <td>@Model.status.dateOfUpdate</td>
-                            </tr>
-                            <tr>
-                                <td>Kullanıcı Kimliği:</td>
-                                <td>@Model.status.bstId</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type="button" class="btn" style="border:none" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                <img src="/productImages/@Model.status.Product.imgName" class="img-fluid border rounded p-2 shadow" alt="...">
+
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="text-center">
+                                                <img src="/productImages/@Model.status.Product.imgName" class="img-fluid border rounded shadow" alt="...">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Açıklama:</td>
+                                        <td>@Model.status.definition</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yerleşke:</td>
+                                        @if (Model.status.campusId != null)
+                                        {
+                                            <td>@Model.status.Campus.name</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Son Güncelleştirme Tarihi:</td>
+                                        <td>@Model.status.dateOfUpdate</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kullanıcı Kimliği:</td>
+                                        <td>@Model.status.bstId</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="text-end mt-2 pb-3">
                         @if (Model.status.serviceId == null)
                         {
@@ -471,8 +524,8 @@
                         }
                         @if (Model.status.serviceId != null)
                         {
-                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Servis Kaydını Kapat</a>
-                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>
+@*                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Servis Kaydını Kapat</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>*@
                             <a class="btn btn-info" asp-controller="editor" asp-action="Detailservice" asp-route-id="@Model.status.id">Servis Kaydı Detayları</a>
 
                         }
@@ -501,7 +554,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn text-end btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Back</a>
+                        <a class="btn text-end btn-secondary" asp-controller="editor" asp-action="listofproductatpersonel">Back</a>
                     </div>
                 </div>
 
@@ -691,29 +744,54 @@
                     <div class="row bg-primary">
                         <h3 class="pt-3 text-light">Durum Detayları</h3>
                     </div>
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td>Açıklama:</td>
-                                <td>@Model.status.definition</td>
-                            </tr>
-                            <tr>
-                                <td>Yerleşke:</td>
-                                @if (Model.status.campusId != null)
-                                {
-                                    <td>@Model.status.Campus.name</td>
-                                }
-                            </tr>
-                            <tr>
-                                <td>Son Güncelleştirme Tarihi:</td>
-                                <td>@Model.status.dateOfUpdate</td>
-                            </tr>
-                            <tr>
-                                <td>Kullanıcı Kimliği:</td>
-                                <td>@Model.status.bstId</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type="button" class="btn" style="border:none" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                <img src="/productImages/@Model.status.Product.imgName" class="img-fluid border rounded p-2 shadow" alt="...">
+
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="text-center">
+                                                <img src="/productImages/@Model.status.Product.imgName" class="img-fluid border rounded shadow" alt="...">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Açıklama:</td>
+                                        <td>@Model.status.definition</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yerleşke:</td>
+                                        @if (Model.status.campusId != null)
+                                        {
+                                            <td>@Model.status.Campus.name</td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td>Son Güncelleştirme Tarihi:</td>
+                                        <td>@Model.status.dateOfUpdate</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kullanıcı Kimliği:</td>
+                                        <td>@Model.status.bstId</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="text-end mt-2 pb-3">
                         @if (Model.status.serviceId == null)
                         {
@@ -721,8 +799,8 @@
                         }
                         @if (Model.status.serviceId != null)
                         {
-                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Servis Kaydını Kapat</a>
-                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>
+@*                            <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Servis Kaydını Kapat</a>
+                            <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>*@
                             <a class="btn btn-info" asp-controller="editor" asp-action="Detailservice" asp-route-id="@Model.status.id">Servis Kaydı Detayları</a>
 
                         }
@@ -751,7 +829,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn text-end btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Geri</a>
+                        <a class="btn text-end btn-secondary" asp-controller="editor" asp-action="listofproductatcommon">Geri</a>
                     </div>
                 </div>
 

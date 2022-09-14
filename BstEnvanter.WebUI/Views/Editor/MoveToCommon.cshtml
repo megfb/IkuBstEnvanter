@@ -281,7 +281,7 @@
                 <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
                 <input type="hidden" asp-for="status.serviceId" value="@Model.status.serviceId" />
                 <button class="btn btn-primary col-md-2">Güncelle</button>
-                <a class="btn col-md-2 btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Geri</a>
+                <a class="btn col-md-2 text-white" style="background-color:#607D8B" asp-controller="editor" asp-action="detailproduct" asp-route-id="@Model.status.id">Geri</a>
             </div>
         </form>
     </div>

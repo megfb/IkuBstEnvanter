@@ -18,8 +18,8 @@
                     <th scope="col">Soyad</th>
                     <th scope="col">Departman</th>
                     <th scope="col">Ünvan</th>
-                    <th scope="col">Detay</th>
                     <th scope="col">Güncelle</th>
+                    <th scope="col">Detay</th>
                     <th scope="col">Reset</th>
                     <th scope="col">Sil</th>
                 </tr>
@@ -35,13 +35,13 @@
                             <td scope="col">@item.department</td>
                             <td scope="col">@item.title</td>
                             <td scope="col">
-                                <a class="btn btn-primary" asp-action="detailuser" asp-route-id="@item.Id">Detay </a>
+                                <a class="btn text-white" style="background-color:#90A4AE" asp-action="updateuser" asp-route-id="@item.Id">Güncelle </a>
                             </td>
                             <td scope="col">
-                                <a class="btn btn-warning" asp-action="updateuser" asp-route-id="@item.Id">Güncelle </a>
+                                <a class="btn btn-secondary" asp-action="detailuser" asp-route-id="@item.Id">Detay </a>
                             </td>
                             <td scope="col">
-                                <a class="btn btn-info" asp-action="resetpassword" asp-route-id="@item.Id">Reset </a>
+                                <a class="btn text-white" style="background-color:#BF360C" asp-action="resetpassword" asp-route-id="@item.Id">Reset </a>
                             </td>
                             <td scope="col">
                                 <!-- Button trigger modal -->

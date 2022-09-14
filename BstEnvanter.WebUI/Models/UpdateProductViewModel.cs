@@ -5,7 +5,6 @@ namespace BstEnvanter.WebUI.Models
 {
     public class UpdateProductViewModel
     {
-
         public List<Category> category { get; set; }
         public List<Brand> brand { get; set; }
         public List<Model> model { get; set; }
@@ -17,5 +16,7 @@ namespace BstEnvanter.WebUI.Models
         public List<Gpu> gpu { get; internal set; }
         public ApplicationUser user { get; set; }
         public List<Campus> campus { get; internal set; }
+        public IFormFile formFile { get; set; }
+
     }
 }

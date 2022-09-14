@@ -47,11 +47,7 @@ namespace BstEnvanter.Entity.Concrete
         public int? ramId { get; set; }
         public HardDrive HardDrive { get; set; }
         public int? hardDriveId { get; set; }
-
-        //public string? prop1 { get; set; }
-        //public string? prop2 { get; set; }
-        //public string? prop3 { get; set; }
-        //public string? prop4 { get; set; }
+        public string? imgName { get; set; }
         public ICollection<Status> status { get; set; }
 
 

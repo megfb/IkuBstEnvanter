@@ -20,8 +20,9 @@
                     <th scope="col">Soyad</th>
                     <th scope="col">E-Mail</th>
                     <th scope="col">Güncelle</th>
-                    <th scope="col">Sil</th>
                     <th scope="col">Detay</th>
+                    <th scope="col">Sil</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +35,11 @@
                             <td scope="col">@item.surname</td>
                             <td scope="col">@item.eMail</td>
                             <td scope="col">
-                                <a class="btn btn-warning" asp-controller="editor" asp-action="updatepersonel" asp-route-id="@item.id">Güncelle </a>
+                                <a class="btn text-white" style="background-color:#90A4AE" asp-controller="editor" asp-action="updatepersonel" asp-route-id="@item.id">Güncelle </a>
+                            </td>
+                           
+                            <td scope="col">
+                                <a class="btn btn-secondary" asp-controller="editor" asp-action="detailpersonel" asp-route-id="@item.id">Detay</a>
                             </td>
                             <td scope="col">
                                 <!-- Button trigger modal -->
@@ -60,9 +65,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                            <td scope="col">
-                                <a class="btn btn-info" asp-controller="editor" asp-action="detailpersonel" asp-route-id="@item.id">Detay</a>
                             </td>
                         </tr>
                     }

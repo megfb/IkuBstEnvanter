@@ -7,7 +7,15 @@
     ViewData["Title"] = "Pie Chart";
 }
 @{
-    Layout = "~/Views/_Layout.cshtml";
+    if (User.IsInRole("admin") || User.IsInRole("editor"))
+    {
+        Layout = "~/Views/_Layout.cshtml";
+
+    }
+    else
+    {
+        Layout = "~/Views/_readerLayout.cshtml";
+    }
 }
 
 <!DOCTYPE html>
@@ -16,28 +24,35 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+
 </head>
 <body>
     <div class="container-fluid">
-        <div class="box-body">
-            <div class="chart-container">
-                <canvas id="chart" style="width:100%"></canvas>
+        <div class="row">
+            <div class="box-body">
+                <div class="chart-container">
+                    <canvas id="chart" style="width:100%"></canvas>
+                </div>
             </div>
         </div>
     </div>
 </body>
 </html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         var chartName = "chart";
+
         var ctx = document.getElementById(chartName).getContext('2d');
+
         var data = {
+
             labels: @Html.Raw(XLabels),
             datasets: [{
-                label: "Drinks Chart",
+                //label: "Drinks Chart",
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -68,14 +83,19 @@
                 ],
                 borderWidth: 1,
                 data: @Html.Raw(YValues)
-                                    }]
+
+                                                            }]
         };
 
         var options = {
-            maintainAspectRatio: false,
+            //tooltips: {
+            //   enabled:true,
+            //    //intersect:false,
+            //},
             scales: {
                 yAxes: [{
                     ticks: {
+                        display:false,
                         min: 0,
                         beginAtZero: true
                     },
@@ -86,6 +106,7 @@
                 }],
                 xAxes: [{
                     ticks: {
+                        display: false,
                         min: 0,
                         beginAtZero: true
                     },
@@ -95,11 +116,20 @@
                 }]
             }
         };
-
         var myChart = new Chart(ctx, {
             options: options,
+
             data: data,
             type: 'pie',
         });
     });
-</script>  
+</script>
+
+
+@*<script>
+    $(function () {
+        setTimeout(function () {
+            window.location.replace("../editor/listofproduct");
+        }, 5000);
+    });
+</script>*@

@@ -1,4 +1,5 @@
 ﻿using BstEnvanter.Entity.Abstract;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace BstEnvanter.Entity.Concrete
@@ -15,6 +16,7 @@ namespace BstEnvanter.Entity.Concrete
         public int ?commonId { get; set; }
         public Campus Campus { get; set; }
         public int? campusId { get; set; }
+        [Required(ErrorMessage ="Açıklama boş olamaz")]
         public string definition
         {
             get

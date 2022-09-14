@@ -1,7 +1,15 @@
 ﻿@model BstEnvanter.WebUI.Models.ProfileViewModel
 @{
     ViewData["Title"] = "Profile";
-    Layout = "~/Views/_Layout.cshtml";
+    if (User.IsInRole("admin") || User.IsInRole("editor"))
+    {
+        Layout = "~/Views/_Layout.cshtml";
+
+    }
+    else
+    {
+        Layout = "~/Views/_readerLayout.cshtml";
+    }
 }
 
 <div class="container-fluid">

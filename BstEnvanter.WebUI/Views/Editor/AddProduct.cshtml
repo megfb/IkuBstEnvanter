@@ -8,7 +8,13 @@
         <h1 class="display-4">Yeni Ürün Ekle</h1>
         <hr />
     </div>
-    <form asp-action="addproduct" class="col-md-8 p-3 mb-3 border rounded" method="post">
+    <form asp-action="addproduct" class="col-md-8 p-3 mb-3 border rounded" method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3 row">
+            <label for="inputImg" class="col-md-2 col-form-label">Resim Bilgileri</label>
+            <div class="col-md-10">
+                <input id="inputImg" asp-for="img" type="file" class="form-control" />
+            </div>
+        </div>
         <div class="form-group row">
             <label for="inputCategory" class="col-md-2 col-form-label">Kategori</label>
             <div class="col-md-10 search_select_box">
@@ -149,7 +155,7 @@
             <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
             @*<input type="hidden" asp-for="status.bstId" value="@" />*@
             <button class="btn btn-primary col-md-2">Ekle</button>
-            <a asp-action="listofproduct" class="btn btn-info col-md-2">Geri</a>
+            <a asp-action="listofproduct" style="background-color:#607D8B" class="btn text-white col-md-2">Geri</a>
         </div>
     </form>
 </div>

@@ -44,16 +44,75 @@ namespace BstEnvanter.WebUI.Controllers
                 {
                     worksheet.Cell(row, 1).Value = item.id;
                     worksheet.Cell(row, 2).Value = item.productId;
-                    worksheet.Cell(row, 3).Value = item.Product.Category.name;
-                    worksheet.Cell(row, 4).Value = item.Product.Brand.name;
-                    worksheet.Cell(row, 5).Value = item.Product.Model.name;
+                    if (item.Product.categoryId != null)
+                    {
+                        worksheet.Cell(row, 3).Value = item.Product.Category.name;
+
+                    }
+                    else
+                    {
+                        worksheet.Cell(row, 3).Value = "-";
+                    }
+                    if (item.Product.brandId != null)
+                    {
+                        worksheet.Cell(row, 4).Value = item.Product.Brand.name;
+
+                    }
+                    else
+                    {
+                        worksheet.Cell(row, 4).Value = "-";
+                    }
+                    if (item.Product.modelId != null)
+                    {
+                        worksheet.Cell(row, 5).Value = item.Product.Model.name;
+
+                    }
+                    else
+                    {
+                        worksheet.Cell(row, 5).Value = "-";
+                    }
+
                     worksheet.Cell(row, 6).Value = item.Product.name;
                     worksheet.Cell(row, 7).Value = item.Product.serialNo;
                     worksheet.Cell(row, 8).Value = item.Product.inventoryNo;
-                    worksheet.Cell(row, 9).Value = item.Product.Cpu.name;
-                    worksheet.Cell(row, 10).Value = item.Product.Gpu.name;
-                    worksheet.Cell(row, 11).Value = item.Product.Ram.name;
-                    worksheet.Cell(row, 12).Value = item.Product.HardDrive.name;
+                    if (item.Product.cpuId != null)
+                    {
+                        worksheet.Cell(row, 9).Value = item.Product.Cpu.name;
+
+                    }
+                    else
+                    {
+                        worksheet.Cell(row, 9).Value = "-";
+
+                    }
+                    if (item.Product.gpuId !=null)
+                    {
+                        worksheet.Cell(row, 10).Value = item.Product.Gpu.name;
+
+                    }
+                    else
+                    {
+                        worksheet.Cell(row, 10).Value = "-";
+
+                    }
+                    if (item.Product.gpuId != null)
+                    {
+                        worksheet.Cell(row, 10).Value = item.Product.Gpu.name;
+
+                    }
+                    else
+                    {
+                        worksheet.Cell(row, 10).Value = "-";
+                    }
+                    if (item.Product.hardDriveId != null)
+                    {
+                        worksheet.Cell(row, 12).Value = item.Product.HardDrive.name;
+
+                    }
+                    else
+                    {
+                        worksheet.Cell(row, 12).Value = "-";
+                    }
                     if (item.personelId != null)
                     {
                         worksheet.Cell(row, 13).Value = $"{item.Personel.name} {item.Personel.surname}";

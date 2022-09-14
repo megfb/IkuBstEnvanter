@@ -35,8 +35,13 @@
                     {
                         @if (item.personelId != null && item.commonId == null)
                         {
-                            <tr>
+                            string cls = null;
 
+                            if (item.serviceId != null)
+                            {
+                                cls = " table-danger";
+                            }
+                            <tr class="@cls">
                                 @if (item.Product.categoryId != null)
                                 {
                                     <td>@item.Product.Category.name</td>
@@ -69,7 +74,7 @@
                                 <td scope="col">@item.Personel.surname</td>
 
                                 <td scope="col">
-                                    <a class="btn btn-info" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detay</a>
+                                    <a class="btn btn-secondary" asp-controller="editor" asp-action="DetailProduct" asp-route-id="@item.id">Detay</a>
                                 </td>
                             </tr>
                         }

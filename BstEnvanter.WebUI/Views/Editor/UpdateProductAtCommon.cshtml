@@ -102,7 +102,7 @@
             <input type="hidden" asp-for="status.dateOfUpdate" value="@DateTime.Today" />
             <input type="hidden" asp-for="status.serviceId" value="@Model.status.serviceId" />
             <button class="btn btn-primary col-md-2" asp-route-commonId="@Model.status.commonId">Güncelle</button>
-            <a asp-action="listofproduct" class="btn btn-info col-md-2">Geri</a>
+            <a class="btn text-white col-md-2" style="background-color:#607D8B" asp-action="detailproduct" asp-route-id="@Model.status.id">Geri</a>
         </div>
     </form>
 </div>

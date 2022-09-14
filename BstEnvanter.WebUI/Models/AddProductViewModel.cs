@@ -15,5 +15,6 @@ namespace BstEnvanter.WebUI.Models
         public List<Gpu> gpu { get; internal set; }
         public List<Ram> ram { get; internal set; }
         public List<HardDrive> hardDrive { get; internal set; }
+        public IFormFile img { get; set; }
     }
 }

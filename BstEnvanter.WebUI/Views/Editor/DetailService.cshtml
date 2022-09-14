@@ -5,7 +5,7 @@
 }
 <div class="container-fluid">
     <div class="jumbotron jumbotron-fluid">
-        <h1 class="display-4">Ürün Detayları</h1>
+        <h1 class="display-4">Servis Detayları</h1>
         <hr />
     </div>
     <div class="row">
@@ -201,18 +201,15 @@
             </div>
             <div class="col-md-12 border border-rounded  rounded">
                 <div class="text-end mt-2 pb-3">
-                    @if (Model.status.serviceId == null)
-                    {
-                        <a class="btn btn-success" asp-controller="editor" asp-action="addservice" asp-route-id="@Model.status.id">Servis Kaydı Oluştur</a>
-                    }
+
                     @if (Model.status.serviceId != null)
                     {
                         <a class="btn btn-dark" asp-controller="editor" asp-action="deleteservice" asp-route-id="@Model.status.serviceId">Servis Kaydını Kapat</a>
-                        <a class="btn btn-info" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>
+                        <a class="btn btn-info text-white" asp-controller="editor" asp-action="updateservice" asp-route-id="@Model.status.id">Servis Kaydını Güncelle</a>
 
                     }
 
-                    <a class="btn text-end btn-secondary" asp-controller="editor" onClick="history.go(-1); return false;">Geri</a>
+                    <a class="btn text-white" style="background-color:#607D8B" asp-controller="editor" asp-action="detailproduct" asp-route-id="@Model.status.id">Geri</a>
                 </div>
             </div>
         </div>
